@@ -49,15 +49,13 @@ int socketIn(int port) {
 
     //bind socket
     if (bind(listenFd, (struct sockaddr *) &svrAdd, sizeof(svrAdd)) < 0) {
-        cerr << "Cannot bind1" << endl;
+        cerr << "socketIn Cannot bind : port " << port << endl;
         return 0;
     }
 
     listen(listenFd, 5);
 
     connFd = accept(listenFd, (struct sockaddr *) &clntAdd, &len);
-
-    len = sizeof(clntAdd);
     return (connFd);
 }
 

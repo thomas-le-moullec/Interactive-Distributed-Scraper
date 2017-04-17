@@ -60,7 +60,7 @@ int socketOut(std::string hostName, int port) {
     int checker = connect(listenFd, (struct sockaddr *) &svrAdd, sizeof(svrAdd));
 
     if (checker < 0) {
-        cerr << "Cannot connect! : " << strerror(errno) << endl;
+        cerr << "socketOut Cannot connect! : port " << port << endl;
         return 0;
     }
     return (listenFd);
