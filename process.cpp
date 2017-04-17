@@ -18,28 +18,24 @@ void            sendMessage(std::string, int);
 int            addProcess(pid_t *pid)
 {
     std::string     buff = "A";
-    int     connFd;
-    int     listenFd;
+    int     socketFd;
 
     (*pid) = fork();
     if ((*pid) == 0)
     {
-        listenFd = socketOut("localhost", 4555);
-        write(listenFd, ".", 1);
-        connFd = socketIn(4556);
+        socketFd = socketOut("localhost", 4555);
         while (buff != "Y" && buff != "Z")
         {
             if (buff != "") {
                 buff[0]++;
-                sendMessage(buff, connFd);
+                sendMessage(buff, socketFd);
                 std::cout << "Send by child : " << buff << std::endl;
             }
             buff = "";
-            buff = receiveMessage(listenFd);
+            buff = receiveMessage(socketFd); // listen
             std::cout << "Received by child : " << buff << std::endl;
         }
-        close(connFd);
-        close(listenFd);
+        close(socketFd);
         return (1);
     }
     return (0);
@@ -50,27 +46,23 @@ int  main()
     std::string buff;
     pid_t     childPid;
     int     status;
-    int     connFd;
-    int     listenFd;
+    int     socketFd;
 
     if (addProcess(&childPid) == 1)
         return (0);
-    connFd = socketIn(4555);
-    listenFd = socketOut("localhost", 4556);
-    write(listenFd, ".", 1);
+    socketFd = socketIn(4555);
     while (buff != "Y" && buff != "Z") {
         buff = "";
-        buff = receiveMessage(listenFd);
+        buff = receiveMessage(socketFd); // listen
         std::cout << "Received by parent : " << buff << std::endl;
         if (buff != "") {
             buff[0]++;
-            sendMessage(buff, connFd);
+            sendMessage(buff, socketFd);
             std::cout << "Send by parent : " << buff << std::endl;
         }
     }
     if (childPid == waitpid(childPid, &status, 0)) {
-        close(connFd);
-        close(listenFd);
+        close(socketFd);
     }
     return (0);
 }

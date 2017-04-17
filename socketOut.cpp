@@ -66,7 +66,7 @@ int socketOut(std::string hostName, int port) {
     return (listenFd);
 }
 
-void    sendMessage(std::string message, int listenFd)
+void    sendMessage(std::string message, int socketFd)
 {
-    write(listenFd, message.c_str(), strlen(message.c_str()));
+    write(socketFd, message.c_str(), strlen(message.c_str()));
 }
