@@ -9,21 +9,35 @@
 #include  <sys/types.h>
 #include  <sys/wait.h>
 #include <sys/socket.h>
+#include "Socket.h"
 
-int             socketIn(int);
-std::string     receiveMessage(int);
-int             socketOut(std::string, int);
-void            sendMessage(std::string, int);
-
-int            addProcess(pid_t *pid)
+void    sendMessage(std::string message, int socketFd)
 {
+    write(socketFd, message.c_str(), strlen(message.c_str()));
+}
+
+std::string     receiveMessage(int connFd)
+{
+    char test[300];
+    bzero(test, 301);
+    read(connFd, test, 300);
+
+    std::string tester (test);
+
+    if (tester[0] == '\0')
+        return ("");
+    return (tester);
+}
+
+int            addProcess(pid_t *pid, Socket *socket)
+{
+    int socketFd;
     std::string     buff = "A";
-    int     socketFd;
 
     (*pid) = fork();
     if ((*pid) == 0)
     {
-        socketFd = socketOut("localhost", 4555);
+        socketFd = socket->socketChild();
         while (buff != "Y" && buff != "Z")
         {
             if (buff != "") {
@@ -32,7 +46,7 @@ int            addProcess(pid_t *pid)
                 std::cout << "Send by child : " << buff << std::endl;
             }
             buff = "";
-            buff = receiveMessage(socketFd); // listen
+            buff = receiveMessage(socketFd);
             std::cout << "Received by child : " << buff << std::endl;
         }
         close(socketFd);
@@ -47,13 +61,14 @@ int  main()
     pid_t     childPid;
     int     status;
     int     socketFd;
+    Socket  *socket = new Socket(4555);
 
-    if (addProcess(&childPid) == 1)
+    if (addProcess(&childPid, socket) == 1)
         return (0);
-    socketFd = socketIn(4555);
+    socketFd = socket->socketParent();
     while (buff != "Y" && buff != "Z") {
         buff = "";
-        buff = receiveMessage(socketFd); // listen
+        buff = receiveMessage(socketFd);
         std::cout << "Received by parent : " << buff << std::endl;
         if (buff != "") {
             buff[0]++;
