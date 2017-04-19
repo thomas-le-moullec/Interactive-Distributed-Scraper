@@ -42,7 +42,7 @@ int Socket::socketChild() {
     int checker = connect(listenFd, (struct sockaddr *)&svrAdd, sizeof(svrAdd));
 
     if (checker < 0) {
-        std::cerr << "Cannot connect"<< std::endl;
+        std::cerr << "Cannot connect port " << this->_port << std::endl;
         return 0;
     }
     return (listenFd);
@@ -79,4 +79,9 @@ int Socket::socketParent() {
     len = sizeof(clntAdd);
     connFd = accept(listenFd, (struct sockaddr *)&clntAdd, &len);
     return (connFd);
+}
+
+int Socket::getPort() const
+{
+    return (this->_port);
 }
