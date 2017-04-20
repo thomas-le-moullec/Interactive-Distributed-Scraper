@@ -22,6 +22,10 @@ public:
     ProcessManagerSockets();
     ~ProcessManagerSockets() {};
     int                 addProcess(Socket *);
+    int                 takeProcessToFeed();
+    void                sendMessage(std::string, int);
+    std::string         receiveMessage(int);
+    void                 control();
 };
 
 #endif                  //PROCESSMANAGERSOCKETS_H

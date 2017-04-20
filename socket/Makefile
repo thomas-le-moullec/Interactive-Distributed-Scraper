@@ -4,8 +4,9 @@ CC          =       g++
 
 RM          =       rm -f
 
-SRCS        =       	example.cpp		\
-			Socket.cpp
+SRCS        =       	ProcessManagerSockets.cpp		\
+			Socket.cpp              \
+			main.cpp
 
 OBJS        =       $(SRCS:.cpp=.o)
 
