@@ -1,18 +1,21 @@
 #ifndef STRATEGYPHONENUMBER_HPP_
-# define STRATEGYPHONENUMBER_HPP_
+#define STRATEGYPHONENUMBER_HPP_
 
 #include "IStrategyInformation.hpp"
 
 namespace Plazza {
     class StrategyPhoneNumber : Plazza::IStrategyInformation {
     private:
-        void execute(std::string file);
+        std::string _fileContent;
+        std::vector<std::string> _information;
+
+        void execute();
         bool isValidInformation(char const &);
         int  FindInformation(int);
 
     public:
         virtual ~StrategyPhoneNumber() {};
-        StrategyPhoneNumber();
+        StrategyPhoneNumber(std::string);
     };
 }
 

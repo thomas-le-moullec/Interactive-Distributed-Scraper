@@ -6,13 +6,16 @@
 namespace Plazza {
     class StrategyIpAddress : Plazza::IStrategyInformation {
     private:
-        void execute(std::string file);
+        std::string _fileContent;
+        std::vector<std::string> _information;
+
+        void execute();
         bool isValidInformation(char const &);
         int  FindInformation(int);
 
     public:
         virtual ~StrategyIpAddress() {};
-        StrategyIpAddress();
+        StrategyIpAddress(std::string);
     };
 }
 
