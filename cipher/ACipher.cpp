@@ -2,9 +2,9 @@
 // Created by tchikl_h on 4/18/17.
 //
 
-#include "ACipher.h"
+#include        "ACipher.h"
 
-ACipher::ACipher(std::string const &fileName) : _key(0), _fileContent(this->getFileContent(fileName))
+ACipher::ACipher(IData *data, std::string const &fileName) : _data(data), _fileContent(this->getFileContent(fileName))
 {
 }
 
@@ -16,7 +16,7 @@ std::string     ACipher::getFileContent(std::string const &fileName)
     if (myfile.is_open())
     {
         while (getline(myfile,line))
-            content.append(line + "\n");
+            content.append(line + '\n');
         myfile.close();
     }
     else

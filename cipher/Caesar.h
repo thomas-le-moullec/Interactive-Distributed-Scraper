@@ -10,7 +10,7 @@
 class                   Caesar : public ACipher
 {
 public:
-    Caesar(std::string const &);
+    Caesar(IData *, std::string const &);
     virtual ~Caesar() {};
     int                 Cipher();
     std::string         findMail();

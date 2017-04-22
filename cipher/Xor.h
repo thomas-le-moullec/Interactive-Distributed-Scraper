@@ -10,7 +10,7 @@
 class                   Xor : public ACipher
 {
 public:
-    Xor(std::string const &);
+    Xor(IData *, std::string const &);
     virtual ~Xor() {};
     int                 Cipher();
     std::string         findMail();

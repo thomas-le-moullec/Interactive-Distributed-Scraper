@@ -6,14 +6,15 @@
 #define                 ACIPHER_H
 
 #include                "ICipher.h"
+#include                "IData.h"
 
 class                   ACipher : public ICipher
 {
 protected:
-    char                _key;
+    IData               *_data;
     std::string         _fileContent;
 public:
-    ACipher(std::string const &);
+    ACipher(IData *, std::string const &);
     virtual ~ACipher() {};
     virtual int Cipher() = 0;
     std::string         getFileContent(std::string const &);

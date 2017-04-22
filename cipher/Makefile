@@ -5,13 +5,17 @@ CC          =       g++
 RM          =       rm -f
 
 SRCS        =       	main.cpp		\
-            ACipher.cpp         \
+			ACipher.cpp         \
 			Caesar.cpp          \
-			Xor.cpp
+			Xor.cpp             \
+			AData.cpp           \
+			Mail.cpp            \
+			Phone.cpp           \
+			Ip.cpp
 
 OBJS        =       $(SRCS:.cpp=.o)
 
-CPPFLAGS    =       -I . -lpthread
+CPPFLAGS    =       -g -I . -lpthread
 
 
 all         :       $(NAME)
