@@ -1,15 +1,15 @@
 #include "StrategyPhoneNumber.hpp"
 
-StrategyPhoneNumber::StrategyPhoneNumber(std::string fileContent) : _fileContent(fileContent)
+Plazza::StrategyPhoneNumber::StrategyPhoneNumber(std::string fileContent) : _fileContent(fileContent)
 {
 }
 
-int             StrategyPhoneNumber::IsValidInformation(char const &c)
+bool             Plazza::StrategyPhoneNumber::IsValidInformation(char const &c)
 {
     return (c >= '0' && c <= '9');
 }
 
-int             StrategyPhoneNumber::FindInformation(int pos)
+int             Plazza::StrategyPhoneNumber::FindInformation(int pos)
 {
     pos = this->_fileContent.find("06", pos);
     int         save = pos;
@@ -24,7 +24,7 @@ int             StrategyPhoneNumber::FindInformation(int pos)
     return (pos);
 }
 
-void            StrategyPhoneNumber::Execute()
+void            Plazza::StrategyPhoneNumber::execute()
 {
     int         pos = 0;
 
