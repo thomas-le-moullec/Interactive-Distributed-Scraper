@@ -13,8 +13,6 @@ public:
     Caesar(IData *, std::string const &);
     virtual ~Caesar() {};
     int                 Cipher();
-    std::string         findMail();
-    int                 isValidMail(char);
 };
 
 #endif                  //CAESAR_H

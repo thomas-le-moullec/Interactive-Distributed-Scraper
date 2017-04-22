@@ -26,7 +26,13 @@ std::string     ACipher::getFileContent(std::string const &fileName)
 
 int             ACipher::unCiphered()
 {
-    if (this->_fileContent.find("<HTML>", 0) != std::string::npos && this->_fileContent.find("</HTML>", 0) != std::string::npos)
-        return (0);
+    for (int i = 0; i < this->_fileContent.length(); ++i)
+    {
+        if (this->_fileContent[i] < 0 || this->_fileContent[i] > 127)
+            return (-1);
+    }
+    return (0);
+    /*if (this->_fileContent.find("<HTML>", 0) != std::string::npos && this->_fileContent.find("</HTML>", 0) != std::string::npos)
+        return (0);*/
     return (-1);
 }

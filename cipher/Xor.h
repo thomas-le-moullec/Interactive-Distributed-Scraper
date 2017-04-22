@@ -13,8 +13,6 @@ public:
     Xor(IData *, std::string const &);
     virtual ~Xor() {};
     int                 Cipher();
-    std::string         findMail();
-    int                 isValidMail(char);
 };
 
 #endif                  //XOR_CPP_H
