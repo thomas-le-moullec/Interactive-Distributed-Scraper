@@ -9,7 +9,7 @@ namespace Plazza {
 		class AProcessManager : Plazza::Controller::IProcessManager {
 		private:
 			std::vector<int> _idProcess;
-			virtual void addProcess() = 0;
+			virtual void addProcess(unsigned int, Socket *) = 0;
 			virtual int getStatus() = 0;
 			virtual int getPid() = 0;
 		protected:

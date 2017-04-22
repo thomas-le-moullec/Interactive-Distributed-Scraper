@@ -12,6 +12,7 @@ namespace Plazza {
 		virtual int  FindInformation(int) = 0;
 
 	public:
+		virtual void execute() = 0;
 		virtual ~IStrategyInformation() {};
 	};
 }

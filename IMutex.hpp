@@ -6,9 +6,10 @@
 namespace Plazza {
 	class IMutex {
 	private:
-		virtual void lock() = 0;
-		virtual void unlock() = 0;
-		virtual void trylock() = 0;
+		virtual void 								lock() = 0;
+		virtual void 								unlock() = 0;
+		virtual void 								trylock() = 0;
+		virtual	pthread_mutex_t			*getMutex() = 0;
 	};
 }
 
