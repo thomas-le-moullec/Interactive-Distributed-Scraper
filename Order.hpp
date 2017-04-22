@@ -2,13 +2,13 @@
 #define ORDER_HPP_
 
 #include <iostream>
-#include "IStrategyData.hpp"
+#include "IStrategyInformation.hpp"
 
 namespace Plazza {
 	namespace Controller {
 
 		struct Order {
-			IStrategyData *_strategy;
+			IStrategyInformation *_strategy;
 			std::string _file;
 		};
   }
