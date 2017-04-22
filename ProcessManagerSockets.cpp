@@ -1,6 +1,6 @@
-#include "ProcessManager.hpp"
+#include "ProcessManagerSockets.hpp"
 
-Plazza::Controller::ProcessManager::ProcessManager(unsigned int nbThreads) : _numPort(0)
+Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads) : _numPort(0)
 {
   Socket				*socket;
 
@@ -10,23 +10,23 @@ Plazza::Controller::ProcessManager::ProcessManager(unsigned int nbThreads) : _nu
   _socket = new Socket(5000);
 }
 
-Plazza::Controller::ProcessManager::~ProcessManager()
+Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 {
 
 }
 
-int 						Plazza::Controller::ProcessManager::getStatus()
-{
-  return 0;
-}
-
-int 						Plazza::Controller::ProcessManager::getPid() 
+int 						Plazza::Controller::ProcessManagerSockets::getStatus()
 {
   return 0;
 }
 
+int 						Plazza::Controller::ProcessManagerSockets::getPid()
+{
+  return 0;
+}
 
-void						Plazza::Controller::ProcessManager::addProcess(unsigned int nbThread, Socket *socket)
+
+void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbThread, Socket *socket)
 {
   pid_t					pid;
 
@@ -38,7 +38,7 @@ void						Plazza::Controller::ProcessManager::addProcess(unsigned int nbThread, 
   }
 }
 
-void									Plazza::Controller::ProcessManager::control(unsigned int nbThreads)
+void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
 {
   while (true)
   {

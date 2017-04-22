@@ -1,15 +1,15 @@
 #include "StrategyIpAddress.hpp"
 
-StrategyIpAddress::StrategyIpAddress(std::string fileContent) : _fileContent(fileContent)
+Plazza::StrategyIpAddress::StrategyIpAddress(std::string fileContent) : _fileContent(fileContent)
 {
 }
 
-int             StrategyIpAddress::IsValidInformation(char const &c)
+bool             Plazza::StrategyIpAddress::IsValidInformation(char const &c)
 {
     return (c >= '0' && c <= '9');
 }
 
-int             StrategyIpAddress::FindInformation(int pos)
+int             Plazza::StrategyIpAddress::FindInformation(int pos)
 {
     pos = this->_fileContent.find(".", pos);
     int         save;
@@ -42,12 +42,12 @@ int             StrategyIpAddress::FindInformation(int pos)
             pos++;
     }
     if (val == 4)
-        this->_Information.push_back(this->_fileContent.substr(save, pos - save));
+        this->_information.push_back(this->_fileContent.substr(save, pos - save));
     return (pos);
 }
 
 
-void            StrategyIpAddress::Execute()
+void            Plazza::StrategyIpAddress::execute()
 {
     int         pos = 0;
 
