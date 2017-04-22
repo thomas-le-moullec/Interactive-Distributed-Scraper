@@ -1,21 +1,39 @@
 #include "Process.hpp"
 
-std::string Plazza::Controller::Process::takeOrderFromSockets() {
-	// TODO - implement Process::takeOrderFromSockets
-	throw "Not yet implemented";
+Plazza::Controller::Process::Process(unsigned int nbThread, Socket *socket) : _tp(nbThread), _socket(socket), _fdSocket(socket->socketChild())
+{
+  std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
 }
 
-Plazza::Controller::Order Plazza::Controller::Process::parseOrder(std::string order) {
-	// TODO - implement Process::parseOrder
-	throw "Not yet implemented";
+Plazza::Controller::Process::~Process()
+{
 }
 
-void Plazza::Controller::Process::control() {
-	// TODO - implement Process::control
-	throw "Not yet implemented";
+Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string)
+{
+  Order		order;
+
+  return order;
 }
 
-Plazza::Controller::Process::Process() {
-	// TODO - implement Process::Process
-	throw "Not yet implemented";
+void				Plazza::Controller::Process::control()
+{
+  while (true)
+  {
+    _message = _socket->receiveMessage(_fdSocket);
+    if (_message == "nbThreadsBusy")
+      _socket->sendMessage(std::to_string(_tp.getCurrentOrder()), _fdSocket);
+    else if (_message == "exit")
+    {
+      _socket->sendMessage(" ", _fdSocket);
+      close(_fdSocket);
+      exit(0);
+    }
+    else
+    {
+      _order._file = _message;
+      _tp.pushOrder(_order);
+      _socket->sendMessage(" ", _fdSocket);
+    }
+  }
 }
