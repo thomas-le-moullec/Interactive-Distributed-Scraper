@@ -12,7 +12,6 @@ namespace Plazza {
 			Plazza::Controller::IThreadsPool *_threadsPool;
 			std::string _order;
 			int _fdSocket;
-			virtual std::string takeOrderFromSockets() = 0;
 			virtual Plazza::Controller::Order parseOrder(std::string order) = 0;
 			virtual void control() = 0;
 

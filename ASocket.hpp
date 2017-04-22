@@ -8,8 +8,6 @@ namespace Plazza {
 		class ASocket : Plazza::Controller::ISocket {
 		private:
 			unsigned int _port;
-			virtual int InitSocketParent() = 0;
-			virtual int InitSocketChild() = 0;
 		public:
 			virtual ~ASocket() {};
 		protected:
