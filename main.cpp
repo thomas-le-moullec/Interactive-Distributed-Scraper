@@ -1,10 +1,10 @@
-#include "Data.hpp"
+#include "Information.hpp"
 #include "Ncurses.hpp"
 #include "NoGui.hpp"
 
 int main()
 {
-    Plazza::Model::Data toto();
+    Plazza::Model::Information toto();
     return 0;
 };
 
