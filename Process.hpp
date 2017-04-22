@@ -1,23 +1,29 @@
-#ifndef PROCESS_HPP_
-# define PROCESS_HPP
+#ifndef	PROCESS_HPP_
+#define	PROCESS_HPP_
 
-#include "AProcess.hpp"
+#include <iostream>
+#include <unistd.h>
+#include "Socket.hpp"
+#include "ThreadPool.hpp"
+#include "Order.hpp"
 
 namespace Plazza {
-	namespace Controller {
-		class Process : Plazza::Controller::AProcess {
-		private:
-			Plazza::Controller::IThreadsPool *_threadsPool;
-			std::string _order;
-			int _fdSocket;
-			std::string takeOrderFromSockets();
-			Plazza::Controller::Order parseOrder(std::string order);
-			void control();
-		public:
-			virtual ~Process() {};
-			Process();
-		};
-	}
+  namespace Controller {
+    class		Process : public AProcess
+    {
+    public:
+      Process(unsigned int, Socket *);
+      ~Process();
+      Order			parseOrder(std::string);
+      void				control();
+    private:
+      ThreadPool	_tp;
+      Socket			*_socket;
+      int					_fdSocket;
+      std::string	_message;
+      Order			_order;
+      time_t			_time;
+    };
+  }
 }
-
 #endif
