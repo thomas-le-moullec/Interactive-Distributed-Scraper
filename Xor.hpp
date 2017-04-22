@@ -1,15 +1,17 @@
 #ifndef XOR_HPP_
 # define XOR_HPP_
 
-#include <iostream>
+#include "AStrategyCipher.hpp"
 
 namespace Plazza {
-    class IStrategyCipher {
+    class Xor : Plazza::AStrategyCipher {
     private:
-        virtual void executeCipher() = 0;
+        std::string _fileContent;
+        void executeCipher();
 
     public:
-        virtual ~IStrategyCipher(){};
+        virtual ~Xor(){};
+        Xor();
     };
 }
 
