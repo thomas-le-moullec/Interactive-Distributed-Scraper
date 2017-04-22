@@ -37,7 +37,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
   {
     Order order = popOrder();
     _ordersExecuted++;
-    order._strategy->execute(order._file);
+    //order._strategy->execute(order._file);
     time(&_time);
     _ordersExecuted--;
   }

@@ -1,10 +1,10 @@
 #include "StrategyEmailAddress.hpp"
 
-StrategyEmailAddress::StrategyEmailAddress(std::string fileContent) : _fileContent(fileContent)
+Plazza::StrategyEmailAddress::StrategyEmailAddress()
 {
 }
 
-int             StrategyEmailAddress::IsValidInformation(char const &c)
+bool             Plazza::StrategyEmailAddress::IsValidInformation(char const &c)
 {
     return (c >= '0' && c <= '9' ||
             c >= 'a' && c <= 'z' ||
@@ -12,7 +12,7 @@ int             StrategyEmailAddress::IsValidInformation(char const &c)
             c == '-' || c == '_' || c == '.');
 }
 
-int             StrategyEmailAddress::FindInformation(int pos)
+int             Plazza::StrategyEmailAddress::FindInformation(int pos)
 {
     pos = this->_fileContent.find("@", pos);
     int         save = pos;
@@ -28,15 +28,16 @@ int             StrategyEmailAddress::FindInformation(int pos)
     save++;
     while (save < this->_fileContent.size() && this->IsValidInformation(this->_fileContent[save]))
         save++;
-    this->_Information.push_back(this->_fileContent.substr(pos, save - pos));
+    this->_information.push_back(this->_fileContent.substr(pos, save - pos));
     return (save);
 }
 
 
-void            StrategyPhoneNumber::Execute()
+void            Plazza::StrategyEmailAddress::execute(std::string const &fileContent)
 {
     int         pos = 0;
 
+    this->_fileContent = fileContent;
     while (pos != -1)
         pos = this->FindInformation(pos);
     for (auto & it : this->_information)
