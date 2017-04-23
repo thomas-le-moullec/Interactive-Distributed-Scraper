@@ -1,5 +1,5 @@
-#ifndef CPP_PLAZZA_CAESAR_H
-#define CPP_PLAZZA_CAESAR_H
+#ifndef CPP_PLAZZA_CAESAR_HPP_
+#define CPP_PLAZZA_CAESAR_HPP_
 
 #include "AStrategyCipher.hpp"
 
@@ -7,11 +7,11 @@ namespace Plazza {
     class Caesar : Plazza::AStrategyCipher {
     private:
         std::string _fileContent;
-        void executeCipher();
+        std::string executeCipher();
 
     public:
         virtual ~Caesar(){};
-        Caesar();
+        Caesar(std::string const &);
     };
 }
 

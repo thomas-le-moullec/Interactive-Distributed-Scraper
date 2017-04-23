@@ -6,7 +6,7 @@
 namespace Plazza {
 	class IStrategyCipher {
 	private:
-		virtual void executeCipher() = 0;
+		virtual std::string executeCipher() = 0;
 
 	public:
 		virtual ~IStrategyCipher(){};

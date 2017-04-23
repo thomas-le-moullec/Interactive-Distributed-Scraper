@@ -1,19 +1,26 @@
-#include "Xor.hpp"
+//
+// Created by tchikl_h on 4/18/17.
+//
 
-Plazza::Xor::Xor(std::string const &fileName) : AStrategyCipher(fileName)
+#include "Xor.h"
+
+Xor::Xor(IData *data, std::string const &fileName) : ACipher(data, fileName)
 {
 }
 
-std::string            Plazza::Xor::executeCipher()
+int             Xor::Cipher()
 {
+    std::string saveFileContent = this->_fileContent;
     std::string saveFileContent = this->_fileContent;
     for (int i = 0; i < 255; ++i) {
         for (int nb = 0; nb < this->_fileContent.size(); nb++) {
-            this->_fileContent[nb] = saveFileContent[nb] ^ i;
+                this->_fileContent[nb] = saveFileContent[nb] ^ i;
         }
-        if (this->isUnCiphered() == true) {
+        if (this->unCiphered() != -1) {
             std::cout << "KEY = " << (char)i << " (" << i << ")" << std::endl;
-            return (this->_fileContent);
+            this->_data->setFileContent(this->_fileContent);
+            this->_data->Execute();
+            return (0);
         }
     }
     this->_fileContent = saveFileContent;
@@ -25,11 +32,13 @@ std::string            Plazza::Xor::executeCipher()
                 else
                     this->_fileContent[nb] = saveFileContent[nb] ^ j;
             }
-            if (this->isUnCiphered() == true) {
+            if (this->unCiphered() != -1) {
                 std::cout << "KEY = " << (char)i << (char)j << " (" << i << " | " << j << ")" << std::endl;
-                return (this->_fileContent);
+                this->_data->setFileContent(this->_fileContent);
+                this->_data->Execute();
+                return (0);
             }
         }
     }
-    return (NULL);
+    return (0);
 }
