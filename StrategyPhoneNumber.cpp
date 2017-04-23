@@ -1,6 +1,6 @@
 #include "StrategyPhoneNumber.hpp"
 
-Plazza::StrategyPhoneNumber::StrategyPhoneNumber(std::string fileContent) : _fileContent(fileContent)
+Plazza::StrategyPhoneNumber::StrategyPhoneNumber()
 {
 }
 
@@ -24,10 +24,11 @@ int             Plazza::StrategyPhoneNumber::FindInformation(int pos)
     return (pos);
 }
 
-void            Plazza::StrategyPhoneNumber::execute()
+void            Plazza::StrategyPhoneNumber::execute(std::string const &fileContent)
 {
     int         pos = 0;
 
+    this->_fileContent = fileContent;
     while (pos != -1)
         pos = this->FindInformation(pos);
     for (auto & it : this->_information)

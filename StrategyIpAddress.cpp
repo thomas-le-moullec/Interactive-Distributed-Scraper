@@ -1,6 +1,6 @@
 #include "StrategyIpAddress.hpp"
 
-Plazza::StrategyIpAddress::StrategyIpAddress(std::string fileContent) : _fileContent(fileContent)
+Plazza::StrategyIpAddress::StrategyIpAddress()
 {
 }
 
@@ -47,10 +47,11 @@ int             Plazza::StrategyIpAddress::FindInformation(int pos)
 }
 
 
-void            Plazza::StrategyIpAddress::execute()
+void            Plazza::StrategyIpAddress::execute(std::string const &fileContent)
 {
     int         pos = 0;
 
+    this->_fileContent = fileContent;
     while (pos != -1)
         pos = this->FindInformation(pos);
     for (auto & it : this->_information)

@@ -1,5 +1,5 @@
-#ifndef XOR_HPP_
-# define XOR_HPP_
+#ifndef CPP_PLAZZA_XOR_HPP_
+#define CPP_PLAZZA_XOR_HPP_
 
 #include "AStrategyCipher.hpp"
 
@@ -7,11 +7,11 @@ namespace Plazza {
     class Xor : Plazza::AStrategyCipher {
     private:
         std::string _fileContent;
-        void executeCipher();
+        std::string executeCipher();
 
     public:
         virtual ~Xor(){};
-        Xor();
+        Xor(std::string const &);
     };
 }
 
