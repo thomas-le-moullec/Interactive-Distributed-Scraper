@@ -10,7 +10,7 @@ namespace Plazza {
     CondVar();
     ~CondVar();
     void	signal();
-    void	wait(Mutex &);
+    void	wait(IMutex *);
   private:
     pthread_cond_t	_cond;
   };

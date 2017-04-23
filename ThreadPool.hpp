@@ -27,9 +27,9 @@ namespace Plazza {
       Order									popOrder();
 
     private:
-      std::vector<Order> 					_orders;
+      std::vector<Order> 						_orders;
       std::vector<std::thread *>		_threads;
-      Mutex													_mutex;
+      IMutex												*_mutex; // A CHANGER EN MUTEX SI PROBLEME
       CondVar												_cond;
       unsigned int									_nbThreads;
       unsigned int									_ordersExecuted;

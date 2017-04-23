@@ -14,15 +14,15 @@ namespace Plazza {
     public:
       Process(unsigned int, Socket *);
       ~Process();
-      Order			parseOrder(std::string);
-      void				control();
+      Order						parseOrder(std::string);
+      void						control();
     private:
-      ThreadPool	_tp;
-      Socket			*_socket;
-      int					_fdSocket;
-      std::string	_message;
-      Order			_order;
-      time_t			_time;
+      IThreadsPool		*_tp;
+      Socket					*_socket;
+      int							_fdSocket;
+      std::string			_message;
+      Order						_order;
+      time_t					_time; // A ENCAPSULER
     };
   }
 }

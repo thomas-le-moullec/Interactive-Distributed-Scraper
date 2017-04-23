@@ -9,12 +9,11 @@
 namespace Plazza {
 	namespace Controller {
 		class IThreadsPool {
-		private:
+		public:
+			virtual ~IThreadsPool() {};
 			virtual Order popOrder() = 0;
 			virtual void 	pushOrder(Order order) = 0;
 			virtual int 	getCurrentOrder() = 0;
-		public:
-			virtual ~IThreadsPool() {};
 		};
 	}
 }

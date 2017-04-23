@@ -15,7 +15,7 @@ void	Plazza::CondVar::signal()
   pthread_cond_signal(&_cond);
 }
 
-void	Plazza::CondVar::wait(Mutex &mutex)
+void	Plazza::CondVar::wait(IMutex *mutex)
 {
-  pthread_cond_wait(&_cond, mutex.getMutex());
+  pthread_cond_wait(&_cond, mutex->getMutex());
 }

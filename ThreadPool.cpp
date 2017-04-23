@@ -2,6 +2,7 @@
 
 Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads) : _nbThreads(nbThreads), _ordersExecuted(0)
 {
+  _mutex = new Mutex();
   time(&_time);
   for (unsigned int i = 0; i < _nbThreads; i++)
     _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));
@@ -14,20 +15,20 @@ Plazza::Controller::ThreadPool::~ThreadPool()
 void									Plazza::Controller::ThreadPool::pushOrder(Order order)
 {
   time(&_time);
-  _mutex.lock();
+  _mutex->lock();
   _orders.insert(_orders.end(), order);
   _cond.signal();
-  _mutex.unlock();
+  _mutex->unlock();
 }
 
 Plazza::Controller::Order								Plazza::Controller::ThreadPool::popOrder()
 {
-  _mutex.lock();
+  _mutex->lock();
   while (_orders.empty())
     _cond.wait(_mutex);
   Order order = _orders[0];
   _orders.erase(_orders.begin());
-  _mutex.unlock();
+  _mutex->unlock();
   return order;
 }
 

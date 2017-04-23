@@ -9,7 +9,8 @@
 
 namespace Plazza {
 	namespace Controller {
-		class AThreadsPool : Plazza::Controller::IThreadsPool {
+		class AThreadsPool : public IThreadsPool
+		{
 		private:
 			/*std::vector<Plazza::Controller::Order *> _order;
 			std::vector<IThread *> _threadPool;
