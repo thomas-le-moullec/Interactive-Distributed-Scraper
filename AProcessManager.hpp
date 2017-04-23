@@ -6,7 +6,7 @@
 
 namespace Plazza {
 	namespace Controller {
-		class AProcessManager : Plazza::Controller::IProcessManager {
+		class AProcessManager : public IProcessManager {
 		private:
 			std::vector<int> _idProcess;
 			virtual void addProcess(unsigned int, Socket *) = 0;

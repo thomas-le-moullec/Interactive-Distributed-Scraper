@@ -4,7 +4,7 @@
 #include "IThread.hpp"
 
 namespace Plazza {
-	class Thread : Plazza::IThread {
+	class Thread : public IThread {
 	private:
 		pthread_t _thread;
 		//void create(const thread_attr_t* myThread, void*(* start)(void *), void* args);

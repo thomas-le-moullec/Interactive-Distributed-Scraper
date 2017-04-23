@@ -5,7 +5,7 @@
 
 namespace Plazza {
 	namespace Model {
-		class Information : Plazza::Model::AModel {
+		class Information : public AModel {
 		private:
 			std::string _information;
 			std::vector<Plazza::IObserver *> listObservers;

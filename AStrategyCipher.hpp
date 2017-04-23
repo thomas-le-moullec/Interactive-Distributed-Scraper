@@ -5,7 +5,7 @@
 #include <fstream>
 
 namespace Plazza {
-    class AStrategyCipher : Plazza::IStrategyCipher {
+    class AStrategyCipher : public IStrategyCipher {
     private:
         virtual std::string executeCipher() = 0;
         virtual std::string getFileContent(std::string const &);

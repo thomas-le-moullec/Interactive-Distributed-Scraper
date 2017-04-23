@@ -4,7 +4,7 @@
 #include "IContextCipher.hpp"
 
 namespace Plazza {
-	class ContextCipher : Plazza::IContextCipher {
+	class ContextCipher : public IContextCipher {
 	private:
 		Plazza::IStrategyCipher *_strategy;
 		void ExecuteStrategy();

@@ -4,7 +4,7 @@
 #include "IStrategyInformation.hpp"
 
 namespace Plazza {
-    class StrategyPhoneNumber : Plazza::IStrategyInformation {
+    class StrategyPhoneNumber : public IStrategyInformation {
     private:
         std::string _fileContent;
         std::vector<std::string> _information;

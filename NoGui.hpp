@@ -6,7 +6,7 @@
 
 namespace Plazza {
 	namespace View {
-		class NoGui : Plazza::View::AView, Plazza::IObserver {
+		class NoGui : public AView, public IObserver {
 		private:
 			Plazza::Controller::IController *_controller;
 			unsigned int _width;

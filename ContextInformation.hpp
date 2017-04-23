@@ -4,7 +4,7 @@
 #include "IContextInformation.hpp"
 
 namespace Plazza {
-	class ContextInformation : Plazza::IContextInformation {
+	class ContextInformation : public IContextInformation {
 	private:
 		Plazza::IStrategyInformation *_strategy;
 		void ExecuteStrategy(std::string const &fileContent);

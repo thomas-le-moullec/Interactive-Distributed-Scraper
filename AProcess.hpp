@@ -7,7 +7,7 @@
 namespace Plazza {
 	namespace Controller {
 
-		class AProcess : Plazza::Controller::IProcess {
+		class AProcess : public IProcess {
 		private:
 			Plazza::Controller::IThreadsPool *_threadsPool;
 			std::string _order;

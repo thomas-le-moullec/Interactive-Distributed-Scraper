@@ -6,7 +6,7 @@
 
 namespace Plazza {
 	namespace Controller {
-		class AController : Plazza::Controller::IController {
+		class AController : public IController {
 		private:
 			Plazza::Model::IModel *_model;
 			std::string commandLine;

@@ -4,7 +4,7 @@
 #include "AStrategyCipher.hpp"
 
 namespace Plazza {
-    class Caesar : Plazza::AStrategyCipher {
+    class Caesar : public AStrategyCipher {
     private:
         std::string _fileContent;
         std::string executeCipher();

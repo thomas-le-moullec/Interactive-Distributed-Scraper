@@ -7,7 +7,7 @@
 
 namespace Plazza {
 	namespace View {
-		class Ncurses : Plazza::View::AView, Plazza::IObserver {
+		class Ncurses : public AView, public IObserver {
 		private:
 			Plazza::Controller::IController *_controller;
 			unsigned int _width;

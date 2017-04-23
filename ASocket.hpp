@@ -5,7 +5,7 @@
 
 namespace Plazza {
 	namespace Controller {
-		class ASocket : Plazza::Controller::ISocket {
+		class ASocket : public ISocket {
 		private:
 			unsigned int _port;
 		public:
