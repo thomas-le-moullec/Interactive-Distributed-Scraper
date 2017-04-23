@@ -7,9 +7,9 @@ namespace Plazza {
     class Xor : public AStrategyCipher {
     private:
         std::string _fileContent;
-        std::string executeCipher();
 
     public:
+        std::string executeCipher();
         virtual ~Xor(){};
         Xor(std::string const &);
     };

@@ -1,11 +1,9 @@
 #include "ContextCipher.hpp"
 
-void Plazza::ContextCipher::ExecuteStrategy() {
-	// TODO - implement ContextCipher::ExecuteStrategy
-	throw "Not yet implemented";
+std::string Plazza::ContextCipher::ExecuteStrategy() {
+	return _strategy->executeCipher();
 }
 
-void Plazza::ContextCipher::Context(Plazza::IStrategyCipher *strat) {
-	// TODO - implement ContextCipher::Context
-	throw "Not yet implemented";
+Plazza::ContextCipher::ContextCipher(Plazza::IStrategyCipher *strategy) {
+	_strategy = strategy;
 }

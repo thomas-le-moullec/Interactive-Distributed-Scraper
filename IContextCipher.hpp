@@ -5,11 +5,8 @@
 
 namespace Plazza {
 	class IContextCipher {
-	private:
-		virtual void ExecuteStrategy() = 0;
-		virtual void Context(Plazza::IStrategyCipher *) = 0;
-
 	public:
+		virtual std::string ExecuteStrategy() = 0;
 		virtual ~IContextCipher() {};
 	};
 }

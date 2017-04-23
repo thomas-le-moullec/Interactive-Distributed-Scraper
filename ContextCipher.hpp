@@ -7,11 +7,10 @@ namespace Plazza {
 	class ContextCipher : public IContextCipher {
 	private:
 		Plazza::IStrategyCipher *_strategy;
-		void ExecuteStrategy();
-		void Context(Plazza::IStrategyCipher *);
 
 	public:
-		ContextCipher();
+		std::string ExecuteStrategy();
+		ContextCipher(Plazza::IStrategyCipher *);
 		virtual ~ContextCipher() {};
 	};
 }
