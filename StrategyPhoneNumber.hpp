@@ -9,13 +9,12 @@ namespace Plazza {
         std::string _fileContent;
         std::vector<std::string> _information;
 
-        void execute();
-        bool isValidInformation(char const &);
-        int  FindInformation(int);
-
     public:
         virtual ~StrategyPhoneNumber() {};
-        StrategyPhoneNumber(std::string);
+        StrategyPhoneNumber();
+        void execute(std::string const &fileContent);
+        bool IsValidInformation(char const &);
+        int  FindInformation(int);
     };
 }
 

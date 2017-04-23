@@ -1,10 +1,10 @@
 #include "AStrategyCipher.hpp"
 
-AStrategyCipher::AStrategyCipher(std::string const &fileName) : _data(data), _fileContent(this->getFileContent(fileName))
+Plazza::AStrategyCipher::AStrategyCipher(std::string const &fileName) : _fileContent(this->getFileContent(fileName))
 {
 }
 
-std::string     AStrategyCipher::getFileContent(std::string const &fileName)
+std::string     Plazza::AStrategyCipher::getFileContent(std::string const &fileName)
 {
     std::string content;
     std::string line;
@@ -20,9 +20,9 @@ std::string     AStrategyCipher::getFileContent(std::string const &fileName)
     return (content);
 }
 
-int             AStrategyCipher::unCiphered()
+bool             Plazza::AStrategyCipher::isUnCiphered()
 {
     if (this->_fileContent.find("<HTML>", 0) != std::string::npos && this->_fileContent.find("</HTML>", 0) != std::string::npos)
-        return (0);
-    return (-1);
+        return (true);
+    return (false);
 }

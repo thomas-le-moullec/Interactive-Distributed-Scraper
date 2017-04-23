@@ -1,17 +1,17 @@
 #include "Xor.hpp"
 
-Xor::Xor(std::string const &fileName) : ACipher(fileName)
+Plazza::Xor::Xor(std::string const &fileName) : AStrategyCipher(fileName)
 {
 }
 
-int             Xor::executeCipher()
+std::string            Plazza::Xor::executeCipher()
 {
     std::string saveFileContent = this->_fileContent;
     for (int i = 0; i < 255; ++i) {
         for (int nb = 0; nb < this->_fileContent.size(); nb++) {
             this->_fileContent[nb] = saveFileContent[nb] ^ i;
         }
-        if (this->unCiphered() != -1) {
+        if (this->isUnCiphered() == true) {
             std::cout << "KEY = " << (char)i << " (" << i << ")" << std::endl;
             return (this->_fileContent);
         }
@@ -25,7 +25,7 @@ int             Xor::executeCipher()
                 else
                     this->_fileContent[nb] = saveFileContent[nb] ^ j;
             }
-            if (this->unCiphered() != -1) {
+            if (this->isUnCiphered() == true) {
                 std::cout << "KEY = " << (char)i << (char)j << " (" << i << " | " << j << ")" << std::endl;
                 return (this->_fileContent);
             }

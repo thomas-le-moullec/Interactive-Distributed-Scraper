@@ -1,11 +1,9 @@
 #include "ContextInformation.hpp"
 
-void Plazza::ContextInformation::ExecuteStrategy() {
-	// TODO - implement ContextData::ExecuteStrategy
-	throw "Not yet implemented";
+void Plazza::ContextInformation::ExecuteStrategy(std::string const &fileContent) {
+	//return _strategy->execute(fileContent);
 }
 
 void Plazza::ContextInformation::Context(Plazza::IStrategyInformation *strat) {
-	// TODO - implement ContextData::Context
-	throw "Not yet implemented";
+	//_strategy = strat;
 }

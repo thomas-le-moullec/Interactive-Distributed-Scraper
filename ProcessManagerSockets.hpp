@@ -1,5 +1,5 @@
-#ifndef PROCESSMANAGER_HPP_
-#define	PROCESSMANAGER_HPP_
+#ifndef PROCESSMANAGERSOCKETS_HPP_
+#define	PROCESSMANAGERSOCKETS_HPP_
 
 #include <unistd.h>
 #include <fstream>
@@ -11,11 +11,11 @@
 
 namespace Plazza {
   namespace Controller {
-    class		ProcessManager : public AProcessManager
+    class		ProcessManagerSockets : public AProcessManager
     {
     public:
-      ProcessManager(unsigned int);
-      ~ProcessManager();
+      ProcessManagerSockets(unsigned int);
+      ~ProcessManagerSockets();
       void										addProcess(unsigned int, Socket *);
       void										control(unsigned int);
       int 										getStatus();
