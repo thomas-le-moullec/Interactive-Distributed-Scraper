@@ -7,9 +7,9 @@ namespace Plazza {
     class Caesar : public AStrategyCipher {
     private:
         std::string _fileContent;
-        std::string executeCipher();
 
     public:
+        std::string executeCipher();
         virtual ~Caesar(){};
         Caesar(std::string const &);
     };

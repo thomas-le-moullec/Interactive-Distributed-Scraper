@@ -7,11 +7,10 @@ namespace Plazza {
 	class ContextInformation : public IContextInformation {
 	private:
 		Plazza::IStrategyInformation *_strategy;
-		void ExecuteStrategy(std::string const &fileContent);
-		void Context(Plazza::IStrategyInformation *);
 
 	public:
-		ContextInformation();
+		void ExecuteStrategy(std::string const &fileContent);
+		ContextInformation(Plazza::IStrategyInformation *);
 		virtual ~ContextInformation() {};
 
 	};
