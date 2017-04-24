@@ -1,6 +1,6 @@
 #include "AStrategyCipher.hpp"
 
-Plazza::AStrategyCipher::AStrategyCipher(std::string const &fileName) : _fileContent(this->getFileContent(fileName))
+Plazza::AStrategyCipher::AStrategyCipher()
 {
 }
 

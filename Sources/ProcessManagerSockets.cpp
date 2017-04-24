@@ -8,6 +8,8 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   _socket = new Socket(5000);
+    _ciphers.insert(_ciphers.end(), new Plazza::Xor());
+    _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
 }
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
@@ -15,7 +17,7 @@ Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 
 }
 
-std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order)
+std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order) // Not Correct
 {
   std::vector<std::string> 	orders;
   std::vector<std::string> 	words;
@@ -64,7 +66,7 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
 
   if ((pid = fork()) == 0)
   {
-    Process			process(nbThread, socket);
+    Process			process(nbThread, socket, _model, _ciphers);
 
     process.control();
   }
@@ -119,6 +121,7 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
     }
     else
     {
+        //Serialized With the Class OpaqueType / With the overload
       _socket->sendMessage(commands[j], _processToFeed.first);
       _socket->receiveMessage(_processToFeed.first);
     }

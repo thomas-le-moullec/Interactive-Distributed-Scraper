@@ -19,7 +19,7 @@ namespace Plazza {
     class		ThreadPool : public AThreadsPool
     {
     public:
-      ThreadPool(unsigned int);
+      ThreadPool(unsigned int, Plazza::Model::IModel *, std::vector<Plazza::IStrategyCipher *>&);
       ~ThreadPool();
       void									pushOrder(Order);
       void									execOrder();
@@ -35,6 +35,8 @@ namespace Plazza {
       unsigned int									_ordersExecuted;
       Time													_time;
       Time													_now;
+        std::vector<Plazza::IStrategyCipher *> _ciphers;
+        Plazza::Model::IModel *_model;
     };
   }
 }

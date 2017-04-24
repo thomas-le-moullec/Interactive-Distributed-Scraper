@@ -1,8 +1,9 @@
 #include "Process.hpp"
 
-Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket) : _socket(socket), _fdSocket(socket->socketChild())
+Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Plazza::Model::IModel *model, std::vector<Plazza::IStrategyCipher *> &ciphers) : _socket(socket), _fdSocket(socket->socketChild()),
+                                                                                                                                                              _ciphers(ciphers), _model(model)
 {
-  _tp = new ThreadPool(nbThread);
+  _tp = new ThreadPool(nbThread, model, ciphers);
   std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
 }
 
@@ -10,11 +11,24 @@ Plazza::Controller::Process::~Process()
 {
 }
 
-Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string)
+Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string buff)
 {
-  Order		order;
+  orderBySocket orderReceived;
+  Order newOrder;
 
-  return order;
+    std::cout << "Buffer Received => " << buff << std::endl;
+  //buff >> orderReceived;
+  if (orderReceived.info == Plazza::Controller::Information::PHONE_NUMBER) {
+    newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyPhoneNumber());
+  }
+  if (orderReceived.info == Plazza::Controller::Information::EMAIL_ADDRESS) {
+    newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyEmailAddress());
+  }
+  if (orderReceived.info == Plazza::Controller::Information::IP_ADDRESS) {
+    newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
+  }
+  newOrder._file = orderReceived.fileName;
+    return newOrder;
 }
 
 void				Plazza::Controller::Process::control()
@@ -32,7 +46,7 @@ void				Plazza::Controller::Process::control()
     }
     else
     {
-      _order._file = _message;
+      _order = parseOrder(_message);
       _tp->pushOrder(_order);
       _socket->sendMessage(" ", _fdSocket);
     }

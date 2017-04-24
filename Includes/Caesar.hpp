@@ -9,9 +9,9 @@ namespace Plazza {
         std::string _fileContent;
 
     public:
-        std::string executeCipher();
+        std::string executeCipher(std::string const &);
         virtual ~Caesar(){};
-        Caesar(std::string const &);
+        Caesar();
     };
 }
 

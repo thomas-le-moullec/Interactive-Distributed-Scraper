@@ -1,9 +1,11 @@
 #include "ThreadPool.hpp"
 
-Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads) : _nbThreads(nbThreads), _ordersExecuted(0)
+Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model::IModel *model, std::vector<Plazza::IStrategyCipher *> &ciphers) : _nbThreads(nbThreads), _ordersExecuted(0), _ciphers(ciphers), _model(model)
 {
   _mutex = new Mutex();
   _time.update();
+    _model = model;
+    _ciphers = ciphers;
   for (unsigned int i = 0; i < _nbThreads; i++)
     _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));
 }
@@ -36,9 +38,22 @@ void									Plazza::Controller::ThreadPool::execOrder()
 {
   while (true)
   {
+    std::string fileContent;
     Order order = popOrder();
     _ordersExecuted++;
-    //order._strategy->execute(order._file);
+    /*for (std::vector<IStrategyCipher *>::iterator it = _ciphers.begin() ; it != _ciphers.end(); ++it) {
+      if ((fileContent = _ciphers[*it].executeCipher(order._file)) != NULL) {
+        order._strategy->ExecuteStrategy(fileContent);
+        break;
+      }
+    }*/
+      for (int i = 0; i < _ciphers.size(); i++) {
+              fileContent = _ciphers[i]->executeCipher(order._file);
+          if (!fileContent.empty()) {
+              order._strategy->ExecuteStrategy(fileContent);
+              break;
+          }
+      }
     _time.update();
     _ordersExecuted--;
   }
