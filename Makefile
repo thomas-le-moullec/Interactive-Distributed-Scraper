@@ -17,7 +17,6 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)AView.cpp \
 										$(SRCSPATH)Caesar.cpp \
 										$(SRCSPATH)CondVar.cpp \
-										$(SRCSPATH)ContextCipher.cpp \
 										$(SRCSPATH)ContextInformation.cpp \
 										$(SRCSPATH)Information.cpp \
 										$(SRCSPATH)Mutex.cpp \

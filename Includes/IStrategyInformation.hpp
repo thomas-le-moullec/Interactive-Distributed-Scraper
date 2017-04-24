@@ -8,7 +8,7 @@ namespace Plazza {
 	class IStrategyInformation {
 
 	public:
-        virtual void execute(std::string) = 0;
+        virtual void execute(std::string const &) = 0;
 		virtual ~IStrategyInformation() {};
 		virtual bool IsValidInformation(char const &) = 0;
 		virtual int  FindInformation(int) = 0;

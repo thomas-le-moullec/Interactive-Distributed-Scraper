@@ -7,7 +7,7 @@
 namespace Plazza {
 	namespace Controller {
 		class AController : public IController {
-		private:
+		protected:
 			Plazza::Model::IModel *_model;
 
 		public:

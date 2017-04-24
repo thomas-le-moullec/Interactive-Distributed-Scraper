@@ -9,9 +9,9 @@ namespace Plazza {
         std::string _fileContent;
 
     public:
-        std::string executeCipher();
+        std::string executeCipher(std::string const &);
         virtual ~Xor(){};
-        Xor(std::string const &);
+        Xor();
     };
 }
 

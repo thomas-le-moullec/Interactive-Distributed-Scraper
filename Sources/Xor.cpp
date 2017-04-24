@@ -1,12 +1,13 @@
 #include "Xor.hpp"
 
-Plazza::Xor::Xor(std::string const &fileName) : AStrategyCipher(fileName)
+Plazza::Xor::Xor() : AStrategyCipher()
 {
 }
 
-std::string            Plazza::Xor::executeCipher()
+std::string            Plazza::Xor::executeCipher(std::string const &fileName)
 {
-    std::string saveFileContent = this->_fileContent;
+    _fileContent = this->getFileContent(fileName);
+    std::string saveFileContent = _fileContent;
     for (int i = 0; i < 255; ++i) {
         for (int nb = 0; nb < this->_fileContent.size(); nb++) {
             this->_fileContent[nb] = saveFileContent[nb] ^ i;

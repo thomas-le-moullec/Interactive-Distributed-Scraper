@@ -1,11 +1,12 @@
 #include "Caesar.hpp"
 
-Plazza::Caesar::Caesar(std::string const &fileName) : AStrategyCipher(fileName)
+Plazza::Caesar::Caesar()
 {
 }
 
-std::string             Plazza::Caesar::executeCipher()
+std::string             Plazza::Caesar::executeCipher(std::string const &fileName)
 {
+    _fileContent = this->getFileContent(fileName);
     for (int i = 0; i < 255; ++i) {
         if (this->isUnCiphered() == true) {
             std::cout << "KEY = " << (char)i << " (" << i << ")" << std::endl;

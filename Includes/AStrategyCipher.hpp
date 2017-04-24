@@ -6,15 +6,14 @@
 
 namespace Plazza {
     class AStrategyCipher : public IStrategyCipher {
-    private:
-        virtual std::string executeCipher() = 0;
-        virtual std::string getFileContent(std::string const &);
 
     public:
+        virtual std::string executeCipher(std::string const &) = 0;
+        virtual std::string getFileContent(std::string const &);
         virtual ~AStrategyCipher(){};
         virtual bool isUnCiphered();
     protected:
-        AStrategyCipher(std::string const &);
+        AStrategyCipher();
         std::string         _fileContent;
     };
 }
