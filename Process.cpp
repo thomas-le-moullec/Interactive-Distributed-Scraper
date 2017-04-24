@@ -10,11 +10,10 @@ Plazza::Controller::Process::~Process()
 {
 }
 
-Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string)
+Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string buff)
 {
-  Order		order;
-
-  return order;
+  
+  buff << _order;
 }
 
 void				Plazza::Controller::Process::control()
@@ -32,7 +31,8 @@ void				Plazza::Controller::Process::control()
     }
     else
     {
-      _order._file = _message;
+      parseOrder(_message);
+      //_order._file = _message;
       _tp->pushOrder(_order);
       _socket->sendMessage(" ", _fdSocket);
     }
