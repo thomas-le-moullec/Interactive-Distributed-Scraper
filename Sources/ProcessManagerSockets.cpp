@@ -8,8 +8,8 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   _socket = new Socket(5000);
-    _ciphers.insert(_ciphers.end(), new Plazza::Xor());
-    _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
+  _ciphers.insert(_ciphers.end(), new Plazza::Xor());
+  _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
 }
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
@@ -19,25 +19,46 @@ Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 
 std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order) // Not Correct
 {
+  std::vector<std::string>	ordersSeparator;
   std::vector<std::string> 	orders;
   std::vector<std::string> 	words;
-  std::string								str;
+  std::string								strToPush;
   size_t										pos;
 
-  while ((pos = order.find(" ")) != std::string::npos)
+  //std::cout << "Command Line -> " << order << std::endl;
+  while ((pos = order.find(";")) != std::string::npos)
   {
-    str = order.substr(0, order.find(" "));
-    words.insert(words.end(), str);
-    order = order.substr(order.find(" ") + 1, order.length());
+    strToPush = order.substr(0, pos);
+    ordersSeparator.insert(ordersSeparator.end(), strToPush);
+    order = order.substr(pos + 1, order.length());
   }
-  words.insert(words.end(), order);
-  for (unsigned int i = 0; i < words.size() - 1; i++)
+  ordersSeparator.insert(ordersSeparator.end(), order);
+  //for (unsigned int i = 0; i < ordersSeparator.size(); i++)
+    //std::cout << "ordersSeparator[" << i << "] : ." << ordersSeparator[i] << "." << std::endl;
+  for (unsigned int j = 0; j < ordersSeparator.size(); j++)
   {
-    str = words[i] + " " + words[words.size() - 1];
-    orders.insert(orders.end(), str);
+    words.clear();
+    while ((pos = ordersSeparator[j].find(" ")) != std::string::npos)
+    {
+      strToPush = ordersSeparator[j].substr(0, pos);
+      if (strToPush != "")
+        words.insert(words.end(), strToPush);
+      ordersSeparator[j] = ordersSeparator[j].substr(pos + 1, ordersSeparator[j].length());
+    }
+    if (ordersSeparator[j] != "")
+      words.insert(words.end(), ordersSeparator[j]);
+    //for (unsigned int i = 0; i < words.size(); i++)
+      //std::cout << "words[" << i << "] : ." << words[i] << "." << std::endl;
+    for (unsigned int i = 0; i < words.size() - 1; i++)
+    {
+      strToPush = words[i] + " " + words[words.size() - 1];
+      orders.insert(orders.end(), strToPush);
+    }
+    if (words.size() == 1)
+      orders.insert(orders.end(), words[0]);
   }
-  if (words.size() == 1)
-    orders.insert(orders.end(), words[0]);
+  for (unsigned int i = 0; i < orders.size(); i++)
+    std::cout << "Orders[" << i << "] : " << orders[i] << std::endl;
   return orders;
 }
 
@@ -125,4 +146,5 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
       _socket->receiveMessage(_processToFeed.first);
     }
   }
+  _commandLine = "";
 }
