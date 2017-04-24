@@ -6,7 +6,6 @@
 namespace Plazza {
 	namespace Controller {
 		class ISocket : public ICommunication {
-		private:
 		public:
 			virtual ~ISocket() {};
 		};

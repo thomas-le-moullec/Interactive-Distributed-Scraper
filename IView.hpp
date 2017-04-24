@@ -6,16 +6,15 @@
 namespace Plazza {
 	namespace View {
 		class IView {
-		private:
+    public:
+      virtual ~IView() {}
+			virtual void getInputs() = 0;
 			virtual void setSize(unsigned int width, unsigned int height) = 0;
 			virtual void setResizable(bool isResizable) = 0;
 			virtual void setVisible(bool isVisible) = 0;
 			virtual void initVIew() = 0;
-			virtual void getInputs() = 0;
 			virtual void displayData() = 0;
 			virtual void displayStatus() = 0;
-        public:
-            virtual ~IView() {}
 		};
 	}
 }

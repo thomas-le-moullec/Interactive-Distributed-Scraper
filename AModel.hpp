@@ -10,7 +10,7 @@ namespace Plazza {
 		class AModel : public IModel, public IObservable {
 		private:
 			std::string data;
-            std::vector<Plazza::IObserver *> listObservers;
+      std::vector<Plazza::IObserver *> listObservers;
 			virtual void Reset() = 0;
 			virtual void AddObserver(Plazza::IObserver *observer);
 			virtual void NotifyObserver(std::string data);

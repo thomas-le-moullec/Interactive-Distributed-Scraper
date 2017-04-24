@@ -6,6 +6,7 @@
 #include "Socket.hpp"
 #include "ThreadPool.hpp"
 #include "Order.hpp"
+#include "AProcess.hpp"
 
 namespace Plazza {
   namespace Controller {

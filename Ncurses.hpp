@@ -9,7 +9,7 @@ namespace Plazza {
 	namespace View {
 		class Ncurses : public AView, public IObserver {
 		private:
-			Plazza::Controller::IController *_controller;
+			//Plazza::Controller::IController *_controller;
 			unsigned int _width;
 			unsigned int _height;
 			void modeCanonique(int mode);

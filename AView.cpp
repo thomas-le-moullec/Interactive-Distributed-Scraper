@@ -6,6 +6,20 @@ void Plazza::View::AView::setSize(unsigned int width, unsigned int height) {
 }
 
 Plazza::View::AView::AView() {
-    // TODO - implement AView::AView
-    throw "Not yet implemented";
+
+}
+
+void 		Plazza::View::AView::setResizable(bool isResizable)
+{
+  (void)isResizable;
+}
+
+void 		Plazza::View::AView::setVisible(bool isVisible)
+{
+  (void)isVisible;
+}
+
+void 		Plazza::View::AView::setTitle(std::string title)
+{
+  (void)title;
 }

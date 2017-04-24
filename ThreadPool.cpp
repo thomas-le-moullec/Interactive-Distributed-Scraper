@@ -3,7 +3,7 @@
 Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads) : _nbThreads(nbThreads), _ordersExecuted(0)
 {
   _mutex = new Mutex();
-  time(&_time);
+  _time.update();
   for (unsigned int i = 0; i < _nbThreads; i++)
     _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));
 }
@@ -14,7 +14,7 @@ Plazza::Controller::ThreadPool::~ThreadPool()
 
 void									Plazza::Controller::ThreadPool::pushOrder(Order order)
 {
-  time(&_time);
+  _time.update();
   _mutex->lock();
   _orders.insert(_orders.end(), order);
   _cond.signal();
@@ -39,19 +39,16 @@ void									Plazza::Controller::ThreadPool::execOrder()
     Order order = popOrder();
     _ordersExecuted++;
     //order._strategy->execute(order._file);
-    time(&_time);
+    _time.update();
     _ordersExecuted--;
   }
 }
 
 int										Plazza::Controller::ThreadPool::getCurrentOrder()
 {
-  time_t 							now;
-
-  time(&now);
-  std::cout << "Diff time " << difftime(now, _time) << std::endl;
-  if (_orders.size() + _ordersExecuted == 0 && difftime(now, _time) >= 5)
+  _now.update();
+  std::cout << "Diff time " <<  _now.diffTime(_time) << std::endl;
+  if (_orders.size() + _ordersExecuted == 0 &&  _now.diffTime(_time) >= 5)
     return -1;
-  //time(&_time);
   return static_cast<int>(_orders.size() + _ordersExecuted);
 }

@@ -5,10 +5,10 @@
 #include <iostream>
 #include <pthread.h>
 #include <unistd.h>
-#include <time.h>
 
 //#include "IStrategyData.hpp"
 #include "AThreadsPool.hpp"
+#include "Time.hpp"
 #include "Thread.hpp"
 #include "Mutex.hpp"
 #include "CondVar.hpp"
@@ -33,7 +33,8 @@ namespace Plazza {
       CondVar												_cond;
       unsigned int									_nbThreads;
       unsigned int									_ordersExecuted;
-      time_t												_time;
+      Time													_time;
+      Time													_now;
     };
   }
 }

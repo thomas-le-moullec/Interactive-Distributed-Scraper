@@ -4,14 +4,16 @@
 #include <unistd.h>
 #include <fstream>
 #include <utility>
+//#include <vector>
 
+//#include "AController.hpp"
 #include "AProcessManager.hpp"
 #include "Process.hpp"
-#include "Socket.hpp"
+//#include "Socket.hpp"
 
 namespace Plazza {
   namespace Controller {
-    class		ProcessManagerSockets : public AProcessManager
+    class		ProcessManagerSockets : public AProcessManager//, public AController
     {
     public:
       ProcessManagerSockets(unsigned int);
@@ -20,6 +22,8 @@ namespace Plazza {
       void										control(unsigned int);
       int 										getStatus();
       int 										getPid();
+      void 										NotifyController(char);
+      std::vector<std::string> ParseCommandLine(std::string order);
     private:
       Socket									*_socket;
       std::vector<int>				_fdProcess;
@@ -27,6 +31,8 @@ namespace Plazza {
       std::pair<int, int>			_processToFeed;
       int											_nbThreadsBusy;
       unsigned int						_numPort;
+
+      std::string 					_commandLine;
     };
   }
 }

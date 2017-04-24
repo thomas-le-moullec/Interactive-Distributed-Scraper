@@ -1,14 +1,17 @@
 #include "AController.hpp"
 
-void Plazza::Controller::AController::setCommandLine(std::string command) {
-	this->commandLine = command;
+void Plazza::Controller::AController::Reset()
+{
 }
 
-std::string Plazza::Controller::AController::getCommandLine() {
-	return this->commandLine;
+void Plazza::Controller::AController::SetCommandLine(std::string command) {
+	this->_commandLine = command;
+}
+
+std::string Plazza::Controller::AController::GetCommandLine() {
+	return this->_commandLine;
 }
 
 Plazza::Controller::AController::AController() {
-	// TODO - implement AController::AController
-	throw "Not yet implemented";
+	std::cout << "Construction du AController" << std::endl;
 }

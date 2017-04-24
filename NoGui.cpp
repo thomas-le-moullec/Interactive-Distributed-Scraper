@@ -1,13 +1,20 @@
 #include "NoGui.hpp"
 
+void Plazza::View::NoGui::initVIew()
+{
+
+}
+
 void Plazza::View::NoGui::initView() {
 	// TODO - implement NoGui::initView
 	throw "Not yet implemented";
 }
 
 void Plazza::View::NoGui::getInputs() {
-	// TODO - implement NoGui::getInputs
-	throw "Not yet implemented";
+	char	buff[1];
+
+	read(1, &buff, 1);
+	_processManager->NotifyController(buff[0]);
 }
 
 void Plazza::View::NoGui::displayData() {
@@ -21,6 +28,5 @@ void Plazza::View::NoGui::displayStatus() {
 }
 
 Plazza::View::NoGui::NoGui() {
-	// TODO - implement Ncurses::Ncurses
-	throw "Not yet implemented";
+	  _processManager = new Plazza::Controller::ProcessManagerSockets(5);
 }

@@ -1,5 +1,5 @@
 #ifndef ISTRATEGYINFORMATION_HPP_
-# define ISTRATEGYINFORMATION_HPP_
+#define ISTRATEGYINFORMATION_HPP_
 
 #include <iostream>
 #include <vector>
