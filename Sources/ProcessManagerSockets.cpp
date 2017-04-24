@@ -15,11 +15,26 @@ Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 
 }
 
-std::vector<std::string> Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order)
+std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order)
 {
-  std::vector<std::string> a;
+  std::vector<std::string> 	orders;
+  std::vector<std::string> 	words;
+  std::string								str;
+  size_t										pos;
 
-  return a;
+  while ((pos = order.find(" ")) != std::string::npos)
+  {
+    str = order.substr(0, order.find(" "));
+    words.insert(words.end(), str);
+    order = order.substr(order.find(" ") + 1, order.length());
+  }
+  words.insert(words.end(), order);
+  for (unsigned int i = 0; i < words.size() - 1; i++)
+  {
+    str = words[i] + " " + words[words.size() - 1];
+    orders.insert(orders.end(), str);
+  }
+  return orders;
 }
 
 void Plazza::Controller::ProcessManagerSockets::NotifyController(char input)
@@ -55,6 +70,7 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
 
 void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
 {
+  ParseCommandLine(_commandLine);
   _processToFeed.first = 0;
   _processToFeed.second = 1000;
 

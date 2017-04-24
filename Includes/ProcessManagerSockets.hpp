@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <utility>
+#include <string>
 
 #include "AProcessManager.hpp"
 #include "Process.hpp"
