@@ -36,6 +36,7 @@ Plazza::Controller::Order								Plazza::Controller::ThreadPool::popOrder()
 
 void									Plazza::Controller::ThreadPool::execOrder()
 {
+    std::vector<std::string> informations;
   while (true)
   {
     std::string fileContent;
@@ -50,7 +51,8 @@ void									Plazza::Controller::ThreadPool::execOrder()
       for (int i = 0; i < _ciphers.size(); i++) {
               fileContent = _ciphers[i]->executeCipher(order._file);
           if (!fileContent.empty()) {
-              order._strategy->ExecuteStrategy(fileContent);
+              informations = order._strategy->ExecuteStrategy(fileContent);
+            //SendToModel
               break;
           }
       }

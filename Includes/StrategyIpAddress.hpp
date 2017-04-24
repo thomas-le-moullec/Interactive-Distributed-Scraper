@@ -12,7 +12,7 @@ namespace Plazza {
     public:
         virtual ~StrategyIpAddress() {};
         StrategyIpAddress();
-        void execute(std::string const &fileContent);
+        std::vector<std::string> execute(std::string const &fileContent);
         bool IsValidInformation(const char &);
         int  FindInformation(int);
     };

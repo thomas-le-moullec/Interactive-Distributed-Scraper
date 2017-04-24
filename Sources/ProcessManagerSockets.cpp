@@ -169,10 +169,6 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
     }
     else
     {
-        //Serialized With the Class OpaqueType / With the overload
-        //command[j] => struct //FromBufferToStruct
-        //string << struct
-        //_socket->sendMessage(string, _processToFeed.first);
       Plazza::Controller::orderBySocket order	= fromBufferToStruct(commands[j]);
       commands[j] = "";
       commands[j] << order;
