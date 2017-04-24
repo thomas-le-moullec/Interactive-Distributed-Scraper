@@ -1,22 +1,15 @@
-//
-// Created by tchikl_h on 4/24/17.
-//
+#ifndef SERIALIZE_OPAQUETYPE_HPP_
+#define SERIALIZE_OPAQUETYPE_HPP_
 
-#ifndef SERIALIZE_OPAQUETYPE_H
-#define SERIALIZE_OPAQUETYPE_H
-
-#include "IOpaqueType.h"
+#include "IOpaqueType.hpp"
 
 namespace Plazza {
     namespace Controller {
         class OpaqueType : public IOpaqueType {
         public:
             OpaqueType();
-
             ~OpaqueType() {};
-
             std::string &Serialize(std::string &, Plazza::Controller::orderBySocket const &);
-
             orderBySocket &UnSerialize(std::string const &, Plazza::Controller::orderBySocket &);
         };
 
@@ -25,4 +18,4 @@ namespace Plazza {
     }
 }
 
-#endif //SERIALIZE_OPAQUETYPE_H
+#endif //SERIALIZE_OPAQUETYPE_HPP_

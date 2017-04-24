@@ -16,6 +16,7 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
   orderBySocket orderReceived;
   Order newOrder;
 
+    std::cout << "Buffer Received => " << buff << std::endl;
   //buff >> orderReceived;
   if (orderReceived.info == Plazza::Controller::Information::PHONE_NUMBER) {
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyPhoneNumber());
@@ -27,6 +28,7 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
   newOrder._file = orderReceived.fileName;
+    return newOrder;
 }
 
 void				Plazza::Controller::Process::control()
