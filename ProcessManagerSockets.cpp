@@ -2,7 +2,7 @@
 
 Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads) : _numPort(0)
 {
-  Socket				*socket;
+  ISocket				*socket;
 
   socket = new Socket(4000 + _numPort++);
   addProcess(nbThreads, socket);
@@ -41,7 +41,7 @@ int 						Plazza::Controller::ProcessManagerSockets::getPid()
 }
 
 
-void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbThread, Socket *socket)
+void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbThread, ISocket *socket)
 {
   pid_t					pid;
 

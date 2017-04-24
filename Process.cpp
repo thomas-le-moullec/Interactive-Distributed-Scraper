@@ -1,6 +1,6 @@
 #include "Process.hpp"
 
-Plazza::Controller::Process::Process(unsigned int nbThread, Socket *socket) : _socket(socket), _fdSocket(socket->socketChild())
+Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket) : _socket(socket), _fdSocket(socket->socketChild())
 {
   _tp = new ThreadPool(nbThread);
   std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;

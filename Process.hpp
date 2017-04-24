@@ -13,13 +13,13 @@ namespace Plazza {
     class		Process : public AProcess
     {
     public:
-      Process(unsigned int, Socket *);
+      Process(unsigned int, ISocket *);
       ~Process();
       Order						parseOrder(std::string);
       void						control();
     private:
       IThreadsPool		*_tp;
-      Socket					*_socket;
+      ISocket					*_socket;
       int							_fdSocket;
       std::string			_message;
       Order						_order;

@@ -10,6 +10,11 @@ namespace Plazza {
 			unsigned int _port;
 		public:
 			virtual ~ASocket() {};
+			virtual int                 socketChild() = 0;
+			virtual int                 socketParent() = 0;
+			virtual void            		sendMessage(std::string, int) const = 0;
+			virtual std::string    			receiveMessage(int) const = 0;
+			virtual int                 getPort() const = 0;
 		protected:
 			ASocket();
 		};

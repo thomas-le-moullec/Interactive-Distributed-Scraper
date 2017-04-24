@@ -7,22 +7,24 @@
 
 #include "AProcessManager.hpp"
 #include "Process.hpp"
+#include "AController.hpp"
+#include "Socket.hpp"
 
 namespace Plazza {
   namespace Controller {
-    class		ProcessManagerSockets : public AProcessManager//, public AController
+    class		ProcessManagerSockets : public AProcessManager, public AController
     {
     public:
       ProcessManagerSockets(unsigned int);
       ~ProcessManagerSockets();
-      void										addProcess(unsigned int, Socket *);
+      void										addProcess(unsigned int, ISocket *);
       void										control(unsigned int);
       int 										getStatus();
       int 										getPid();
       void 										NotifyController(char);
       std::vector<std::string> ParseCommandLine(std::string order);
     private:
-      Socket									*_socket;
+      ISocket									*_socket;
       std::vector<int>				_fdProcess;
       std::string							_message;
       std::pair<int, int>			_processToFeed;
