@@ -6,8 +6,6 @@ void Plazza::View::NoGui::initVIew()
 }
 
 void Plazza::View::NoGui::initView() {
-	// TODO - implement NoGui::initView
-	throw "Not yet implemented";
 }
 
 void Plazza::View::NoGui::getInputs() {
@@ -18,15 +16,11 @@ void Plazza::View::NoGui::getInputs() {
 }
 
 void Plazza::View::NoGui::displayData() {
-	// TODO - implement NoGui::displayData
-	throw "Not yet implemented";
 }
 
 void Plazza::View::NoGui::displayStatus() {
-	// TODO - implement NoGui::displayStatus
-	throw "Not yet implemented";
 }
 
 Plazza::View::NoGui::NoGui() {
-	  _processManager = new Plazza::Controller::ProcessManagerSockets(5);
+	_processManager = new Plazza::Controller::ProcessManagerSockets(5);
 }

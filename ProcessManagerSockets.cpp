@@ -55,7 +55,6 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
 
 void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
 {
-  //std::getline(std::cin, _commandLine);
   _processToFeed.first = 0;
   _processToFeed.second = 1000;
 

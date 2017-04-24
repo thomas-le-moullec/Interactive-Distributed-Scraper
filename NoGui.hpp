@@ -27,6 +27,6 @@ namespace Plazza {
 	}
 }
 
-// HERITE DE IOBSERVOVER
+// HERITE DE IOBSERVER
 
 #endif

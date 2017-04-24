@@ -4,12 +4,9 @@
 #include <unistd.h>
 #include <fstream>
 #include <utility>
-//#include <vector>
 
-//#include "AController.hpp"
 #include "AProcessManager.hpp"
 #include "Process.hpp"
-//#include "Socket.hpp"
 
 namespace Plazza {
   namespace Controller {

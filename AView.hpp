@@ -3,7 +3,6 @@
 
 #include "IView.hpp"
 //#include "IController.hpp"
-#include "ProcessManagerSockets.cpp"
 
 namespace Plazza {
 	namespace View {

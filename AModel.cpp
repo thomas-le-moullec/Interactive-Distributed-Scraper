@@ -1,8 +1,6 @@
 #include "AModel.hpp"
 
 void Plazza::Model::AModel::AddObserver(Plazza::IObserver *observer) {
-	// TODO - implement AModel::AddObserver
-	throw "Not yet implemented";
 }
 
 void Plazza::Model::AModel::NotifyObserver(std::string data) {
