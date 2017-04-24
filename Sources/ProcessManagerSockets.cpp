@@ -34,6 +34,8 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
     str = words[i] + " " + words[words.size() - 1];
     orders.insert(orders.end(), str);
   }
+  if (words.size() == 1)
+    orders.insert(orders.end(), words[0]);
   return orders;
 }
 
@@ -70,52 +72,55 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
 
 void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
 {
-  ParseCommandLine(_commandLine);
+  std::vector<std::string> commands = ParseCommandLine(_commandLine);
+
   _processToFeed.first = 0;
   _processToFeed.second = 1000;
-
-  for (unsigned int i = 0; i < _fdProcess.size(); i++)
-  {
-    _socket->sendMessage("nbThreadsBusy", _fdProcess[i]);
-    _nbThreadsBusy = atoi(_socket->receiveMessage(_fdProcess[i]).c_str());
-    if (_nbThreadsBusy == -1)
-    {
-      _socket->sendMessage("exit", _fdProcess[i]);
-      _socket->receiveMessage(_fdProcess[i]);
-      close(_fdProcess[i]);
-      _fdProcess.erase(_fdProcess.begin() + i);
-    }
-    else if (_processToFeed.second > _nbThreadsBusy)
-    {
-      _processToFeed.first = _fdProcess[i];
-      _processToFeed.second = _nbThreadsBusy;
-    }
-  }
-
-  if (_processToFeed.second >= static_cast<int>(nbThreads))
-  {
-    Socket				*socket;
-
-    socket = new Socket(4000 + _numPort++);
-    addProcess(nbThreads, socket);
-    _fdProcess.insert(_fdProcess.end(), socket->socketParent());
-    _processToFeed.first = _fdProcess[_fdProcess.size() - 1];
-    delete socket;
-  }
-
-  if (_commandLine == "exit")
+  for (unsigned int j = 0; j < commands.size(); j++)
   {
     for (unsigned int i = 0; i < _fdProcess.size(); i++)
     {
-      _socket->sendMessage("exit", _fdProcess[i]);
-      _socket->receiveMessage(_fdProcess[i]);
-      close(_fdProcess[i]);
+      _socket->sendMessage("nbThreadsBusy", _fdProcess[i]);
+      _nbThreadsBusy = atoi(_socket->receiveMessage(_fdProcess[i]).c_str());
+      if (_nbThreadsBusy == -1)
+      {
+        _socket->sendMessage("exit", _fdProcess[i]);
+        _socket->receiveMessage(_fdProcess[i]);
+        close(_fdProcess[i]);
+        _fdProcess.erase(_fdProcess.begin() + i);
+      }
+      else if (_processToFeed.second > _nbThreadsBusy)
+      {
+        _processToFeed.first = _fdProcess[i];
+        _processToFeed.second = _nbThreadsBusy;
+      }
     }
-    exit(0);
-  }
-  else
-  {
-    _socket->sendMessage(_commandLine, _processToFeed.first);
-    _socket->receiveMessage(_processToFeed.first);
+
+    if (_processToFeed.second >= static_cast<int>(nbThreads))
+    {
+      Socket				*socket;
+
+      socket = new Socket(4000 + _numPort++);
+      addProcess(nbThreads, socket);
+      _fdProcess.insert(_fdProcess.end(), socket->socketParent());
+      _processToFeed.first = _fdProcess[_fdProcess.size() - 1];
+      delete socket;
+    }
+
+    if (commands[j] == "exit")
+    {
+      for (unsigned int i = 0; i < _fdProcess.size(); i++)
+      {
+        _socket->sendMessage("exit", _fdProcess[i]);
+        _socket->receiveMessage(_fdProcess[i]);
+        close(_fdProcess[i]);
+      }
+      exit(0);
+    }
+    else
+    {
+      _socket->sendMessage(commands[j], _processToFeed.first);
+      _socket->receiveMessage(_processToFeed.first);
+    }
   }
 }
