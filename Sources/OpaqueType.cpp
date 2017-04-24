@@ -2,7 +2,7 @@
 // Created by tchikl_h on 4/24/17.
 //
 
-#include            "OpaqueType.h"
+#include            "OpaqueType.hpp"
 
 Plazza::Controller::OpaqueType::OpaqueType()
 {

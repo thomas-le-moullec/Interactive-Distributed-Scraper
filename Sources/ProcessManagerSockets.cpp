@@ -10,6 +10,9 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   _socket = new Socket(5000);
   _ciphers.insert(_ciphers.end(), new Plazza::Xor());
   _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
+  _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
+  _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
+  _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
 }
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
@@ -93,6 +96,30 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
   }
 }
 
+Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fromBufferToStruct(std::string str)
+{
+  Plazza::Controller::orderBySocket	order;
+  std::string												enums;
+  size_t														pos;
+
+  if ((pos = str.find(" ")) != std::string::npos)
+  {
+    order.fileName = str.substr(0, str.find(" "));
+    enums = str.substr(str.find(" ") + 1, str.length());
+    if (enums == "PHONE_NUMBER" || enums == "EMAIL_ADDRESS" || enums == "IP_ADDRESS")
+      order.info = _strEnum[enums];
+    else
+      order.info = _strEnum["PHONE_NUMBER"]; // THROW UNE ERREUR
+  }
+  else
+  {
+    //THROW UNE ERREUR
+    order.fileName = "";
+    order.info = _strEnum["PHONE_NUMBER"];
+  }
+  return order;
+}
+
 void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
 {
   std::vector<std::string> commands = ParseCommandLine(_commandLine);
@@ -143,6 +170,13 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
     else
     {
         //Serialized With the Class OpaqueType / With the overload
+        //command[j] => struct //FromBufferToStruct
+        //string << struct
+        //_socket->sendMessage(string, _processToFeed.first);
+      Plazza::Controller::orderBySocket order	= fromBufferToStruct(commands[j]);
+      commands[j] = "";
+      commands[j] << order;
+      std::cout << commands[j] << std::endl;
       _socket->sendMessage(commands[j], _processToFeed.first);
       _socket->receiveMessage(_processToFeed.first);
     }
