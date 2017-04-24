@@ -1,6 +1,6 @@
 #include "ContextInformation.hpp"
 
-void Plazza::ContextInformation::ExecuteStrategy(std::string const &fileContent) {
+std::vector<std::string> Plazza::ContextInformation::ExecuteStrategy(std::string const &fileContent) {
 	return _strategy->execute(fileContent);
 }
 

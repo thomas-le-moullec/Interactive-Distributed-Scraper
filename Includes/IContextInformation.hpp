@@ -2,12 +2,13 @@
 # define ICONTEXTINFORMATION_HPP_
 
 #include "IStrategyInformation.hpp"
+#include <vector>
 
 namespace Plazza {
 	class IContextInformation {
 
 	public:
-		virtual void ExecuteStrategy(std::string const &fileContent) = 0;
+		virtual std::vector<std::string> ExecuteStrategy(std::string const &fileContent) = 0;
 		virtual ~IContextInformation() {};
 	};
 }

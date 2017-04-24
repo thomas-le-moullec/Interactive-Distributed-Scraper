@@ -33,15 +33,12 @@ int             Plazza::StrategyEmailAddress::FindInformation(int pos)
 }
 
 
-void            Plazza::StrategyEmailAddress::execute(std::string const &fileContent)
+std::vector<std::string>            Plazza::StrategyEmailAddress::execute(std::string const &fileContent)
 {
     int         pos = 0;
 
     this->_fileContent = fileContent;
     while (pos != -1)
         pos = this->FindInformation(pos);
-    for (auto & it : this->_information)
-    {
-        std::cout << it << std::endl;
-    }
+    return _information;
 }

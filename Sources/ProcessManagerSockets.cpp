@@ -121,7 +121,6 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
     }
     else
     {
-        //Serialized With the Class OpaqueType / With the overload
       _socket->sendMessage(commands[j], _processToFeed.first);
       _socket->receiveMessage(_processToFeed.first);
     }
