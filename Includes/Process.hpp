@@ -23,7 +23,6 @@ namespace Plazza {
       int							_fdSocket;
       std::string			_message;
       Order						_order;
-      time_t					_time; // A ENCAPSULER
     };
   }
 }
