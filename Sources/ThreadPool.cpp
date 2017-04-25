@@ -54,7 +54,10 @@ void									Plazza::Controller::ThreadPool::execOrder()
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
           //std::cout << "Informations => " << informations[0] << std::endl;
+        _mutex->lock();
         _model->GetData(informations);
+        _mutex->unlock();
+
         break;
       }
     }
