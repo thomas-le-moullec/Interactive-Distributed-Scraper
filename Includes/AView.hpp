@@ -22,6 +22,7 @@ namespace Plazza {
 			virtual void displayData() = 0;
 			virtual void displayStatus() = 0;
 			virtual void setTitle(std::string title);
+			virtual void LoopView() = 0;
 
     protected:
       AView(Plazza::Controller::IController *);

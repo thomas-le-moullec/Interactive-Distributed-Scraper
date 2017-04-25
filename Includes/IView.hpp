@@ -15,6 +15,7 @@ namespace Plazza {
 			virtual void initVIew() = 0;
 			virtual void displayData() = 0;
 			virtual void displayStatus() = 0;
+			virtual void LoopView() = 0;
 		};
 	}
 }

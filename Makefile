@@ -36,7 +36,7 @@ SRCS					=			$(SRCSPATH)main.cpp \
 
 OBJS					=			$(SRCS:.cpp=.o)
 
-CPPFLAGS			=			-I ./Includes -lpthread
+CPPFLAGS			=			-I ./Includes -lpthread -lncurses
 
 CXXFLAGS			=
 

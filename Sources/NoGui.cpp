@@ -25,4 +25,12 @@ void Plazza::View::NoGui::Update(std::vector<std::string> data) {
         std::cout << data[i] << std::endl;
     }
     //Fill Data needed by the View
+    //_data = data;
+}
+
+void Plazza::View::NoGui::LoopView() {
+    while (true) {
+        getInputs();
+        //Display(std::vector<std::string> data);
+    }
 }

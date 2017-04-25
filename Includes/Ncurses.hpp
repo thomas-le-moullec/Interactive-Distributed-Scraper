@@ -18,6 +18,7 @@ namespace Plazza {
 			void displayStatus();
 			void Update(std::vector<std::string> data);
 			Ncurses(Plazza::Controller::IController *);
+            void LoopView();
 			virtual ~Ncurses() {};
 		};
 	}

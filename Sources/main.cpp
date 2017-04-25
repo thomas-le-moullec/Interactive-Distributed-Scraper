@@ -9,8 +9,6 @@ int main()
     Plazza::View::IView *viewNoGui = new Plazza::View::NoGui(controller);
 
     static_cast<Plazza::Model::AModel *>(model)->AddObserver(static_cast<Plazza::View::NoGui *>(viewNoGui));
-    while (true) {
-        viewNoGui->getInputs();
-    }
+    viewNoGui->LoopView();
     return 0;
 };

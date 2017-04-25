@@ -21,3 +21,9 @@ void Plazza::View::Ncurses::displayStatus() {
 
 Plazza::View::Ncurses::Ncurses(Plazza::Controller::IController *controller) : AView(controller) {
 }
+
+void Plazza::View::Ncurses::LoopView() {
+    while (true) {
+        getInputs();
+    }
+}
