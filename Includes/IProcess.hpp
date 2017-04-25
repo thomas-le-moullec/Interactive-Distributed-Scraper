@@ -8,10 +8,10 @@
 namespace Plazza {
 	namespace Controller {
 		class IProcess {
-		private:
-			virtual Plazza::Controller::Order parseOrder(std::string order) = 0;
 		public:
 			virtual ~IProcess() {};
+			virtual void 											control() = 0;
+			virtual Order 										parseOrder(std::string) = 0;
 		};
 	}
 }
