@@ -24,6 +24,8 @@ namespace Plazza {
     public:
       ProcessManagerSockets(unsigned int, Plazza::Model::IModel *);
       ~ProcessManagerSockets();
+        void sendMessage(std::string, int) const;
+        std::string receiveMessage(int) const;
       void											addProcess(unsigned int, ISocket *);
       void											control(unsigned int);
       std::vector<int>					getStatus();
@@ -38,7 +40,6 @@ namespace Plazza {
       std::map<std::string, Information>	 		_strEnum;
       std::string 														_commandLine;
       std::string															_message;
-      ISocket																	*_socket;
       int																			_nbThreadsBusy;
       unsigned int														_numPort;
     };

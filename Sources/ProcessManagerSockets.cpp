@@ -9,8 +9,7 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
     _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
-  _socket = new Socket(5000);
-  std::cout << "size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
+  //_socket = new Socket(5000);
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
@@ -20,9 +19,22 @@ Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 {
 }
 
+void            Plazza::Controller::ProcessManagerSockets::sendMessage(std::string message, int socketFd) const
+{
+    write(socketFd, message.c_str(), strlen(message.c_str()));
+}
 
+std::string    	Plazza::Controller::ProcessManagerSockets::receiveMessage(int connFd) const
+{
+    char        test[300];
+    bzero(test, 301);
+    read(connFd, test, 300);
 
-std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order) // Not Correct
+    std::string tester (test);
+    return (tester);
+}
+
+std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order)
 {
   std::vector<std::string>	ordersSeparator;
   std::vector<std::string> 	orders;
@@ -31,6 +43,8 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
   size_t										pos;
 
   //std::cout << "Command Line -> " << order << std::endl;
+    ordersSeparator.clear();
+    orders.clear();
   while ((pos = order.find(";")) != std::string::npos)
   {
     strToPush = order.substr(0, pos);
@@ -82,8 +96,8 @@ std::vector<int> 						Plazza::Controller::ProcessManagerSockets::getStatus()
   infosProcess.insert(infosProcess.end(), _fdProcess.size());
   for (unsigned int i = 0; i < _fdProcess.size(); i++)
   {
-    _socket->sendMessage("nbThreadsBusy", _fdProcess[i]);
-    _nbThreadsBusy = atoi(_socket->receiveMessage(_fdProcess[i]).c_str());
+    sendMessage("nbThreadsBusy", _fdProcess[i]);
+    _nbThreadsBusy = atoi(receiveMessage(_fdProcess[i]).c_str());
     if (_nbThreadsBusy != -1)
       infosProcess.insert(infosProcess.end(), _nbThreadsBusy);
   }
@@ -123,14 +137,10 @@ Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fr
     if (enums == "PHONE_NUMBER" || enums == "EMAIL_ADDRESS" || enums == "IP_ADDRESS")
       order.info = _strEnum[enums];
     else
-      order.info = _strEnum["PHONE_NUMBER"]; // THROW UNE ERREUR
+      throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
   }
   else
-  {
-    //THROW UNE ERREUR
-    order.fileName = "";
-    order.info = _strEnum["PHONE_NUMBER"];
-  }
+    throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
   return order;
 }
 
@@ -144,12 +154,12 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
   {
     for (unsigned int i = 0; i < _fdProcess.size(); i++)
     {
-      _socket->sendMessage("nbThreadsBusy", _fdProcess[i]);
-      _nbThreadsBusy = atoi(_socket->receiveMessage(_fdProcess[i]).c_str());
+      sendMessage("nbThreadsBusy", _fdProcess[i]);
+      _nbThreadsBusy = atoi(receiveMessage(_fdProcess[i]).c_str());
       if (_nbThreadsBusy == -1)
       {
-        _socket->sendMessage("exit", _fdProcess[i]);
-        _socket->receiveMessage(_fdProcess[i]);
+        sendMessage("exit", _fdProcess[i]);
+        receiveMessage(_fdProcess[i]);
         close(_fdProcess[i]);
         _fdProcess.erase(_fdProcess.begin() + i);
       }
@@ -175,22 +185,30 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
     {
       for (unsigned int i = 0; i < _fdProcess.size(); i++)
       {
-        _socket->sendMessage("exit", _fdProcess[i]);
-        _socket->receiveMessage(_fdProcess[i]);
+        sendMessage("exit", _fdProcess[i]);
+        receiveMessage(_fdProcess[i]);
         close(_fdProcess[i]);
       }
       exit(0);
     }
     else
     {
-      Plazza::Controller::orderBySocket order	= fromBufferToStruct(commands[j]);
+        Plazza::Controller::orderBySocket order;
+      try {
+          order	= fromBufferToStruct(commands[j]);
+      }
+      catch (RunTimeErrorController const &stdErr) {
+        std::cerr << stdErr.what() << std::endl;
+        _commandLine = "";
+        return;
+      }
       commands[j] = "";
       commands[j] << order;
       std::cout << "Order info => " << (int)order.info << "Order fileName => " << order.fileName << std::endl;
       //std::cout << commands[j] << std::endl;
-      _socket->sendMessage(commands[j], _processToFeed.first);
-      _socket->receiveMessage(_processToFeed.first);
+      sendMessage(commands[j], _processToFeed.first);
+      receiveMessage(_processToFeed.first);
     }
   }
-  _commandLine = "";
+    _commandLine = "";
 }

@@ -19,7 +19,7 @@ std::string     Plazza::AStrategyCipher::getFileContent(std::string const &fileN
         myfile.close();
     }
     else
-        std::cout << "Unable to open file" << std::endl;
+        throw RunTimeErrorController("Couldn't open file : "+fileName);
     return (content);
 }
 
