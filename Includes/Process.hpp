@@ -7,6 +7,8 @@
 #include "ThreadPool.hpp"
 #include "Order.hpp"
 #include "AProcess.hpp"
+
+#include "OpaqueType.hpp"
 #include "ContextInformation.hpp"
 #include "StrategyIpAddress.hpp"
 #include "StrategyPhoneNumber.hpp"

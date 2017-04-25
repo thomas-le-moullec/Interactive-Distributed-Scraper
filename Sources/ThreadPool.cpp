@@ -7,7 +7,10 @@ Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model
     _model = model;
     _ciphers = ciphers;
   for (unsigned int i = 0; i < _nbThreads; i++)
-    _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));
+    _threads.insert(_threads.end(), new Plazza::Thread(NULL, &Plazza::Controller::execOrder, this));
+
+  /*for (unsigned int i = 0; i < _nbThreads; i++)
+    _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));*/
 }
 
 Plazza::Controller::ThreadPool::~ThreadPool()
@@ -34,7 +37,7 @@ Plazza::Controller::Order								Plazza::Controller::ThreadPool::popOrder()
   return order;
 }
 
-void									Plazza::Controller::ThreadPool::execOrder()
+/*void									Plazza::Controller::ThreadPool::execOrder()
 {
     std::vector<std::string> informations;
   while (true)
@@ -48,7 +51,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
         break;
       }
     }*/
-      for (int i = 0; i < _ciphers.size(); i++) {
+  /*    for (int i = 0; i < _ciphers.size(); i++) {
               fileContent = _ciphers[i]->executeCipher(order._file);
           if (!fileContent.empty()) {
               informations = order._strategy->ExecuteStrategy(fileContent);
@@ -59,6 +62,36 @@ void									Plazza::Controller::ThreadPool::execOrder()
     _time.update();
     _ordersExecuted--;
   }
+}*/
+
+void									Plazza::Controller::ThreadPool::execOrder()
+{
+  std::vector<std::string> informations;
+
+  while (1)
+  {
+    std::string 							fileContent;
+    Plazza::Controller::Order order = popOrder();
+    _ordersExecuted++;
+    for (int i = 0; i < _ciphers.size(); i++) {
+      fileContent = _ciphers[i]->executeCipher(order._file);
+      if (!fileContent.empty()) {
+        informations = order._strategy->ExecuteStrategy(fileContent);
+        _model->GetData(informations);
+        break;
+      }
+    }
+    _time.update();
+    _ordersExecuted--;
+  }
+}
+
+void									*Plazza::Controller::execOrder(void *data)
+{
+  Plazza::Controller::ThreadPool	*tp = static_cast<Plazza::Controller::ThreadPool *>(data);
+
+  tp->execOrder();
+  return NULL;
 }
 
 int										Plazza::Controller::ThreadPool::getCurrentOrder()
@@ -67,5 +100,6 @@ int										Plazza::Controller::ThreadPool::getCurrentOrder()
   std::cout << "Diff time " <<  _now.diffTime(_time) << std::endl;
   if (_orders.size() + _ordersExecuted == 0 &&  _now.diffTime(_time) >= 5)
     return -1;
-  return static_cast<int>(_orders.size() + _ordersExecuted);
+  std::cout << "Nb order --> " << _orders.size() + _ordersExecuted << std::endl;
+  return static_cast<int>(_ordersExecuted);
 }
