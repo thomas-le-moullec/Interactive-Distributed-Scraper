@@ -31,11 +31,9 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
 //    std::cout << "Strategy IP_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
-  if (newOrder._strategy == NULL)
-    std::cout << "La Strategy n'a pas ete appliquee" << std::endl;
+  if (newOrder._strategy == NULL || orderReceived.fileName.empty())
+    throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
   newOrder._file = orderReceived.fileName;
-  //  std::cout << "FILE NAME ORDER => " << orderReceived.fileName << std::endl;
-//    std::cout << "ORDER => " << (int)orderReceived.info << std::endl;
   return newOrder;
 }
 
@@ -54,7 +52,13 @@ void				Plazza::Controller::Process::control()
     }
     else
     {
-      _order = parseOrder(_message);
+      try {
+        _order = parseOrder(_message);
+      }
+      catch (RunTimeErrorController const &stdErr) {
+        std::cerr << stdErr.what() << std::endl;
+        return;
+      }
       _tp->pushOrder(_order);
       _socket->sendMessage(" ", _fdSocket);
     }

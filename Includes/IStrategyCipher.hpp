@@ -2,6 +2,7 @@
 # define ISTRATEGYCIPHER_HPP_
 
 #include <iostream>
+#include "Errors.hpp"
 
 namespace Plazza {
 	class IStrategyCipher {

@@ -5,6 +5,7 @@ CC						=			g++
 RM						=			rm -rf
 
 SRCSPATH			=			./Sources/
+ERRORSPATH			=			./Errors/
 
 SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)AController.cpp \
@@ -33,10 +34,12 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)ThreadPool.cpp \
 										$(SRCSPATH)Time.cpp \
 										$(SRCSPATH)Xor.cpp \
+										$(ERRORSPATH)Errors.cpp \
+
 
 OBJS					=			$(SRCS:.cpp=.o)
 
-CPPFLAGS			=			-I ./Includes -lpthread -lncurses
+CPPFLAGS			=			-I ./Includes -I ./Errors -lpthread -lncurses
 
 CXXFLAGS			=
 

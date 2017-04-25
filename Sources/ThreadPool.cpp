@@ -19,7 +19,6 @@ void									Plazza::Controller::ThreadPool::pushOrder(Order order)
 {
   _time.update();
   _mutex->lock();
-    std::cout << "PUUUUUUUUUUUUSH ORDER" << std::endl << std::endl;
   _orders.insert(_orders.end(), order);
   _cond.signal();
   _mutex->unlock();
@@ -49,7 +48,14 @@ void									Plazza::Controller::ThreadPool::execOrder()
       //std::cout << "File Name order => " << order._file << " et size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
     for (int i = 0; i < _ciphers.size(); i++) {
         //std::cout << "ENTRE DANS LE FOR"<< std::endl;
-      fileContent = _ciphers[i]->executeCipher(order._file);
+      try {
+        fileContent = _ciphers[i]->executeCipher(order._file);
+      }
+      catch (RunTimeErrorController const &stdErr) {
+        std::cerr << stdErr.what() << std::endl;
+        _ordersExecuted--;
+        return;
+      }
         //std::cout << "File Content => " << fileContent << std::endl;
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
