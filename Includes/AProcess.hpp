@@ -3,6 +3,7 @@
 
 #include "IProcess.hpp"
 #include "IThreadsPool.hpp"
+#include "IModel.hpp"
 
 namespace Plazza {
 	namespace Controller {
@@ -16,7 +17,6 @@ namespace Plazza {
 		protected:
 			AProcess();
 			IThreadsPool											*_tp;
-			Model::IModel					 						*_model;
 			Order															_order;
 			std::string												_message;
 		};

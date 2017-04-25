@@ -2,7 +2,7 @@
 #define ACONTROLLER_HPP_
 
 #include "IController.hpp"
-#include "IModel.hpp"
+#include "Information.hpp"
 
 namespace Plazza {
 	namespace Controller {
@@ -19,7 +19,7 @@ namespace Plazza {
 			virtual void 											NotifyController(char input) = 0;
 
 		protected:
-			AController();
+			AController(Plazza::Model::IModel *);
 			std::string 											_commandLine;
 		};
 	}

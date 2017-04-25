@@ -2,19 +2,14 @@
 # define IMODEL_HPP_
 
 #include <iostream>
-#include "IObserver.hpp"
+#include <vector>
 
 namespace Plazza {
 	namespace Model {
 		class IModel {
-		private:
+        public:
 			virtual void Reset() = 0;
-			virtual void AddObserver(Plazza::IObserver *observer) = 0;
-			virtual void NotifyObserver(std::string data) = 0;
-			virtual void RemoveObservers() = 0;
-			virtual void RemoveObserver(Plazza::IObserver *observer) = 0;
-			virtual void GetData() = 0;
-		public:
+			virtual void GetData(std::vector<std::string>) = 0;
 			virtual ~IModel() {};
 		};
 	}

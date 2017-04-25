@@ -22,7 +22,7 @@ namespace Plazza {
     class		ProcessManagerSockets : public AProcessManager, public AController
     {
     public:
-      ProcessManagerSockets(unsigned int);
+      ProcessManagerSockets(unsigned int, Plazza::Model::IModel *);
       ~ProcessManagerSockets();
       void											addProcess(unsigned int, ISocket *);
       void											control(unsigned int);

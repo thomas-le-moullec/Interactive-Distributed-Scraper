@@ -5,8 +5,6 @@
 
 namespace Plazza {
     class Caesar : public AStrategyCipher {
-    private:
-        std::string _fileContent;
 
     public:
         std::string executeCipher(std::string const &);

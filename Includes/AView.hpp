@@ -2,14 +2,15 @@
 # define AVIEW_HPP_
 
 #include "IView.hpp"
-//#include "IController.hpp"
+#include "IController.hpp"
 
 namespace Plazza {
 	namespace View {
 		class AView : public IView {
-		private:
+		protected:
 			unsigned int _width;
 			unsigned int _height;
+			Plazza::Controller::IController *_processManager;
 
     public:
       virtual ~AView() {};
@@ -23,8 +24,7 @@ namespace Plazza {
 			virtual void setTitle(std::string title);
 
     protected:
-			//Plazza::Controller::IController *_controller;
-      AView();
+      AView(Plazza::Controller::IController *);
 		};
 	}
 }

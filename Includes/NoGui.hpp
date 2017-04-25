@@ -8,15 +8,10 @@
 
 namespace Plazza {
 	namespace View {
-		class NoGui : public AView {
-		private:
-			//Plazza::Controller::IController *_controller;
-			Plazza::Controller::IProcessManager *_processManager;
-
-			unsigned int _width;
-			unsigned int _height;
+		class NoGui : public AView, public IObserver {
 		public:
-			NoGui();
+			NoGui(Plazza::Controller::IController *);
+			void Update(std::vector<std::string> data);
 			virtual ~NoGui() {};
 			void initView();
 			void displayData();
@@ -26,7 +21,5 @@ namespace Plazza {
 		};
 	}
 }
-
-// HERITE DE IOBSERVER
 
 #endif

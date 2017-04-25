@@ -1,15 +1,16 @@
 #include "ProcessManagerSockets.hpp"
 
-Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads) : _numPort(0)
+Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads, Plazza::Model::IModel *model) : AController(model), _numPort(0)
 {
   ISocket				*socket;
 
   socket = new Socket(4000 + _numPort++);
+    _ciphers.insert(_ciphers.end(), new Plazza::Xor());
+    _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   _socket = new Socket(5000);
-  _ciphers.insert(_ciphers.end(), new Plazza::Xor());
-  _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
+    std::cout << "size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
@@ -17,7 +18,6 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 {
-
 }
 
 std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order) // Not Correct
@@ -172,7 +172,8 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
       Plazza::Controller::orderBySocket order	= fromBufferToStruct(commands[j]);
       commands[j] = "";
       commands[j] << order;
-      std::cout << commands[j] << std::endl;
+      std::cout << "Order info => " << (int)order.info << "Order fileName => " << order.fileName << std::endl;
+      //std::cout << commands[j] << std::endl;
       _socket->sendMessage(commands[j], _processToFeed.first);
       _socket->receiveMessage(_processToFeed.first);
     }
