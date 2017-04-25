@@ -3,10 +3,11 @@
 
 #include <vector>
 #include <iostream>
-#include <pthread.h>
+//#include <pthread.h>
 #include <unistd.h>
 
 //#include "IStrategyData.hpp"
+#include "Thread.hpp"
 #include "AThreadsPool.hpp"
 #include "Time.hpp"
 #include "Thread.hpp"
@@ -22,22 +23,25 @@ namespace Plazza {
       ThreadPool(unsigned int, Plazza::Model::IModel *, std::vector<Plazza::IStrategyCipher *>&);
       ~ThreadPool();
       void									pushOrder(Order);
-      void									execOrder();
       int										getCurrentOrder();
+      void									execOrder();
       Order									popOrder();
 
     private:
       std::vector<Order> 						_orders;
-      std::vector<std::thread *>		_threads;
+      //std::vector<std::thread *>		_threads;
+      std::vector<Thread *>					_threads;
+
       IMutex												*_mutex; // A CHANGER EN MUTEX SI PROBLEME
       CondVar												_cond;
       unsigned int									_nbThreads;
       unsigned int									_ordersExecuted;
       Time													_time;
       Time													_now;
-        std::vector<Plazza::IStrategyCipher *> _ciphers;
-        Plazza::Model::IModel *_model;
+      std::vector<Plazza::IStrategyCipher *> _ciphers;
+      Plazza::Model::IModel *_model;
     };
+    void									*execOrder(void *);
   }
 }
 

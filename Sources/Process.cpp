@@ -16,19 +16,25 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
   orderBySocket orderReceived;
   Order newOrder;
 
-    std::cout << "Buffer Received => " << buff << std::endl;
-  //buff >> orderReceived;
+  std::cout << "Buffer Received => " << buff << std::endl;
+  buff >> orderReceived;
+  newOrder._strategy = NULL;
   if (orderReceived.info == Plazza::Controller::Information::PHONE_NUMBER) {
+    std::cout << "Strategy PHONE_NUMBER" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyPhoneNumber());
   }
   if (orderReceived.info == Plazza::Controller::Information::EMAIL_ADDRESS) {
+    std::cout << "Strategy EMAIL_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyEmailAddress());
   }
   if (orderReceived.info == Plazza::Controller::Information::IP_ADDRESS) {
+    std::cout << "Strategy IP_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
+  if (newOrder._strategy == NULL)
+    std::cout << "La Strategy n'a pas ete appliquee" << std::endl;
   newOrder._file = orderReceived.fileName;
-    return newOrder;
+  return newOrder;
 }
 
 void				Plazza::Controller::Process::control()

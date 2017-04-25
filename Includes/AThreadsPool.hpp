@@ -19,11 +19,11 @@ namespace Plazza {
 			Plazza::IMutex *_mutex;
 			unsigned int _nbThread;*/
 
+		public:
 			virtual Order popOrder() = 0;
 			virtual void 	pushOrder(Order order) = 0;
 			virtual int 	getCurrentOrder() = 0;
 			virtual void 	execOrder() = 0;
-		public:
 			virtual ~AThreadsPool() {};
 
 		protected:

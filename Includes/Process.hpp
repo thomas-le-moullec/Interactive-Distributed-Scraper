@@ -7,6 +7,8 @@
 #include "ThreadPool.hpp"
 #include "Order.hpp"
 #include "AProcess.hpp"
+
+#include "OpaqueType.hpp"
 #include "ContextInformation.hpp"
 #include "StrategyIpAddress.hpp"
 #include "StrategyPhoneNumber.hpp"
@@ -23,11 +25,11 @@ namespace Plazza {
       void						control();
     private:
       //IThreadsPool														*_tp;
-      //Model::IModel					 									*_model;
+      Plazza::Model::IModel					 					*_model;
       ISocket																	*_socket;
-      std::string															_message;
+      //std::string															_message;
       //Order																		_order;
-      //std::vector<Plazza::IStrategyCipher *> 	_ciphers;
+      std::vector<Plazza::IStrategyCipher *> 	_ciphers;
       int																			_fdSocket;
     };
   }
