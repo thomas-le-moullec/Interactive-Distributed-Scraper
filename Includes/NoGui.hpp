@@ -18,6 +18,7 @@ namespace Plazza {
 			void displayStatus();
 			void getInputs();
 			void initVIew();
+            void LoopView();
 		};
 	}
 }

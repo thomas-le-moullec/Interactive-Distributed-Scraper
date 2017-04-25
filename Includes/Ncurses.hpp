@@ -35,6 +35,7 @@ namespace Plazza {
 			void Update(std::vector<std::string> data);
 			Ncurses(Plazza::Controller::IController *);
 			virtual ~Ncurses();
+			void LoopView();
 		private:
 			std::string	_commandToPrint;
 		};

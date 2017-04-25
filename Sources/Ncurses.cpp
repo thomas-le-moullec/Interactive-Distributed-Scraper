@@ -73,3 +73,9 @@ Plazza::View::Ncurses::Ncurses(Plazza::Controller::IController *controller) : AV
 Plazza::View::Ncurses::~Ncurses() {
   //modeCanonique(1);
 }
+
+void Plazza::View::Ncurses::LoopView() {
+    while (true) {
+        getInputs();
+    }
+}
