@@ -22,6 +22,7 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)Mutex.cpp \
 										$(SRCSPATH)Ncurses.cpp \
 										$(SRCSPATH)NoGui.cpp \
+										$(SRCSPATH)OpaqueType.cpp \
 										$(SRCSPATH)Process.cpp \
 										$(SRCSPATH)ProcessManagerSockets.cpp \
 										$(SRCSPATH)Socket.cpp \

@@ -8,18 +8,17 @@ namespace Plazza {
 	namespace Controller {
 
 		class AProcess : public IProcess {
-		private:
-			Plazza::Controller::IThreadsPool *_threadsPool;
-			std::string _order;
-			int _fdSocket;
-			virtual Plazza::Controller::Order parseOrder(std::string order) = 0;
-			virtual void control() = 0;
-
 		public:
 			virtual ~AProcess() {};
+			virtual void 											control() = 0;
+			virtual Order 										parseOrder(std::string) = 0;
 
 		protected:
 			AProcess();
+			IThreadsPool											*_tp;
+			Model::IModel					 						*_model;
+			Order															_order;
+			std::string												_message;
 		};
 	}
 }

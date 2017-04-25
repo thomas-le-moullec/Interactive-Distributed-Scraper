@@ -11,7 +11,7 @@ namespace Plazza {
 
     public:
         virtual ~StrategyEmailAddress() {};
-        void execute(std::string const &fileContent);
+        std::vector<std::string> execute(std::string const &fileContent);
         bool IsValidInformation(char const &);
         int  FindInformation(int);
         StrategyEmailAddress();

@@ -5,6 +5,8 @@
 #include <ostream>
 #include <sstream>
 
+#include "Order.hpp"
+
 namespace Plazza {
     namespace Controller {
         class IOpaqueType {

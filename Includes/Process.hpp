@@ -22,14 +22,13 @@ namespace Plazza {
       Order						parseOrder(std::string);
       void						control();
     private:
-      IThreadsPool		*_tp;
-      ISocket					*_socket;
-      int							_fdSocket;
-      std::string			_message;
-      Order						_order;
-      time_t					_time; // A ENCAPSULER
-        std::vector<Plazza::IStrategyCipher *> _ciphers;
-        Plazza::Model::IModel *_model;
+      //IThreadsPool														*_tp;
+      //Model::IModel					 									*_model;
+      ISocket																	*_socket;
+      std::string															_message;
+      //Order																		_order;
+      //std::vector<Plazza::IStrategyCipher *> 	_ciphers;
+      int																			_fdSocket;
     };
   }
 }

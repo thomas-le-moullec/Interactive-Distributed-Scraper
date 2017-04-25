@@ -9,7 +9,7 @@ namespace Plazza {
 		Plazza::IStrategyInformation *_strategy;
 
 	public:
-		void ExecuteStrategy(std::string const &fileContent);
+		std::vector<std::string> ExecuteStrategy(std::string const &fileContent);
 		ContextInformation(Plazza::IStrategyInformation *);
 		virtual ~ContextInformation() {};
 
