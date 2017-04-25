@@ -36,33 +36,6 @@ Plazza::Controller::Order								Plazza::Controller::ThreadPool::popOrder()
   return order;
 }
 
-/*void									Plazza::Controller::ThreadPool::execOrder()
-{
-    std::vector<std::string> informations;
-  while (true)
-  {
-    std::string fileContent;
-    Order order = popOrder();
-    _ordersExecuted++;
-    /*for (std::vector<IStrategyCipher *>::iterator it = _ciphers.begin() ; it != _ciphers.end(); ++it) {
-      if ((fileContent = it.executeCipher(order._file)) != NULL) {
-        order._strategy->ExecuteStrategy(fileContent);
-        break;
-      }
-    }*/
-  /*    for (int i = 0; i < _ciphers.size(); i++) {
-              fileContent = _ciphers[i]->executeCipher(order._file);
-          if (!fileContent.empty()) {
-              informations = order._strategy->ExecuteStrategy(fileContent);
-                _model->GetData(informations);
-              break;
-          }
-      }
-    _time.update();
-    _ordersExecuted--;
-  }
-}*/
-
 void									Plazza::Controller::ThreadPool::execOrder()
 {
   std::vector<std::string> informations;

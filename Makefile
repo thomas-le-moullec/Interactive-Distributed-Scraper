@@ -43,7 +43,7 @@ CXXFLAGS			=
 all:								$(NAME)
 
 $(NAME):						$(OBJS)
-										$(CC) -o $(NAME) $(CPPFLAGS) $(CXXFLAGS) $(OBJS)
+										$(CC) -o $(NAME)  $(CXXFLAGS) $(OBJS) $(CPPFLAGS)
 
 clean:
 										$(RM) $(OBJS)

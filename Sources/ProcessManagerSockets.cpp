@@ -10,7 +10,7 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   _socket = new Socket(5000);
-    std::cout << "size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
+  std::cout << "size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
@@ -19,6 +19,8 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 {
 }
+
+
 
 std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseCommandLine(std::string order) // Not Correct
 {
@@ -67,15 +69,25 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
 
 void Plazza::Controller::ProcessManagerSockets::NotifyController(char input)
 {
-	if (input == '\n')
+	if (input == 10 || input == 13)
 		control(5);
   else
 	 _commandLine += input;
 }
 
-int 						Plazza::Controller::ProcessManagerSockets::getStatus()
+std::vector<int> 						Plazza::Controller::ProcessManagerSockets::getStatus()
 {
-  return 0;
+  std::vector<int> 					infosProcess;
+
+  infosProcess.insert(infosProcess.end(), _fdProcess.size());
+  for (unsigned int i = 0; i < _fdProcess.size(); i++)
+  {
+    _socket->sendMessage("nbThreadsBusy", _fdProcess[i]);
+    _nbThreadsBusy = atoi(_socket->receiveMessage(_fdProcess[i]).c_str());
+    if (_nbThreadsBusy != -1)
+      infosProcess.insert(infosProcess.end(), _nbThreadsBusy);
+  }
+  return infosProcess;
 }
 
 int 						Plazza::Controller::ProcessManagerSockets::getPid()
@@ -95,6 +107,8 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
     process.control();
   }
 }
+
+
 
 Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fromBufferToStruct(std::string str)
 {

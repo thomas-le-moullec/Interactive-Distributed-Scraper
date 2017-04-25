@@ -1,6 +1,6 @@
 #include "NoGui.hpp"
 
-void Plazza::View::NoGui::initVIew() {
+void Plazza::View::NoGui::initView() {
 }
 
 void Plazza::View::NoGui::getInputs() {
