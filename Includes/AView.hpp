@@ -18,7 +18,7 @@ namespace Plazza {
 			virtual void setSize(unsigned int width, unsigned int height);
 			virtual void setResizable(bool isResizable);
 			virtual void setVisible(bool isVisible);
-			virtual void initVIew() = 0;
+			virtual void initView() = 0;
 			virtual void displayData() = 0;
 			virtual void displayStatus() = 0;
 			virtual void setTitle(std::string title);

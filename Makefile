@@ -36,14 +36,14 @@ SRCS					=			$(SRCSPATH)main.cpp \
 
 OBJS					=			$(SRCS:.cpp=.o)
 
-CPPFLAGS			=			-I ./Includes -lpthread
+CPPFLAGS			=			-I ./Includes -lpthread -lncurses
 
 CXXFLAGS			=
 
 all:								$(NAME)
 
 $(NAME):						$(OBJS)
-										$(CC) -o $(NAME) $(CPPFLAGS) $(CXXFLAGS) $(OBJS)
+										$(CC) -o $(NAME)  $(CXXFLAGS) $(OBJS) $(CPPFLAGS)
 
 clean:
 										$(RM) $(OBJS)

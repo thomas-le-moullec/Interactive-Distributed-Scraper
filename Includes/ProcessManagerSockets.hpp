@@ -26,7 +26,7 @@ namespace Plazza {
       ~ProcessManagerSockets();
       void											addProcess(unsigned int, ISocket *);
       void											control(unsigned int);
-      int 											getStatus();
+      std::vector<int>					getStatus();
       int 											getPid();
       void 											NotifyController(char);
       std::vector<std::string> 	ParseCommandLine(std::string order);
