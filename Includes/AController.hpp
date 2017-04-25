@@ -2,7 +2,7 @@
 #define ACONTROLLER_HPP_
 
 #include "IController.hpp"
-#include "IModel.hpp"
+#include "Information.hpp"
 
 namespace Plazza {
 	namespace Controller {

@@ -13,5 +13,6 @@ std::string Plazza::Controller::AController::GetCommandLine() {
 }
 
 Plazza::Controller::AController::AController() {
+	_model = new Plazza::Model::Information();
 	std::cout << "Construction du AController" << std::endl;
 }

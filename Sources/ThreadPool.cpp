@@ -43,7 +43,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
     Order order = popOrder();
     _ordersExecuted++;
     /*for (std::vector<IStrategyCipher *>::iterator it = _ciphers.begin() ; it != _ciphers.end(); ++it) {
-      if ((fileContent = _ciphers[*it].executeCipher(order._file)) != NULL) {
+      if ((fileContent = it.executeCipher(order._file)) != NULL) {
         order._strategy->ExecuteStrategy(fileContent);
         break;
       }
@@ -52,7 +52,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
               fileContent = _ciphers[i]->executeCipher(order._file);
           if (!fileContent.empty()) {
               informations = order._strategy->ExecuteStrategy(fileContent);
-            //SendToModel
+                _model->GetData(informations);
               break;
           }
       }

@@ -7,17 +7,13 @@ namespace Plazza {
 	namespace Model {
 		class Information : public AModel {
 		private:
-			std::string _information;
-			std::vector<Plazza::IObserver *> listObservers;
-			void Reset();
-			void AddObserver(Plazza::IObserver *observer);
-			void NotifyObserver(std::string Information);
-			void RemoveObservers();
-			void RemoveObserver(Plazza::IObserver *observer);
-			void GetData();
+			std::vector<std::vector<std::string>> _informations;
+			std::vector<Plazza::IObserver *> _listObservers;
 		public:
-			Information();
+			void Reset();
+			void GetData(std::vector<std::string>);
 			virtual ~Information() {};
+			Information();
 		};
 	}
 }
