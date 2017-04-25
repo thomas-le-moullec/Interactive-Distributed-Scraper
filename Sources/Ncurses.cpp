@@ -5,6 +5,10 @@ void Plazza::View::Ncurses::modeCanonique(int mode) {
 	throw "Not yet implemented";
 }
 
+void Plazza::View::Ncurses::Update(std::vector<std::string> data) {
+
+}
+
 void Plazza::View::Ncurses::initView() {
 	// TODO - implement Ncurses::initView
 	throw "Not yet implemented";

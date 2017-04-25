@@ -6,8 +6,8 @@ void Plazza::Model::Information::Reset() {
 
 void Plazza::Model::Information::GetData(std::vector<std::string> informations) {
 	_informations.insert(_informations.end(), informations);
+	NotifyObserver(informations);
 }
 
-Plazza::Model::Information::Information() : AModel() {
-
+Plazza::Model::Information::Information() {
 }

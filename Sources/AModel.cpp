@@ -1,24 +1,28 @@
 #include "AModel.hpp"
 
 void Plazza::Model::AModel::AddObserver(Plazza::IObserver *observer) {
+    _listObservers.insert(_listObservers.end(), observer);
 }
 
-void Plazza::Model::AModel::NotifyObserver(std::string data) {
-	// TODO - implement AModel::NotifyObserver
-//	throw "Not yet implemented";
+void Plazza::Model::AModel::NotifyObserver(std::vector<std::string> data) {
+	for (int i = 0; i < _listObservers.size(); i++) {
+        _listObservers[i]->Update(data);
+    }
 }
 
 void Plazza::Model::AModel::RemoveObservers() {
-	// TODO - implement AModel::RemoveObservers
-//	throw "Not yet implemented";
+	delete &_listObservers;
+    //new
 }
 
 void Plazza::Model::AModel::RemoveObserver(Plazza::IObserver *observer) {
-	// TODO - implement AModel::RemoveObserver
-	//throw "Not yet implemented";
+	for (int i = 0; i < _listObservers.size(); i++) {
+        /*if (_listObservers[i] == observer) {
+            _listObservers.erase(observer);
+        }*/
+    }
 }
 
 Plazza::Model::AModel::AModel() {
-	// TODO - implement AModel::AModel
-//	throw "Not yet implemented";
+	std::cout << "AModel builded !" << std::endl;
 }

@@ -7,7 +7,7 @@ namespace Plazza {
 	class IObservable {
 	private:
 		virtual void AddObserver(Plazza::IObserver *observer) = 0;
-		virtual void NotifyObserver(std::string data) = 0;
+		virtual void NotifyObserver(std::vector<std::string> data) = 0;
 		virtual void RemoveObservers() = 0;
 		virtual void RemoveObserver(Plazza::IObserver *observer) = 0;
 

@@ -23,11 +23,11 @@ namespace Plazza {
       void						control();
     private:
       //IThreadsPool														*_tp;
-      //Model::IModel					 									*_model;
+      Model::IModel					 									*_model;
       ISocket																	*_socket;
-      std::string															_message;
+      //std::string															_message;
       //Order																		_order;
-      //std::vector<Plazza::IStrategyCipher *> 	_ciphers;
+      std::vector<Plazza::IStrategyCipher *> 	_ciphers;
       int																			_fdSocket;
     };
   }
