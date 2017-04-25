@@ -4,7 +4,7 @@ Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Pla
                                                                                                                                                               _ciphers(ciphers), _model(model)
 {
   _tp = new ThreadPool(nbThread, model, ciphers);
-  std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
+  //std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
 }
 
 Plazza::Controller::Process::~Process()
@@ -16,24 +16,26 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
   orderBySocket orderReceived;
   Order newOrder;
 
-  std::cout << "Buffer Received => " << buff << std::endl;
+//  std::cout << "Buffer Received => " << buff << std::endl;
   buff >> orderReceived;
   newOrder._strategy = NULL;
   if (orderReceived.info == Plazza::Controller::Information::PHONE_NUMBER) {
-    std::cout << "Strategy PHONE_NUMBER" << std::endl;
+    //std::cout << "Strategy PHONE_NUMBER" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyPhoneNumber());
   }
   if (orderReceived.info == Plazza::Controller::Information::EMAIL_ADDRESS) {
-    std::cout << "Strategy EMAIL_ADDRESS" << std::endl;
+  //  std::cout << "Strategy EMAIL_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyEmailAddress());
   }
   if (orderReceived.info == Plazza::Controller::Information::IP_ADDRESS) {
-    std::cout << "Strategy IP_ADDRESS" << std::endl;
+//    std::cout << "Strategy IP_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
   if (newOrder._strategy == NULL)
     std::cout << "La Strategy n'a pas ete appliquee" << std::endl;
   newOrder._file = orderReceived.fileName;
+  //  std::cout << "FILE NAME ORDER => " << orderReceived.fileName << std::endl;
+//    std::cout << "ORDER => " << (int)orderReceived.info << std::endl;
   return newOrder;
 }
 

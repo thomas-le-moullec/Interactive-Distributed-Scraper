@@ -7,7 +7,7 @@
 namespace Plazza {
 	namespace Model {
 		class AModel : public IModel, public IObservable {
-		private:
+		protected:
       std::vector<Plazza::IObserver *> _listObservers;
         public:
 			virtual void Reset() = 0;

@@ -4,8 +4,6 @@ Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model
 {
   _mutex = new Mutex();
   _time.update();
-    _model = model;
-    _ciphers = ciphers;
   for (unsigned int i = 0; i < _nbThreads; i++)
     _threads.insert(_threads.end(), new Plazza::Thread(NULL, &Plazza::Controller::execOrder, this));
 
@@ -21,6 +19,7 @@ void									Plazza::Controller::ThreadPool::pushOrder(Order order)
 {
   _time.update();
   _mutex->lock();
+    std::cout << "PUUUUUUUUUUUUSH ORDER" << std::endl << std::endl;
   _orders.insert(_orders.end(), order);
   _cond.signal();
   _mutex->unlock();
@@ -68,15 +67,20 @@ void									Plazza::Controller::ThreadPool::execOrder()
 {
   std::vector<std::string> informations;
 
+    //std::cout << "EXEC ORDER" << std::endl;
   while (1)
   {
     std::string 							fileContent;
     Plazza::Controller::Order order = popOrder();
     _ordersExecuted++;
+      //std::cout << "File Name order => " << order._file << " et size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
     for (int i = 0; i < _ciphers.size(); i++) {
+        //std::cout << "ENTRE DANS LE FOR"<< std::endl;
       fileContent = _ciphers[i]->executeCipher(order._file);
+        //std::cout << "File Content => " << fileContent << std::endl;
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
+          //std::cout << "Informations => " << informations[0] << std::endl;
         _model->GetData(informations);
         break;
       }
@@ -98,8 +102,8 @@ int										Plazza::Controller::ThreadPool::getCurrentOrder()
 {
   _now.update();
   std::cout << "Diff time " <<  _now.diffTime(_time) << std::endl;
+    std::cout << "Nb order --> " << _orders.size() + _ordersExecuted << std::endl;
   if (_orders.size() + _ordersExecuted == 0 &&  _now.diffTime(_time) >= 5)
     return -1;
-  std::cout << "Nb order --> " << _orders.size() + _ordersExecuted << std::endl;
   return static_cast<int>(_ordersExecuted);
 }

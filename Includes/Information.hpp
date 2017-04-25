@@ -8,7 +8,6 @@ namespace Plazza {
 		class Information : public AModel {
 		private:
 			std::vector<std::vector<std::string>> _informations;
-			std::vector<Plazza::IObserver *> _listObservers;
 		public:
 			void Reset();
 			void GetData(std::vector<std::string>);

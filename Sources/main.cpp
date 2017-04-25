@@ -4,10 +4,13 @@
 
 int main()
 {
-    //Plazza::Model::Information toto();
-    Plazza::View::IView *view = new Plazza::View::NoGui();
+    Plazza::Model::IModel *model = new Plazza::Model::Information();
+    Plazza::Controller::IController *controller = new Plazza::Controller::ProcessManagerSockets(5, model); //ok
+    Plazza::View::IView *viewNoGui = new Plazza::View::NoGui(controller);
 
-    while (true)
-      view->getInputs();
+    static_cast<Plazza::Model::AModel *>(model)->AddObserver(static_cast<Plazza::View::NoGui *>(viewNoGui));
+    while (true) {
+        viewNoGui->getInputs();
+    }
     return 0;
 };

@@ -9,13 +9,8 @@
 namespace Plazza {
 	namespace View {
 		class NoGui : public AView, public IObserver {
-		private:
-			Plazza::Controller::IController *_processManager;
-
-			unsigned int _width;
-			unsigned int _height;
 		public:
-			NoGui();
+			NoGui(Plazza::Controller::IController *);
 			void Update(std::vector<std::string> data);
 			virtual ~NoGui() {};
 			void initView();

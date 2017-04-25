@@ -19,7 +19,7 @@ namespace Plazza {
 			virtual void 											NotifyController(char input) = 0;
 
 		protected:
-			AController();
+			AController(Plazza::Model::IModel *);
 			std::string 											_commandLine;
 		};
 	}

@@ -9,9 +9,6 @@
 namespace Plazza {
 	namespace View {
 		class Ncurses : public AView, public IObserver {
-		private:
-			unsigned int _width;
-			unsigned int _height;
 		public:
 			Plazza::Controller::IController *_processManager;
 			void modeCanonique(int mode);
@@ -20,7 +17,7 @@ namespace Plazza {
 			void displayData();
 			void displayStatus();
 			void Update(std::vector<std::string> data);
-			Ncurses();
+			Ncurses(Plazza::Controller::IController *);
 			virtual ~Ncurses() {};
 		};
 	}
