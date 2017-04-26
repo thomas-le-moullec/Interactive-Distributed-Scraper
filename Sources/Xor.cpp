@@ -6,11 +6,8 @@ Plazza::Xor::Xor() : AStrategyCipher()
 
 std::string            Plazza::Xor::executeCipher(std::string const &fileName)
 {
-  std::cout << "ON RENTRE DANS LE XOR" << std::endl;
     try {
         _fileContent = this->getFileContent(fileName);
-        std::cout << "ON TAKE LE FILE" << std::endl;
-
     }
     catch (RunTimeErrorController const &stdErr) {
         throw RunTimeErrorController("Couldn't open file : "+fileName);
@@ -18,7 +15,6 @@ std::string            Plazza::Xor::executeCipher(std::string const &fileName)
     std::string saveFileContent = _fileContent;
     for (int i = 0; i < 255; ++i) {
         if (this->isUnCiphered() == true) {
-            std::cout << "KEY = " << (char)i << " (" << i << ")" << std::endl;
             return (this->_fileContent);
         }
         for (int nb = 0; nb < this->_fileContent.size(); nb++) {
@@ -35,7 +31,6 @@ std::string            Plazza::Xor::executeCipher(std::string const &fileName)
                     this->_fileContent[nb] = saveFileContent[nb] ^ j;
             }
             if (this->isUnCiphered() == true) {
-                std::cout << "KEY = " << (char)i << (char)j << " (" << i << " | " << j << ")" << std::endl;
                 return (this->_fileContent);
             }
         }

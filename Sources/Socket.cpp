@@ -1,13 +1,8 @@
-//
-// Created by tchikl_h on 4/17/17.
-//
-
 #include "Socket.hpp"
 
 Plazza::Controller::Socket::Socket(int port) : _port(port)
 {
 }
-
 
 void            Plazza::Controller::Socket::sendMessage(std::string message, int socketFd) const
 {

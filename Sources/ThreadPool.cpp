@@ -6,9 +6,6 @@ Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model
   _time.update();
   for (unsigned int i = 0; i < _nbThreads; i++)
     _threads.insert(_threads.end(), new Plazza::Thread(NULL, &Plazza::Controller::execOrder, this));
-
-  /*for (unsigned int i = 0; i < _nbThreads; i++)
-    _threads.insert(_threads.end(), new std::thread(&ThreadPool::execOrder, this));*/
 }
 
 Plazza::Controller::ThreadPool::~ThreadPool()
@@ -45,15 +42,11 @@ void									Plazza::Controller::ThreadPool::execOrder()
 
   while (1)
   {
-    std::cout << "EXEC ORDER" << std::endl;
     std::string 							fileContent;
     Plazza::Controller::Order order = popOrder();
-    std::cout << "ON RECUPERE l ORDER" << std::endl;
 
     _ordersExecuted++;
-      //std::cout << "File Name order => " << order._file << " et size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
     for (int i = 0; i < ciphers.size(); i++) {
-        //std::cout << "ENTRE DANS LE FOR"<< std::endl;
       try {
         fileContent = ciphers[i]->executeCipher(order._file);
       }
@@ -62,15 +55,12 @@ void									Plazza::Controller::ThreadPool::execOrder()
         _ordersExecuted--;
         return;
       }
-        //std::cout << "File Content => " << fileContent << std::endl;
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
-          //std::cout << "Informations => " << informations[0] << std::endl;
-        _mutex->lock();
-        _model->GetData(informations);
-        _mutex->unlock();
-
-        break;
+      _mutex->lock();
+      _model->GetData(informations);
+      _mutex->unlock();
+      break;
       }
     }
     _time.update();
@@ -89,8 +79,6 @@ void									*Plazza::Controller::execOrder(void *data)
 int										Plazza::Controller::ThreadPool::getCurrentOrder()
 {
   _now.update();
-  std::cout << "Diff time " <<  _now.diffTime(_time) << std::endl;
-    std::cout << "Nb order --> " << _orders.size() + _ordersExecuted << std::endl;
   if (_orders.size() + _ordersExecuted == 0 &&  _now.diffTime(_time) >= 5)
     return -1;
   return static_cast<int>(_ordersExecuted);
