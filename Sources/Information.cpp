@@ -1,5 +1,7 @@
 #include "Information.hpp"
 
+const std::string                       Plazza::Model::AModel::LOGS_PATH = "./Logs/";
+
 void Plazza::Model::Information::Reset() {
 	_informations.clear();
 }
@@ -14,7 +16,7 @@ void Plazza::Model::Information::SaveData(std::string fileName) {
     std::ofstream outputFile;
     //std::cout << "SAVE DATA IN :" << fileName << std::endl;
     if (saved == false) {
-        outputFile.open(fileName.c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
+        outputFile.open(LOGS_PATH+fileName.c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
         for (unsigned int i = 0; i < _informations.size(); i++) {
             for (unsigned int j = 0; j < _informations[i].size(); j++) {
                 outputFile << _informations[i][j] << std::endl;

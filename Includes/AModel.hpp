@@ -22,6 +22,7 @@ namespace Plazza {
 
 		protected:
 			AModel();
+			static const std::string                            LOGS_PATH;
 		};
 	}
 }
