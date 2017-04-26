@@ -2,6 +2,7 @@
 #define STRATEGYPHONENUMBER_HPP_
 
 #include "IStrategyInformation.hpp"
+#include "Regex.hpp"
 
 namespace Plazza {
     class StrategyPhoneNumber : public IStrategyInformation {

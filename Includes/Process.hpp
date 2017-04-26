@@ -24,12 +24,9 @@ namespace Plazza {
       Order						parseOrder(std::string);
       void						control();
     private:
-      //IThreadsPool														*_tp;
       ISocket																	*_socket;
-      //std::string															_message;
-      //Order																		_order;
-        Plazza::Model::IModel 								*_model;
       int																			_fdSocket;
+      Plazza::Model::IModel 									*_model;
     };
   }
 }

@@ -16,7 +16,7 @@ std::string             Plazza::Caesar::executeCipher(std::string const &fileNam
         if (this->isUnCiphered() == true) {
             return (this->_fileContent);
         }
-        for (int j = 0; j < this->_fileContent.size(); j++) {
+        for (unsigned int j = 0; j < this->_fileContent.size(); j++) {
             this->_fileContent[j]++;
         }
     }

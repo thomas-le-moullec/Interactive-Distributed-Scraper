@@ -46,7 +46,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
     Plazza::Controller::Order order = popOrder();
 
     _ordersExecuted++;
-    for (int i = 0; i < ciphers.size(); i++) {
+    for (unsigned int i = 0; i < ciphers.size(); i++) {
       try {
         fileContent = ciphers[i]->executeCipher(order._file);
       }
