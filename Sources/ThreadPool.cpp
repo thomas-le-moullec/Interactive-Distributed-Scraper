@@ -1,6 +1,6 @@
 #include "ThreadPool.hpp"
 
-Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model::IModel *model, std::vector<Plazza::IStrategyCipher *> &ciphers) : _nbThreads(nbThreads), _ordersExecuted(0), _ciphers(ciphers), _model(model)
+Plazza::Controller::ThreadPool::ThreadPool(unsigned int nbThreads, Plazza::Model::IModel *model) : _nbThreads(nbThreads), _ordersExecuted(0), _model(model)
 {
   _mutex = new Mutex();
   _time.update();
@@ -38,8 +38,11 @@ Plazza::Controller::Order								Plazza::Controller::ThreadPool::popOrder()
 void									Plazza::Controller::ThreadPool::execOrder()
 {
   std::vector<std::string> informations;
+  std::vector<Plazza::IStrategyCipher *> 	ciphers;
 
-    //std::cout << "EXEC ORDER" << std::endl;
+  ciphers.insert(ciphers.end(), new Plazza::Xor());
+  ciphers.insert(ciphers.end(), new Plazza::Caesar());
+
   while (1)
   {
     std::string 							fileContent;
@@ -49,7 +52,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
     for (int i = 0; i < _ciphers.size(); i++) {
         //std::cout << "ENTRE DANS LE FOR"<< std::endl;
       try {
-        fileContent = _ciphers[i]->executeCipher(order._file);
+        fileContent = ciphers[i]->executeCipher(order._file);
       }
       catch (RunTimeErrorController const &stdErr) {
         std::cerr << stdErr.what() << std::endl;

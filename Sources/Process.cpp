@@ -1,9 +1,9 @@
 #include "Process.hpp"
 
-Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Plazza::Model::IModel *model, std::vector<Plazza::IStrategyCipher *> &ciphers) : _socket(socket), _fdSocket(socket->socketChild()),
-                                                                                                                                                              _ciphers(ciphers), _model(model)
+Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Plazza::Model::IModel *model) : _socket(socket), _fdSocket(socket->socketChild()),
+                                                                                                             _model(model)
 {
-  _tp = new ThreadPool(nbThread, model, ciphers);
+  _tp = new ThreadPool(nbThread, model);
   //std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
 }
 

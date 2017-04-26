@@ -5,8 +5,6 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   ISocket				*socket;
 
   socket = new Socket(4000 + _numPort++);
-    _ciphers.insert(_ciphers.end(), new Plazza::Xor());
-    _ciphers.insert(_ciphers.end(), new Plazza::Caesar());
   addProcess(nbThreads, socket);
   _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   //_socket = new Socket(5000);
@@ -116,7 +114,7 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
 
   if ((pid = fork()) == 0)
   {
-    Process			process(nbThread, socket, _model, _ciphers);
+    Process			process(nbThread, socket, _model);
 
     process.control();
   }

@@ -11,9 +11,6 @@
 #include "Process.hpp"
 #include "AController.hpp"
 #include "Socket.hpp"
-#include "IStrategyCipher.hpp"
-#include "Xor.hpp"
-#include "Caesar.hpp"
 #include "Order.hpp"
 #include "OpaqueType.hpp"
 
