@@ -54,6 +54,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
         std::cerr << stdErr.what() << std::endl;
         _ordersExecuted--;
         return;
+
       }
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
