@@ -60,7 +60,7 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
     }
     if (ordersSeparator[j] != "")
       words.insert(words.end(), ordersSeparator[j]);
-    for (unsigned int i = 0; i < words.size() - 1; i++)
+    for (unsigned int i = 0; i < words.size() - 1 && words.size() > 1; i++)
     {
       strToPush = words[i] + " " + words[words.size() - 1];
       orders.insert(orders.end(), strToPush);
