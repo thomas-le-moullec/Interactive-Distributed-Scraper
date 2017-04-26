@@ -34,8 +34,8 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)ThreadPool.cpp \
 										$(SRCSPATH)Time.cpp \
 										$(SRCSPATH)Xor.cpp \
+										$(SRCSPATH)Regex.cpp \
 										$(ERRORSPATH)Errors.cpp \
-
 
 OBJS					=			$(SRCS:.cpp=.o)
 
