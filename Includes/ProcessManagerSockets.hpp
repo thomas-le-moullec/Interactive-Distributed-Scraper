@@ -6,6 +6,7 @@
 #include <utility>
 #include <string>
 #include <map>
+#include <signal.h>
 
 #include "AProcessManager.hpp"
 #include "Process.hpp"
@@ -24,6 +25,7 @@ namespace Plazza {
         void sendMessage(std::string, int) const;
         std::string receiveMessage(int) const;
       void											addProcess(unsigned int, ISocket *);
+      //void 											my_handler(int);
       void											control();
       std::vector<int>					getStatus();
       int 											getPid();
