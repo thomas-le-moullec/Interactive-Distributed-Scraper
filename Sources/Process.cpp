@@ -1,10 +1,9 @@
 #include "Process.hpp"
 
-Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Plazza::Model::IModel *model, std::vector<Plazza::IStrategyCipher *> &ciphers) : _socket(socket), _fdSocket(socket->socketChild()),
-                                                                                                                                                              _ciphers(ciphers), _model(model)
+Plazza::Controller::Process::Process(unsigned int nbThread, ISocket *socket, Plazza::Model::IModel *model) : _socket(socket), _fdSocket(socket->socketChild()),
+                                                                                                             _model(model)
 {
-  _tp = new ThreadPool(nbThread, model, ciphers);
-  //std::cout << "Pid du nouveau Process : " << (int)getpid() << std::endl;
+  _tp = new ThreadPool(nbThread, model);
 }
 
 Plazza::Controller::Process::~Process()
@@ -16,26 +15,20 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
   orderBySocket orderReceived;
   Order newOrder;
 
-//  std::cout << "Buffer Received => " << buff << std::endl;
   buff >> orderReceived;
   newOrder._strategy = NULL;
   if (orderReceived.info == Plazza::Controller::Information::PHONE_NUMBER) {
-    //std::cout << "Strategy PHONE_NUMBER" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyPhoneNumber());
   }
   if (orderReceived.info == Plazza::Controller::Information::EMAIL_ADDRESS) {
-  //  std::cout << "Strategy EMAIL_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyEmailAddress());
   }
   if (orderReceived.info == Plazza::Controller::Information::IP_ADDRESS) {
-//    std::cout << "Strategy IP_ADDRESS" << std::endl;
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
-  if (newOrder._strategy == NULL)
-    std::cout << "La Strategy n'a pas ete appliquee" << std::endl;
+  if (newOrder._strategy == NULL || orderReceived.fileName.empty())
+    throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
   newOrder._file = orderReceived.fileName;
-  //  std::cout << "FILE NAME ORDER => " << orderReceived.fileName << std::endl;
-//    std::cout << "ORDER => " << (int)orderReceived.info << std::endl;
   return newOrder;
 }
 
@@ -54,7 +47,13 @@ void				Plazza::Controller::Process::control()
     }
     else
     {
-      _order = parseOrder(_message);
+      try {
+        _order = parseOrder(_message);
+      }
+      catch (RunTimeErrorController const &stdErr) {
+        std::cerr << stdErr.what() << std::endl;
+        return;
+      }
       _tp->pushOrder(_order);
       _socket->sendMessage(" ", _fdSocket);
     }

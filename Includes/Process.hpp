@@ -19,7 +19,7 @@ namespace Plazza {
     class		Process : public AProcess
     {
     public:
-      Process(unsigned int, ISocket *, Plazza::Model::IModel *, std::vector<Plazza::IStrategyCipher *>&);
+      Process(unsigned int, ISocket *, Plazza::Model::IModel *);
       ~Process();
       Order						parseOrder(std::string);
       void						control();
@@ -28,8 +28,7 @@ namespace Plazza {
       ISocket																	*_socket;
       //std::string															_message;
       //Order																		_order;
-      std::vector<Plazza::IStrategyCipher *> 	_ciphers;
-        Plazza::Model::IModel *_model;
+        Plazza::Model::IModel 								*_model;
       int																			_fdSocket;
     };
   }

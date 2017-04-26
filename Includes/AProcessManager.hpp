@@ -2,7 +2,6 @@
 #define APROCESSMANAGER_HPP_
 
 #include "IProcessManager.hpp"
-#include <vector>
 
 namespace Plazza {
 	namespace Controller {
@@ -11,9 +10,9 @@ namespace Plazza {
 			AProcessManager();
 		public:
 			virtual ~AProcessManager() {};
-			virtual void 		addProcess(unsigned int, ISocket *) = 0;
-			virtual int 		getStatus() = 0;
-			virtual int 		getPid() = 0;
+			virtual void 								addProcess(unsigned int, ISocket *) = 0;
+			virtual std::vector<int> 		getStatus() = 0;
+			virtual int 								getPid() = 0;
 		};
 	}
 }

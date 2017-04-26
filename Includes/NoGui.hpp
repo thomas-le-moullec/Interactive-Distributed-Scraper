@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 #include "AView.hpp"
+#include "Mutex.hpp"
 #include "IObserver.hpp"
 #include "ProcessManagerSockets.hpp"
 
@@ -18,6 +19,9 @@ namespace Plazza {
 			void displayStatus();
 			void getInputs();
 			void initVIew();
+      void LoopView();
+		private:
+			IMutex	*_mutex;
 		};
 	}
 }

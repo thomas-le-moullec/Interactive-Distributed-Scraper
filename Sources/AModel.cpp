@@ -5,7 +5,6 @@ void Plazza::Model::AModel::AddObserver(Plazza::IObserver *observer) {
 }
 
 void Plazza::Model::AModel::NotifyObserver(std::vector<std::string> data) {
-    std::cout << "List Observers" << _listObservers.size() << std::endl;
 	for (int i = 0; i < _listObservers.size(); i++) {
         _listObservers[i]->Update(data);
     }
@@ -25,5 +24,4 @@ void Plazza::Model::AModel::RemoveObserver(Plazza::IObserver *observer) {
 }
 
 Plazza::Model::AModel::AModel() {
-	std::cout << "AModel builded !" << std::endl;
 }

@@ -9,17 +9,15 @@ std::string     Plazza::AStrategyCipher::getFileContent(std::string const &fileN
     std::string content;
     std::string line;
     std::ifstream myfile(fileName);
-    std::cout << "File Name GetContent" << fileName << std::endl;
     if (myfile.is_open())
     {
         while (getline(myfile,line)) {
-            //std::cout << "MyFIle => " << line << std::endl;
             content.append(line + '\n');
         }
         myfile.close();
     }
     else
-        std::cout << "Unable to open file" << std::endl;
+        throw RunTimeErrorController("Couldn't open file : "+fileName);
     return (content);
 }
 

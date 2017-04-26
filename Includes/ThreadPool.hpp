@@ -6,7 +6,8 @@
 //#include <pthread.h>
 #include <unistd.h>
 
-//#include "IStrategyData.hpp"
+#include "Xor.hpp"
+#include "Caesar.hpp"
 #include "Thread.hpp"
 #include "AThreadsPool.hpp"
 #include "Time.hpp"
@@ -20,7 +21,7 @@ namespace Plazza {
     class		ThreadPool : public AThreadsPool
     {
     public:
-      ThreadPool(unsigned int, Plazza::Model::IModel *, std::vector<Plazza::IStrategyCipher *>&);
+      ThreadPool(unsigned int, Plazza::Model::IModel *);
       ~ThreadPool();
       void									pushOrder(Order);
       int										getCurrentOrder();
@@ -38,8 +39,7 @@ namespace Plazza {
       unsigned int									_ordersExecuted;
       Time													_time;
       Time													_now;
-      std::vector<Plazza::IStrategyCipher *> _ciphers;
-      Plazza::Model::IModel *_model;
+      Plazza::Model::IModel 				*_model;
     };
     void									*execOrder(void *);
   }
