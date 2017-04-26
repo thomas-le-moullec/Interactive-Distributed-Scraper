@@ -68,8 +68,18 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
 
 void Plazza::Controller::ProcessManagerSockets::NotifyController(char input)
 {
+  //std::cout << "input-> " << (int)input << std::endl;
 	if (input == 10 || input == 13)
 		control();
+  else if (input == 0) {
+    for (unsigned int i = 0; i < _fdProcess.size(); i++)
+    {
+      sendMessage("exit", _fdProcess[i]);
+      receiveMessage(_fdProcess[i]);
+      close(_fdProcess[i]);
+    }
+    exit(0);
+  }
   else
 	 _commandLine += input;
 }
@@ -79,6 +89,7 @@ std::vector<int> 						Plazza::Controller::ProcessManagerSockets::getStatus()
   std::vector<int> 					infosProcess;
 
   infosProcess.insert(infosProcess.end(), _fdProcess.size());
+  infosProcess.insert(infosProcess.end(), _nbThreads);
   for (unsigned int i = 0; i < _fdProcess.size(); i++)
   {
     sendMessage("nbThreadsBusy", _fdProcess[i]);
@@ -106,8 +117,6 @@ void						Plazza::Controller::ProcessManagerSockets::addProcess(unsigned int nbT
     process.control();
   }
 }
-
-
 
 Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fromBufferToStruct(std::string str)
 {

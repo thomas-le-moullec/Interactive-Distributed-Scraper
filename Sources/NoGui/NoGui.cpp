@@ -6,6 +6,7 @@ void Plazza::View::NoGui::initView() {
 void Plazza::View::NoGui::getInputs() {
 	char	buff[1];
 
+	buff[0] = 0;
 	read(1, &buff, 1);
 	_processManager->NotifyController(buff[0]);
 }
