@@ -13,7 +13,7 @@ int             Plazza::StrategyPhoneNumber::FindInformation(int pos)
 {
     (void)pos;
     std::smatch m;
-    std::regex  e("(([0-9]{2}[\\ \\.-]?){4}[0-9]{2})");
+    std::regex  e("([0][0-9][\\ ]?([0-9]{2}[\\ ]?){3}[0-9]{2})");
     IRegex      *regex = new  Regex(e);
 
     while (regex->regexSearch(this->_fileContent, m)) {

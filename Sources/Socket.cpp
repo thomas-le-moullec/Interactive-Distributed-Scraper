@@ -75,7 +75,7 @@ int Plazza::Controller::Socket::socketParent()
         std::cerr << "Cannot open socket" << std::endl;
         return 0;
     }
-
+    setsockopt(listenFd, SOL_SOCKET, SO_REUSEADDR, (char *)&len, (int)sizeof(len));
     bzero((char *)&svrAdd, sizeof(svrAdd));
 
     svrAdd.sin_family = AF_INET;
