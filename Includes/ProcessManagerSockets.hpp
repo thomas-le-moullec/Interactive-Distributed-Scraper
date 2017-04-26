@@ -24,20 +24,21 @@ namespace Plazza {
         void sendMessage(std::string, int) const;
         std::string receiveMessage(int) const;
       void											addProcess(unsigned int, ISocket *);
-      void											control(unsigned int);
+      void											control();
       std::vector<int>					getStatus();
       int 											getPid();
       void 											NotifyController(char);
       std::vector<std::string> 	ParseCommandLine(std::string order);
       orderBySocket							fromBufferToStruct(std::string str);
     private:
+      unsigned int														_numPort;
+      unsigned int														_nbThreads;
       std::vector<int>												_fdProcess;
       std::pair<int, int>											_processToFeed;
       std::map<std::string, Information>	 		_strEnum;
       std::string 														_commandLine;
       std::string															_message;
       int																			_nbThreadsBusy;
-      unsigned int														_numPort;
     };
   }
 }

@@ -1,14 +1,26 @@
 NAME					=			plazza
 
+NAMEUI				=			plazzaGraphic
+
 CC						=			g++
 
 RM						=			rm -rf
 
 SRCSPATH			=			./Sources/
-ERRORSPATH			=			./Errors/
 
-SRCS					=			$(SRCSPATH)main.cpp \
-										$(SRCSPATH)AController.cpp \
+NOGUIPATH			=			$(SRCSPATH)NoGui/
+
+GUIPATH				=			$(SRCSPATH)Gui/
+
+ERRORSPATH		=			./Errors/
+
+SRCSGUI				=			$(GUIPATH)main.cpp \
+										$(GUIPATH)Ncurses.cpp \
+
+SRCSNOGUI			=			$(NOGUIPATH)main.cpp \
+										$(NOGUIPATH)NoGui.cpp \
+
+SRCS					=			$(SRCSPATH)AController.cpp \
 										$(SRCSPATH)AModel.cpp \
 										$(SRCSPATH)AProcess.cpp \
 										$(SRCSPATH)AProcessManager.cpp \
@@ -21,8 +33,6 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)ContextInformation.cpp \
 										$(SRCSPATH)Information.cpp \
 										$(SRCSPATH)Mutex.cpp \
-										$(SRCSPATH)Ncurses.cpp \
-										$(SRCSPATH)NoGui.cpp \
 										$(SRCSPATH)OpaqueType.cpp \
 										$(SRCSPATH)Process.cpp \
 										$(SRCSPATH)ProcessManagerSockets.cpp \
@@ -37,21 +47,30 @@ SRCS					=			$(SRCSPATH)main.cpp \
 										$(SRCSPATH)Regex.cpp \
 										$(ERRORSPATH)Errors.cpp \
 
-OBJS					=			$(SRCS:.cpp=.o)
+OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
+										$(SRCS:.cpp=.o) \
+
+OBJSNOGUI			=			$(SRCSNOGUI:.cpp=.o) \
+										$(SRCS:.cpp=.o) \
 
 CPPFLAGS			=			-I ./Includes -I ./Errors -lpthread -lncurses
 
-CXXFLAGS			=
+CXXFLAGS			=			-W -Wall -Wextra -std=c++11
 
 all:								$(NAME)
 
-$(NAME):						$(OBJS)
-										$(CC) -o $(NAME)  $(CXXFLAGS) $(OBJS) $(CPPFLAGS)
+ui:									$(NAMEUI)
+
+$(NAME):						$(OBJSNOGUI)
+										$(CC) -o $(NAME) $(CXXFLAGS) $(OBJSNOGUI) $(CPPFLAGS)
+
+$(NAMEUI):					$(OBJSGUI)
+										$(CC) -o $(NAMEUI) $(CXXFLAGS) $(OBJSGUI) $(CPPFLAGS)
 
 clean:
-										$(RM) $(OBJS)
+										$(RM) $(OBJSGUI) $(OBJSNOGUI)
 
 fclean:							clean
-										$(RM) $(NAME)
+										$(RM) $(NAME) $(NAMEUI)
 
 re:									fclean all

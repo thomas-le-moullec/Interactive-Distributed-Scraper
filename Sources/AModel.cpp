@@ -5,7 +5,7 @@ void Plazza::Model::AModel::AddObserver(Plazza::IObserver *observer) {
 }
 
 void Plazza::Model::AModel::NotifyObserver(std::vector<std::string> data) {
-	for (int i = 0; i < _listObservers.size(); i++) {
+	for (unsigned int i = 0; i < _listObservers.size(); i++) {
         _listObservers[i]->Update(data);
     }
 }
@@ -16,7 +16,8 @@ void Plazza::Model::AModel::RemoveObservers() {
 }
 
 void Plazza::Model::AModel::RemoveObserver(Plazza::IObserver *observer) {
-	for (int i = 0; i < _listObservers.size(); i++) {
+  (void)observer;
+	for (unsigned int i = 0; i < _listObservers.size(); i++) {
         /*if (_listObservers[i] == observer) {
             _listObservers.erase(observer);
         }*/

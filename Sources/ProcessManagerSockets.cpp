@@ -1,6 +1,6 @@
 #include "ProcessManagerSockets.hpp"
 
-Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads, Plazza::Model::IModel *model) : AController(model), _numPort(0)
+Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads, Plazza::Model::IModel *model) : AController(model), _numPort(0), _nbThreads(nbThreads)
 {
   ISocket				*socket;
 
@@ -74,7 +74,7 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
 void Plazza::Controller::ProcessManagerSockets::NotifyController(char input)
 {
 	if (input == 10 || input == 13)
-		control(5);
+		control();
   else
 	 _commandLine += input;
 }
@@ -134,7 +134,7 @@ Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fr
   return order;
 }
 
-void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbThreads)
+void									Plazza::Controller::ProcessManagerSockets::control()
 {
   std::vector<std::string> commands = ParseCommandLine(_commandLine);
 
@@ -160,12 +160,12 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
       }
     }
 
-    if (_processToFeed.second >= static_cast<int>(nbThreads))
+    if (_processToFeed.second >= static_cast<int>(_nbThreads))
     {
       Socket				*socket;
 
       socket = new Socket(4000 + _numPort++);
-      addProcess(nbThreads, socket);
+      addProcess(_nbThreads, socket);
       _fdProcess.insert(_fdProcess.end(), socket->socketParent());
       _processToFeed.first = _fdProcess[_fdProcess.size() - 1];
       delete socket;
