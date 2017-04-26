@@ -2,11 +2,6 @@
 
 Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads, Plazza::Model::IModel *model) : AController(model), _numPort(0), _nbThreads(nbThreads)
 {
-  ISocket				*socket;
-
-  socket = new Socket(4000 + _numPort++);
-  addProcess(nbThreads, socket);
-  _fdProcess.insert(_fdProcess.end(), socket->socketParent());
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
