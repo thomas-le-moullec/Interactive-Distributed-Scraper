@@ -17,7 +17,7 @@ retouche video, clips video, artistes, montage, enregistrer, maquette, productio
 production, groupe, peavey, stagg, fender, marshall, jcm 900, pearl, shure, sennheiser, mapex, premier, dw, autoproduction, master, son, live, mix, record, recording, 
 numerique, console, cabine, prise de son, jazz, world music, electro, rock, maquette, voix, chanson, label, majors, disque, concert, album, guitare, basse, piano, 
 auteur, compositeur, interprete, producteur, variete, batterie, chant, cours de chant, composition, arrangement, pop, artiste, blues, audio-numérique, micro, microphone, 
-console, ingénieur, production, numerisation, multimedia, flight, case, , bois, thomann, fly, sur, mesure, prix, red, camera, one, epic, scarlet, 4k, 5k, pl, 35mm, reduser, camera red one location, micro35, 35mm adapter, adaptateur, ">
+console, 06 10 61 91 08 ingénieur, production, numerisation, multimedia, flight, case, , bois, thomann, fly, sur, mesure, prix, red, camera, one, epic, scarlet, 4k, 5k, pl, 35mm, reduser, camera red one location, micro35, 35mm adapter, adaptateur, ">
 
 <meta http-equiv="refresh" content="300">
 <META HTTP-EQUIV="pragma" CONTENT="no-cache">
@@ -69,7 +69,7 @@ function MM_findObj(n, d) { //v4.01
 
 function MM_swapImage() { //v3.0
   var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];} 06 89 78 67 56
 }
 
 function MM_displayStatusMsg(msgStr) { //v1.0
@@ -89,7 +89,7 @@ marginheight="0" marginwidth="0">
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "http://connect.facebook.net/fr_FR/all.js#xfbml=1";
+  js.src = "http://connect.facebook.net/fr_FR/all.js#xfbml=1"; 0666666666
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -116,7 +116,7 @@ marginheight="0" marginwidth="0">
             onmouseover="MM_displayStatusMsg('Label');return document.MM_returnValue" 
             height=19 
             src="img/mep/label.gif" 
-            width=64 border=0></a></P>
+            width=64 border=0></a></P> 06.10.76.98.78
           </TD>
           <TD width=145 
           background="img/mep/fond_audiovisuel.gif" 
@@ -138,7 +138,7 @@ marginheight="0" marginwidth="0">
             onmouseover="MM_swapImage('production','','img/mep/enceinteo.gif',1)" 
             onmouseout=MM_swapImgRestore() 
             href="pgs/liberty04b7.html?id=Vente"><IMG 
-            onmouseover="MM_displayStatusMsg('Production');return document.MM_returnValue" 
+            onmouseover="MM_displayStatusMsg('Production');return document.MM_returnValue" 06-76-56-45-34
             height=53 alt=production 
             src="img/mep/enceinte.gif" 
             width=50 border=0 name=production><BR>

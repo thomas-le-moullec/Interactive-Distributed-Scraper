@@ -11,25 +11,22 @@ bool             Plazza::StrategyPhoneNumber::IsValidInformation(char const &c)
 
 int             Plazza::StrategyPhoneNumber::FindInformation(int pos)
 {
-    pos = this->_fileContent.find("06", pos);
-    int         save = pos;
+    (void)pos;
+    std::smatch m;
+    std::regex  e("(([0-9]{2}[\\ \\.-]?){4}[0-9]{2})");
+    IRegex      *regex = new  Regex(e);
 
-    if (pos < 0)
-        return (-1);
-    pos += 2;
-    for (int i = 0; i != 7 && pos < this->_fileContent.size() && this->IsValidInformation(this->_fileContent[save]); ++i)
-        pos++;
-    if (pos - save == 9)
-        this->_information.push_back(this->_fileContent.substr(save, pos - save));
+    while (regex->regexSearch(this->_fileContent, m)) {
+        this->_information.push_back(m[0]);
+        this->_fileContent = m.suffix().str();
+    }
+    std::cout << "->" << this->_information[0] << "<-" << std::endl;
     return (pos);
 }
 
 std::vector<std::string>            Plazza::StrategyPhoneNumber::execute(std::string const &fileContent)
 {
-    int         pos = 0;
-
     this->_fileContent = fileContent;
-    while (pos != -1)
-        pos = this->FindInformation(pos);
+    this->FindInformation(0);
     return _information;
 }
