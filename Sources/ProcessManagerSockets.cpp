@@ -2,10 +2,28 @@
 
 Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nbThreads, Plazza::Model::IModel *model) : AController(model), _numPort(0), _nbThreads(nbThreads)
 {
+  /*struct sigaction sigIntHandler;
+
+  sigIntHandler.sa_handler = my_handler;
+  sigemptyset(&sigIntHandler.sa_mask);
+  sigIntHandler.sa_flags = 0;
+  sigaction(SIGINT, &sigIntHandler, NULL);*/
+
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
 }
+
+/*void ProcessManagerSockets::my_handler(int a){
+  (void)a;
+  for (unsigned int i = 0; i < _fdProcess.size(); i++)
+  {
+    sendMessage("exit", _fdProcess[i]);
+    receiveMessage(_fdProcess[i]);
+    close(_fdProcess[i]);
+  }
+  exit(0);
+}*/
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
 {
@@ -140,6 +158,7 @@ Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fr
 
 void									Plazza::Controller::ProcessManagerSockets::control()
 {
+  //getline(std::cin, _commandLine);
   std::vector<std::string> commands = ParseCommandLine(_commandLine);
 
   _processToFeed.first = 0;
