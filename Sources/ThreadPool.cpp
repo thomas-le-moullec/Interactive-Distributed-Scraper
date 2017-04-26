@@ -45,11 +45,14 @@ void									Plazza::Controller::ThreadPool::execOrder()
 
   while (1)
   {
+    std::cout << "EXEC ORDER" << std::endl;
     std::string 							fileContent;
     Plazza::Controller::Order order = popOrder();
+    std::cout << "ON RECUPERE l ORDER" << std::endl;
+
     _ordersExecuted++;
       //std::cout << "File Name order => " << order._file << " et size _ciphers => " << _ciphers.size() << std::endl; //AFFICHE
-    for (int i = 0; i < _ciphers.size(); i++) {
+    for (int i = 0; i < ciphers.size(); i++) {
         //std::cout << "ENTRE DANS LE FOR"<< std::endl;
       try {
         fileContent = ciphers[i]->executeCipher(order._file);

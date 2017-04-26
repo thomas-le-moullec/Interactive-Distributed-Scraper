@@ -40,6 +40,7 @@ std::vector<std::string> 		Plazza::Controller::ProcessManagerSockets::ParseComma
   std::string								strToPush;
   size_t										pos;
 
+  std::cout << "Model size dans PROCESS MANAGE SOCKET -----> " << _model << std::endl;
   //std::cout << "Command Line -> " << order << std::endl;
     ordersSeparator.clear();
     orders.clear();

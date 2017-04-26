@@ -39,8 +39,7 @@ namespace Plazza {
       unsigned int									_ordersExecuted;
       Time													_time;
       Time													_now;
-      std::vector<Plazza::IStrategyCipher *> _ciphers;
-      Plazza::Model::IModel *_model;
+      Plazza::Model::IModel 				*_model;
     };
     void									*execOrder(void *);
   }

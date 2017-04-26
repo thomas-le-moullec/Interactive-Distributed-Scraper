@@ -1,7 +1,10 @@
 #include "AModel.hpp"
 
 void Plazza::Model::AModel::AddObserver(Plazza::IObserver *observer) {
+    std::cout << "Size Observ before --> " << _listObservers.size() << std::endl;
     _listObservers.insert(_listObservers.end(), observer);
+    std::cout << "Size Observ aftrer --> " << _listObservers.size() << std::endl;
+
 }
 
 void Plazza::Model::AModel::NotifyObserver(std::vector<std::string> data) {

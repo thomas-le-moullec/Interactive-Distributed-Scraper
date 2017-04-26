@@ -31,7 +31,6 @@ namespace Plazza {
       std::vector<std::string> 	ParseCommandLine(std::string order);
       orderBySocket							fromBufferToStruct(std::string str);
     private:
-      std::vector<Plazza::IStrategyCipher *> 	_ciphers;
       std::vector<int>												_fdProcess;
       std::pair<int, int>											_processToFeed;
       std::map<std::string, Information>	 		_strEnum;

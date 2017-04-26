@@ -22,11 +22,11 @@ Plazza::View::NoGui::NoGui(Plazza::Controller::IController *controller) : AView(
 
 void Plazza::View::NoGui::Update(std::vector<std::string> data) {
 	//std::cout << "HELLO VIEW" << std::endl;
-	_mutex->lock();
+//_mutex->lock();
     for (int i = 0; i <  data.size(); i++) {
       std::cout << data[i] << std::endl;
     }
-	_mutex->unlock();
+	//_mutex->unlock();
     //Fill Data needed by the View
     //_data = data;
 }
