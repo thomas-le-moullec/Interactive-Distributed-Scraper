@@ -29,8 +29,6 @@ void Plazza::View::NoGui::Update(std::vector<std::string> data) {
     for (unsigned int i = 0; i < data.size(); i++) {
       std::cout << data[i] << std::endl;
     }
-    //Fill Data needed by the View
-    //_data = data;
 }
 
 void Plazza::View::NoGui::LoopView() {

@@ -37,8 +37,8 @@ void									Plazza::Controller::ThreadPool::execOrder()
   std::vector<std::string> informations;
   std::vector<Plazza::IStrategyCipher *> 	ciphers;
 
-  ciphers.insert(ciphers.end(), new Plazza::Xor());
   ciphers.insert(ciphers.end(), new Plazza::Caesar());
+    ciphers.insert(ciphers.end(), new Plazza::Xor());
 
   while (1)
   {
@@ -54,7 +54,6 @@ void									Plazza::Controller::ThreadPool::execOrder()
         std::cerr << stdErr.what() << std::endl;
         _ordersExecuted--;
         return;
-
       }
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);

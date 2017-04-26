@@ -20,5 +20,5 @@ std::string             Plazza::Caesar::executeCipher(std::string const &fileNam
             this->_fileContent[j]++;
         }
     }
-    return (NULL);
+    return ("");
 }

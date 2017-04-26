@@ -35,5 +35,5 @@ std::string            Plazza::Xor::executeCipher(std::string const &fileName)
             }
         }
     }
-    return (NULL);
+    return (saveFileContent);
 }

@@ -45,7 +45,7 @@ SRCS					=			$(SRCSPATH)AController.cpp \
 										$(SRCSPATH)Time.cpp \
 										$(SRCSPATH)Xor.cpp \
 										$(SRCSPATH)Regex.cpp \
-										$(ERRORSPATH)Errors.cpp \
+										$(SRCSPATH)Errors.cpp \
 
 OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
 										$(SRCS:.cpp=.o) \
@@ -53,7 +53,7 @@ OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
 OBJSNOGUI			=			$(SRCSNOGUI:.cpp=.o) \
 										$(SRCS:.cpp=.o) \
 
-CPPFLAGS			=			-I ./Includes -I ./Errors -lpthread -lncurses
+CPPFLAGS			=			-I ./Includes -lpthread -lncurses
 
 CXXFLAGS			=			-W -Wall -Wextra -std=c++11
 
