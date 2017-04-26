@@ -6,8 +6,11 @@ Plazza::Xor::Xor() : AStrategyCipher()
 
 std::string            Plazza::Xor::executeCipher(std::string const &fileName)
 {
+  std::cout << "ON RENTRE DANS LE XOR" << std::endl;
     try {
         _fileContent = this->getFileContent(fileName);
+        std::cout << "ON TAKE LE FILE" << std::endl;
+
     }
     catch (RunTimeErrorController const &stdErr) {
         throw RunTimeErrorController("Couldn't open file : "+fileName);

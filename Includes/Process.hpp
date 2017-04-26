@@ -28,7 +28,7 @@ namespace Plazza {
       ISocket																	*_socket;
       //std::string															_message;
       //Order																		_order;
-        Plazza::Model::IModel *_model;
+        Plazza::Model::IModel 								*_model;
       int																			_fdSocket;
     };
   }
