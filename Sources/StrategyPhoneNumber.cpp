@@ -20,7 +20,6 @@ int             Plazza::StrategyPhoneNumber::FindInformation(int pos)
         this->_information.push_back(m[0]);
         this->_fileContent = m.suffix().str();
     }
-    std::cout << "->" << this->_information[0] << "<-" << std::endl;
     return (pos);
 }
 
