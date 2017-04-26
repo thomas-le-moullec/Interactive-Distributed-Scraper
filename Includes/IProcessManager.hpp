@@ -11,7 +11,6 @@ namespace Plazza {
 		public:
 			virtual ~IProcessManager() {};
 			virtual void addProcess(unsigned int, ISocket *) = 0; // A OVERLOAD
-			virtual void NotifyController(char) = 0;
 			virtual std::vector<int> getStatus() = 0;
 			virtual int getPid() = 0;
 		};

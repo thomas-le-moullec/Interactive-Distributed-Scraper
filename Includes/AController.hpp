@@ -16,7 +16,7 @@ namespace Plazza {
 			virtual std::string 							GetCommandLine();
 			virtual void 											Reset();
 			virtual std::vector<std::string> 	ParseCommandLine(std::string order) = 0;
-			virtual void 											NotifyController(char input) = 0;
+			virtual void 											NotifyController(char) = 0;
 
 		protected:
 			AController(Plazza::Model::IModel *);
