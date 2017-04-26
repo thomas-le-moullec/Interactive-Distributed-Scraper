@@ -179,6 +179,18 @@ void									Plazza::Controller::ProcessManagerSockets::control(unsigned int nbT
         receiveMessage(_fdProcess[i]);
         close(_fdProcess[i]);
       }
+        Plazza::Time time;
+        time.update();
+
+        struct tm * timeinfo;
+        char buffer [80];
+        time_t rawtime;
+
+        rawtime = time.getTime();
+        timeinfo = localtime(&rawtime);
+        strftime(buffer,80,"dataLog_%I:%M%p",timeinfo);
+        std::string fileName(buffer);
+        _model->SaveData(fileName);
       exit(0);
     }
     else

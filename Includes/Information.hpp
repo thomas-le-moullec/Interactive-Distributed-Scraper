@@ -11,6 +11,7 @@ namespace Plazza {
 		public:
 			void Reset();
 			void GetData(std::vector<std::string>);
+			void SaveData(std::string);
 			virtual ~Information() {};
 			Information();
 		};
