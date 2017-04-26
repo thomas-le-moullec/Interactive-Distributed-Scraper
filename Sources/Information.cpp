@@ -12,9 +12,9 @@ void Plazza::Model::Information::GetData(std::vector<std::string> informations) 
 void Plazza::Model::Information::SaveData(std::string fileName) {
     static bool saved = false;
     std::ofstream outputFile;
-    std::cout << "SAVE DATA IN :" << fileName << std::endl;
+    //std::cout << "SAVE DATA IN :" << fileName << std::endl;
     if (saved == false) {
-        outputFile.open(fileName.c_str());
+        outputFile.open(fileName.c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
         for (unsigned int i = 0; i < _informations.size(); i++) {
             for (unsigned int j = 0; j < _informations[i].size(); j++) {
                 outputFile << _informations[i][j] << std::endl;
