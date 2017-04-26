@@ -15,7 +15,6 @@ std::string            Plazza::Xor::executeCipher(std::string const &fileName)
     std::string saveFileContent = _fileContent;
     for (int i = 0; i < 255; ++i) {
         if (this->isUnCiphered() == true) {
-          std::cout << "UNCIPHERED" << std::endl;
             return (this->_fileContent);
         }
         for (unsigned int nb = 0; nb < this->_fileContent.size(); nb++) {
