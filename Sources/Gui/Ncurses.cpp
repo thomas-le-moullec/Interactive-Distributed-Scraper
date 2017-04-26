@@ -25,13 +25,13 @@ int Plazza::View::Ncurses::modeCanonique(int mode) {
 
 void 								Plazza::View::Ncurses::Update(std::vector<std::string> data) {
   std::vector<int> 	infosProcess;
-  
+
   clear();
   mvprintw(1, 1, "ENTRER YOUR COMMAND LINE %s", _commandToPrint.c_str());
   infosProcess = static_cast<Plazza::Controller::ProcessManagerSockets *>(_processManager)->getStatus();
-  mvprintw(3, 1, "Nombre de processus acitfs : %d --- ", infosProcess[0]);
+  mvprintw(3, 1, "Nombre de processus actifs : %d --- ", infosProcess[0]);
   for (unsigned int i = 2; i < infosProcess.size(); i++)
-    mvprintw(4 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i, infosProcess[i], infosProcess[1]);
+    mvprintw(2 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i - 2, infosProcess[i], infosProcess[1]);
 
   for (unsigned int i = 0; i < data.size(); i++)
     mvprintw(4 + infosProcess.size() + i, 1, "%s", data[i].c_str());
