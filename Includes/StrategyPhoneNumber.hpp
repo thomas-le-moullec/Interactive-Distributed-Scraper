@@ -16,6 +16,7 @@ namespace Plazza {
         std::vector<std::string> execute(std::string const &fileContent);
         bool IsValidInformation(char const &);
         int  FindInformation(int);
+        bool isValidPhoneNumber(std::string const &);
     };
 }
 
