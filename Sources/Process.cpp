@@ -41,6 +41,20 @@ void				Plazza::Controller::Process::control()
       _socket->sendMessage(std::to_string(_tp->getCurrentOrder()), _fdSocket);
     else if (_message == "exit")
     {
+        if (_tp->getCurrentOrder() != -1) {
+            Plazza::Time time;
+            time.update();
+
+            struct tm * timeinfo;
+            char buffer [80];
+            time_t rawtime;
+
+            rawtime = time.getTime();
+            timeinfo = localtime(&rawtime);
+            strftime(buffer,80,"dataLog_%I:%M%p",timeinfo);
+            std::string fileName(buffer);
+            _model->SaveData(fileName);
+        }
       _socket->sendMessage(" ", _fdSocket);
       close(_fdSocket);
       exit(0);

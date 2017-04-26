@@ -10,15 +10,21 @@ void Plazza::Model::Information::GetData(std::vector<std::string> informations) 
 }
 
 void Plazza::Model::Information::SaveData(std::string fileName) {
+    static bool saved = false;
     std::ofstream outputFile;
-
-    outputFile.open(fileName.c_str());
-    for (unsigned int i = 0; _informations.size(); i++) {
-        for (unsigned int j = 0; _informations.size(); j++) {
-            outputFile << _informations[i][j];
+    std::cout << "SAVE DATA IN :" << fileName << std::endl;
+    if (saved == false) {
+        outputFile.open(fileName.c_str());
+        for (unsigned int i = 0; i < _informations.size(); i++) {
+            for (unsigned int j = 0; j < _informations[i].size(); j++) {
+                outputFile << _informations[i][j] << std::endl;
+            }
+        }
+        outputFile.close();
+        if (_informations.size() > 0) {
+            saved = true;
         }
     }
-    outputFile.close();
 }
 
 Plazza::Model::Information::Information() {
