@@ -196,6 +196,18 @@ void									Plazza::Controller::ProcessManagerSockets::control()
 
     if (commands[j] == "exit")
     {
+      Plazza::Time time;
+      time.update();
+
+      struct tm * timeinfo;
+      char buffer [80];
+      time_t rawtime;
+
+      rawtime = time.getTime();
+      timeinfo = localtime(&rawtime);
+      strftime(buffer,80,"dataLog_%I:%M%p",timeinfo);
+      std::string fileName(buffer);
+      _model->SaveData(fileName);
       for (unsigned int i = 0; i < _fdProcess.size(); i++)
       {
         sendMessage("exit", _fdProcess[i]);

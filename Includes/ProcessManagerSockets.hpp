@@ -41,6 +41,7 @@ namespace Plazza {
       std::string 														_commandLine;
       std::string															_message;
       int																			_nbThreadsBusy;
+
     };
   }
 }
