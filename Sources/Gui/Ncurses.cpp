@@ -47,13 +47,24 @@ void Plazza::View::Ncurses::getInputs() {
 
   Update(data);
   read(1, &buff, 1);
-  _commandToPrint += buff[0];
   //std::cout << (int)buff[0] << std::endl;
   if (buff[0] == 127)
+  {
     _commandToPrint = _commandToPrint.substr(0, _commandToPrint.length() - 2);
-  if (buff[0] == 10 || buff[0] == 13)
-    _commandToPrint = "";
-  Update(data);
+    Update(data);
+  }
+  else if (buff[0] == 10 || buff[0] == 13)
+  {
+    if (_commandToPrint == "exit")
+      endwin();
+    else
+      _commandToPrint = "";
+  }
+  else
+  {
+    _commandToPrint += buff[0];
+    Update(data);
+  }
   _processManager->NotifyController(buff[0]);
 }
 
@@ -73,6 +84,7 @@ Plazza::View::Ncurses::Ncurses(Plazza::Controller::IController *controller) : AV
 }
 
 Plazza::View::Ncurses::~Ncurses() {
+  endwin();
   //modeCanonique(1);
 }
 

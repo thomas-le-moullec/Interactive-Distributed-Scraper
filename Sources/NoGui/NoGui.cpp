@@ -4,15 +4,12 @@ void Plazza::View::NoGui::initView() {
 }
 
 void Plazza::View::NoGui::getInputs() {
-	char	buff[1];
+	std::string	str;
 
-	buff[0] = 0;
-	read(1, &buff, 1);
-	_processManager->NotifyController(buff[0]);
-	//std::cout << "-->" << buff[0] << "<--" << std::endl;
-	/*std::string	str;
-
-	getline(std::cin, str);*/
+	getline(std::cin, str);
+	if (str == "")
+		str = "exit";
+	_processManager->NotifyController(str);
 }
 
 void Plazza::View::NoGui::displayData() {
