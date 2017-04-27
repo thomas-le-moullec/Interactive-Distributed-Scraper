@@ -25,13 +25,13 @@ int Plazza::View::Ncurses::modeCanonique(int mode) {
 
 void 								Plazza::View::Ncurses::Update(std::vector<std::string> data) {
   std::vector<int> 	infosProcess;
-  
+
   clear();
   mvprintw(1, 1, "ENTRER YOUR COMMAND LINE %s", _commandToPrint.c_str());
   infosProcess = static_cast<Plazza::Controller::ProcessManagerSockets *>(_processManager)->getStatus();
-  mvprintw(3, 1, "Nombre de processus acitfs : %d --- ", infosProcess[0]);
+  mvprintw(3, 1, "Nombre de processus actifs : %d --- ", infosProcess[0]);
   for (unsigned int i = 2; i < infosProcess.size(); i++)
-    mvprintw(4 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i, infosProcess[i], infosProcess[1]);
+    mvprintw(2 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i - 2, infosProcess[i], infosProcess[1]);
 
   for (unsigned int i = 0; i < data.size(); i++)
     mvprintw(4 + infosProcess.size() + i, 1, "%s", data[i].c_str());
@@ -47,13 +47,24 @@ void Plazza::View::Ncurses::getInputs() {
 
   Update(data);
   read(1, &buff, 1);
-  _commandToPrint += buff[0];
   //std::cout << (int)buff[0] << std::endl;
   if (buff[0] == 127)
+  {
     _commandToPrint = _commandToPrint.substr(0, _commandToPrint.length() - 2);
-  if (buff[0] == 10 || buff[0] == 13)
-    _commandToPrint = "";
-  Update(data);
+    Update(data);
+  }
+  else if (buff[0] == 10 || buff[0] == 13)
+  {
+    if (_commandToPrint == "exit")
+      endwin();
+    else
+      _commandToPrint = "";
+  }
+  else
+  {
+    _commandToPrint += buff[0];
+    Update(data);
+  }
   _processManager->NotifyController(buff[0]);
 }
 
@@ -73,6 +84,7 @@ Plazza::View::Ncurses::Ncurses(Plazza::Controller::IController *controller) : AV
 }
 
 Plazza::View::Ncurses::~Ncurses() {
+  endwin();
   //modeCanonique(1);
 }
 

@@ -9,7 +9,7 @@ namespace Plazza {
 		class IController {
         public:
             virtual ~IController(){};
-						virtual void NotifyController(char) = 0;
+						virtual void NotifyController(std::string) = 0;
 						virtual void Reset() = 0;
 						virtual void SetCommandLine(std::string command) = 0;
 						virtual std::string GetCommandLine() = 0;

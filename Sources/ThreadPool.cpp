@@ -38,7 +38,7 @@ void									Plazza::Controller::ThreadPool::execOrder()
   std::vector<Plazza::IStrategyCipher *> 	ciphers;
 
   ciphers.insert(ciphers.end(), new Plazza::Caesar());
-    ciphers.insert(ciphers.end(), new Plazza::Xor());
+//    ciphers.insert(ciphers.end(), new Plazza::Xor());
 
   while (1)
   {
@@ -79,7 +79,7 @@ void									*Plazza::Controller::execOrder(void *data)
 int										Plazza::Controller::ThreadPool::getCurrentOrder()
 {
   _now.update();
-  if (_orders.size() + _ordersExecuted == 0 &&  _now.diffTime(_time) >= 5)
+  if (_orders.size() + _ordersExecuted == 0 && _now.diffTime(_time) >= 5)
     return -1;
   return static_cast<int>(_ordersExecuted);
 }
