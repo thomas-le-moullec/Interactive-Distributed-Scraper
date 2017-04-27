@@ -26,7 +26,7 @@ int             Plazza::StrategyIpAddress::FindInformation(int pos)
     save = pos;
     if (static_cast<unsigned int>(pos + 1) < this->_fileContent.length() && this->_fileContent[pos] == '0' && this->IsValidInformation(this->_fileContent[pos + 1]))
         val--;
-    if (pos > 0 && !this->IsValidInformation(this->_fileContent[pos - 1]) && this->IsValidInformation(this->_fileContent[pos]) && atoi(&this->_fileContent[pos]) <= 255)
+    if (((pos > 0 && !this->IsValidInformation(this->_fileContent[pos - 1])) || pos == 0) && this->IsValidInformation(this->_fileContent[pos]) && atoi(&this->_fileContent[pos]) <= 255)
         val++;
     for (int i = 0; this->_fileContent[pos] && this->IsValidInformation(this->_fileContent[pos]) && i < 3; ++i)
         pos++;
