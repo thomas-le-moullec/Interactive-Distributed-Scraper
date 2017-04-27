@@ -28,7 +28,8 @@ int             Plazza::StrategyEmailAddress::FindInformation(int pos)
     save++;
     while (static_cast<unsigned int>(save) < this->_fileContent.size() && this->IsValidInformation(this->_fileContent[save]))
         save++;
-    this->_information.push_back(this->_fileContent.substr(pos, save - pos));
+    if (save > 0 && this->_fileContent[pos] != '@' && this->_fileContent[save - 1] != '@')
+        this->_information.push_back(this->_fileContent.substr(pos, save - pos));
     return (save);
 }
 

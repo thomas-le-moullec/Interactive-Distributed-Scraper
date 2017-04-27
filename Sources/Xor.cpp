@@ -25,13 +25,13 @@ std::string            Plazza::Xor::executeCipher(std::string const &fileName)
     for (int i = 0; i < 255; ++i) {
         for (int j = 0; j < 255; ++j) {
             for (unsigned int nb = 0; nb < this->_fileContent.size(); nb++) {
+                if (this->isUnCiphered() == true) {
+                    return (this->_fileContent);
+                }
                 if (nb % 2 == 0)
                     this->_fileContent[nb] = saveFileContent[nb] ^ i;
                 else
                     this->_fileContent[nb] = saveFileContent[nb] ^ j;
-            }
-            if (this->isUnCiphered() == true) {
-                return (this->_fileContent);
             }
         }
     }
