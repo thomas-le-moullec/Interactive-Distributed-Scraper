@@ -40,6 +40,7 @@ SRCS					=			$(SRCSPATH)AController.cpp \
 										$(SRCSPATH)StrategyEmailAddress.cpp \
 										$(SRCSPATH)StrategyIpAddress.cpp \
 										$(SRCSPATH)StrategyPhoneNumber.cpp \
+										$(SRCSPATH)StrategyCreditCardNumber.cpp \
 										$(SRCSPATH)Thread.cpp \
 										$(SRCSPATH)ThreadPool.cpp \
 										$(SRCSPATH)Time.cpp \
