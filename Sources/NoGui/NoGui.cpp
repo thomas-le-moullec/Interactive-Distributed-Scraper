@@ -8,11 +8,7 @@ void Plazza::View::NoGui::getInputs() {
 
 	buff[0] = 0;
 	read(1, &buff, 1);
-	_processManager->NotifyController(buff[0]);
-	//std::cout << "-->" << buff[0] << "<--" << std::endl;
-	/*std::string	str;
-
-	getline(std::cin, str);*/
+	_processManager->NotifyController(buff[i]);
 }
 
 void Plazza::View::NoGui::displayData() {
