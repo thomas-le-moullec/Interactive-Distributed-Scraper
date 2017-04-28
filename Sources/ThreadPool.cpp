@@ -82,5 +82,5 @@ int										Plazza::Controller::ThreadPool::getCurrentOrder()
   _now.update();
   if (_orders.size() + _ordersExecuted == 0 && _now.diffTime(_time) >= 5)
     return -1;
-  return static_cast<int>(_ordersExecuted);
+  return static_cast<int>(_ordersExecuted + _orders.size());
 }

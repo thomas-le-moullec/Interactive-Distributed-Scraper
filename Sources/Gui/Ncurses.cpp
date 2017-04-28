@@ -31,8 +31,6 @@ void 								Plazza::View::Ncurses::Update(std::vector<std::string> data) {
   int								y = 0;
 
   //initscr();
-
-  //winMenu = subwin(stdscr, 10, COLS - 4, 0, 2);
   wclear(winMenu);
   wclear(winDatas);
 
