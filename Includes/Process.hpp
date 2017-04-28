@@ -12,6 +12,7 @@
 #include "ContextInformation.hpp"
 #include "StrategyIpAddress.hpp"
 #include "StrategyPhoneNumber.hpp"
+#include "StrategyCreditCardNumber.hpp"
 #include "StrategyEmailAddress.hpp"
 
 namespace Plazza {

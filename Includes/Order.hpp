@@ -17,7 +17,8 @@ namespace Plazza {
 		{
 			PHONE_NUMBER,
 			EMAIL_ADDRESS,
-			IP_ADDRESS
+			IP_ADDRESS,
+			CREDIT_CARD_NUMBER
 		};
 
 		struct              orderBySocket

@@ -26,6 +26,9 @@ Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string 
   if (orderReceived.info == Plazza::Controller::Information::IP_ADDRESS) {
     newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyIpAddress());
   }
+  if (orderReceived.info == Plazza::Controller::Information::CREDIT_CARD_NUMBER) {
+    newOrder._strategy = new Plazza::ContextInformation(new Plazza::StrategyCreditCardNumber());
+  }
   if (newOrder._strategy == NULL || orderReceived.fileName.empty())
     throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
   newOrder._file = orderReceived.fileName;
