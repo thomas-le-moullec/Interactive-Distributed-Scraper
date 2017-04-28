@@ -1,6 +1,7 @@
 #include "Sfml.hpp"
 
 void 								Plazza::View::Sfml::Update(std::vector<std::string> data) {
+  (void)data;
 }
 
 void Plazza::View::Sfml::initView() {
@@ -26,4 +27,3 @@ void Plazza::View::Sfml::LoopView() {
         getInputs();
     }
 }
-

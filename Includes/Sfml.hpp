@@ -4,6 +4,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "AView.hpp"
+#include "IObserver.hpp"
 
 namespace Plazza {
     namespace View {

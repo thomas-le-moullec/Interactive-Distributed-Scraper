@@ -55,7 +55,9 @@ OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
 OBJSNOGUI			=			$(SRCSNOGUI:.cpp=.o) \
 										$(SRCS:.cpp=.o) \
 
-CPPFLAGS			=			-I ./Includes -lpthread -lncurses -lsfml-graphics -lsfml-window -lsfml-system
+CPPFLAGS			=			-I ./Includes -lpthread
+
+CPPFLAGSUI		=			-I ./Includes -lpthread -lncurses -lsfml-graphics -lsfml-window -lsfml-system
 
 CXXFLAGS			=			-W -Wall -Wextra -std=c++11
 
@@ -67,7 +69,7 @@ $(NAME):						$(OBJSNOGUI)
 										$(CC) -o $(NAME) $(CXXFLAGS) $(OBJSNOGUI) $(CPPFLAGS)
 
 $(NAMEUI):					$(OBJSGUI)
-										$(CC) -o $(NAMEUI) $(CXXFLAGS) $(OBJSGUI) $(CPPFLAGS)
+										$(CC) -o $(NAMEUI) $(CXXFLAGS) $(OBJSGUI) $(CPPFLAGSUI)
 
 clean:
 										$(RM) $(OBJSGUI) $(OBJSNOGUI)

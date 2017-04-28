@@ -25,28 +25,39 @@ int Plazza::View::Ncurses::modeCanonique(int mode) {
 
 void 								Plazza::View::Ncurses::Update(std::vector<std::string> data) {
   std::vector<int> 	infosProcess;
-  WINDOW 						*winDatas;
+  WINDOW 						*winMenu = newwin(10, COLS - 4, 1, 2);
+  WINDOW 						*winDatas = newwin(30, COLS - 4, 12, 2);
   int								x = 0;
+  int								y = 0;
 
-  clear();
-  mvprintw(1, 1, "ENTRER YOUR COMMAND LINE %s", _commandToPrint.c_str());
+  //initscr();
+
+  //winMenu = subwin(stdscr, 10, COLS - 4, 0, 2);
+  wclear(winMenu);
+  wclear(winDatas);
+
+  box(winMenu, 0, 0);
+  box(winDatas, 0, 0);
+
+  mvwprintw(winMenu, 1, 1, "ENTRER YOUR COMMAND LINE %s", _commandToPrint.c_str());
   infosProcess = static_cast<Plazza::Controller::ProcessManagerSockets *>(_processManager)->getStatus();
-  mvprintw(3, 1, "Nombre de processus actifs : %d --- ", infosProcess[0]);
+  mvwprintw(winMenu, 3, 1, "Nombre de processus actifs : %d", infosProcess[0]);
   for (unsigned int i = 2; i < infosProcess.size(); i++)
-    mvprintw(2 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i - 2, infosProcess[i], infosProcess[1]);
-  initscr();
-  //std::cout << _commandToPrint << std::endl;
-  winDatas = subwin(stdscr, 30, COLS - 4, LINES / 3, 2);
-  box(winDatas, ACS_VLINE, ACS_HLINE);
+    mvwprintw(winMenu, 2 + i, 1, "   Processus N. %u : %d/%d threads occupés, ", i - 2, infosProcess[i], infosProcess[1]);
+  wrefresh(winMenu);
+
+  wrefresh(winDatas);
   for (unsigned int i = 0; i < data.size(); i++)
   {
-    mvwprintw(winDatas, 1 + i % 25, 1 + x, "%s", data[i].c_str());
+    mvwprintw(winDatas, 1 + y, 1 + x, "%s", data[i].c_str());
     wrefresh(winDatas);
-    usleep(20000);
-    if (i % 25 == 0)
+    usleep(200000);
+    y++;
+    if (i % 25 == 0 && i != 0) {
       x += 30;
+      y = 0;
+    }
   }
-  refresh();
 }
 
 void Plazza::View::Ncurses::initView() {
@@ -58,8 +69,6 @@ void 												Plazza::View::Ncurses::getInputs() {
 
   Update(data);
   buff[0] = ' ';
-
-  //getline(std::cin, _commandToPrint);
 
   while (buff[0] != 10 && buff[0] != 13) {
     read(1, &buff, 1);
@@ -73,10 +82,7 @@ void 												Plazza::View::Ncurses::getInputs() {
     }
   }
   if (_commandToPrint == "exit")
-  {
     endwin();
-    endwin();
-  }
   _processManager->NotifyController(_commandToPrint);
   _commandToPrint = "";
 }
