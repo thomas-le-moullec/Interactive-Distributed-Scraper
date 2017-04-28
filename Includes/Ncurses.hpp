@@ -4,7 +4,7 @@
 #include "AView.hpp"
 #include "IObserver.hpp"
 #include "ProcessManagerSockets.hpp"
-//#include <ncurses.h>
+#include <ncurses.h>
 #include <curses.h>
 
 
