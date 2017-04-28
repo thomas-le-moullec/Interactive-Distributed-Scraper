@@ -16,6 +16,7 @@ ERRORSPATH		=			./Errors/
 
 SRCSGUI				=			$(GUIPATH)main.cpp \
 										$(GUIPATH)Ncurses.cpp \
+										$(GUIPATH)Sfml.cpp \
 
 SRCSNOGUI			=			$(NOGUIPATH)main.cpp \
 										$(NOGUIPATH)NoGui.cpp \
@@ -53,7 +54,7 @@ OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
 OBJSNOGUI			=			$(SRCSNOGUI:.cpp=.o) \
 										$(SRCS:.cpp=.o) \
 
-CPPFLAGS			=			-I ./Includes -lpthread -lncurses
+CPPFLAGS			=			-I ./Includes -lpthread -lncurses -lsfml-graphics -lsfml-window -lsfml-system
 
 CXXFLAGS			=			-W -Wall -Wextra -std=c++11
 
