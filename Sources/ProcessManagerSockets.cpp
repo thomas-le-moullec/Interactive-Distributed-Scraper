@@ -5,6 +5,7 @@ Plazza::Controller::ProcessManagerSockets::ProcessManagerSockets(unsigned int nb
   _strEnum["PHONE_NUMBER"] = Plazza::Controller::PHONE_NUMBER;
   _strEnum["EMAIL_ADDRESS"] = Plazza::Controller::EMAIL_ADDRESS;
   _strEnum["IP_ADDRESS"] = Plazza::Controller::IP_ADDRESS;
+  _strEnum["CREDIT_CARD_NUMBER"] = Plazza::Controller::CREDIT_CARD_NUMBER;
 }
 
 Plazza::Controller::ProcessManagerSockets::~ProcessManagerSockets()
@@ -118,7 +119,7 @@ Plazza::Controller::orderBySocket 	Plazza::Controller::ProcessManagerSockets::fr
   {
     order.fileName = str.substr(0, str.find(" "));
     enums = str.substr(str.find(" ") + 1, str.length());
-    if (enums == "PHONE_NUMBER" || enums == "EMAIL_ADDRESS" || enums == "IP_ADDRESS")
+    if (enums == "PHONE_NUMBER" || enums == "EMAIL_ADDRESS" || enums == "IP_ADDRESS" || enums == "CREDIT_CARD_NUMBER")
       order.info = _strEnum[enums];
     else
       throw RunTimeErrorController("Format is : [FILENAME] [DATA PATTERN]. Example : toto.html PHONE_NUMBER");
