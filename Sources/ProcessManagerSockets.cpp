@@ -144,11 +144,6 @@ void	Plazza::Controller::ProcessManagerSockets::waitExit()
         quit = false;
     }
   }
-  for (unsigned int i = 0; i < _fdProcess.size(); i++)
-  {
-    sendMessage("nbThreadsBusy", _fdProcess[i]);
-    _nbThreadsBusy = atoi(receiveMessage(_fdProcess[i]).c_str());
-  }
 }
 
 void									Plazza::Controller::ProcessManagerSockets::control()
