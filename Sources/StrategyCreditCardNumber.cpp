@@ -43,7 +43,8 @@ int             Plazza::StrategyCreditCardNumber::FindInformation(int pos)
         pos++;
     for (int i = 0; i < 4 && (unsigned int)pos < this->_fileContent.length() && this->IsValidInformation(this->_fileContent[pos]); ++i)
         pos++;
-    this->_information.push_back(this->_fileContent.substr(save, pos - save));
+    if (pos - save >= 16)
+        this->_information.push_back(this->_fileContent.substr(save, pos - save));
     return (pos);
 }
 

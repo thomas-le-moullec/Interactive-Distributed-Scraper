@@ -20,6 +20,6 @@ std::string             Plazza::Caesar::executeCipher(std::string const &fileNam
         for (unsigned int j = 0; j < this->_fileContent.size(); j++) {
             this->_fileContent[j]++;
         }
-    }*/
-    return ("");
+    }
+    return ("");*/
 }
