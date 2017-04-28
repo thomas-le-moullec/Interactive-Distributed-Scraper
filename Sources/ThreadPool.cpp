@@ -37,8 +37,9 @@ void									Plazza::Controller::ThreadPool::execOrder()
   std::vector<std::string> informations;
   std::vector<Plazza::IStrategyCipher *> 	ciphers;
 
-  ciphers.insert(ciphers.end(), new Plazza::Caesar());
-//    ciphers.insert(ciphers.end(), new Plazza::Xor());
+    ciphers.insert(ciphers.end(), new Plazza::Caesar());
+    //ciphers.insert(ciphers.end(), new Plazza::Atbash());
+    //ciphers.insert(ciphers.end(), new Plazza::Xor());
 
   while (1)
   {

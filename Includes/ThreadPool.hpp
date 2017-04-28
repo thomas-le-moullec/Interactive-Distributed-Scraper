@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "Xor.hpp"
+#include "Atbash.hpp"
 #include "Caesar.hpp"
 #include "Thread.hpp"
 #include "AThreadsPool.hpp"

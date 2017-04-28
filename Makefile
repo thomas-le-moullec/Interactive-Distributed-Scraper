@@ -46,6 +46,7 @@ SRCS					=			$(SRCSPATH)AController.cpp \
 										$(SRCSPATH)ThreadPool.cpp \
 										$(SRCSPATH)Time.cpp \
 										$(SRCSPATH)Xor.cpp \
+										$(SRCSPATH)Atbash.cpp \
 										$(SRCSPATH)Regex.cpp \
 										$(SRCSPATH)Errors.cpp \
 
