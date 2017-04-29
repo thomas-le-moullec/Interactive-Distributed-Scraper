@@ -8,47 +8,57 @@ RM						=			rm -rf
 
 SRCSPATH			=			./Sources/
 
-NOGUIPATH			=			$(SRCSPATH)NoGui/
+ENCAPSULATION	=			$(SRCSPATH)Encapsulation/
 
-GUIPATH				=			$(SRCSPATH)Gui/
+ERRORS				=			$(SRCSPATH)Errors/
 
-ERRORSPATH		=			./Errors/
+EXECUTION			=			$(SRCSPATH)Execution/
 
-SRCSGUI				=			$(GUIPATH)main.cpp \
-										$(GUIPATH)Ncurses.cpp \
-										$(GUIPATH)Sfml.cpp \
+MODEL					=			$(SRCSPATH)Model/
 
-SRCSNOGUI			=			$(NOGUIPATH)main.cpp \
-										$(NOGUIPATH)NoGui.cpp \
+PROCESS				=			$(SRCSPATH)Process/
 
-SRCS					=			$(SRCSPATH)AController.cpp \
-										$(SRCSPATH)AModel.cpp \
-										$(SRCSPATH)AProcess.cpp \
-										$(SRCSPATH)AProcessManager.cpp \
-										$(SRCSPATH)ASocket.cpp \
-										$(SRCSPATH)AStrategyCipher.cpp \
-										$(SRCSPATH)AThreadsPool.cpp \
-										$(SRCSPATH)AView.cpp \
-										$(SRCSPATH)Caesar.cpp \
-										$(SRCSPATH)CondVar.cpp \
-										$(SRCSPATH)ContextInformation.cpp \
-										$(SRCSPATH)Information.cpp \
-										$(SRCSPATH)Mutex.cpp \
-										$(SRCSPATH)OpaqueType.cpp \
-										$(SRCSPATH)Process.cpp \
-										$(SRCSPATH)ProcessManagerSockets.cpp \
-										$(SRCSPATH)Socket.cpp \
-										$(SRCSPATH)StrategyEmailAddress.cpp \
-										$(SRCSPATH)StrategyIpAddress.cpp \
-										$(SRCSPATH)StrategyPhoneNumber.cpp \
-										$(SRCSPATH)StrategyCreditCardNumber.cpp \
-										$(SRCSPATH)Thread.cpp \
-										$(SRCSPATH)ThreadPool.cpp \
-										$(SRCSPATH)Time.cpp \
-										$(SRCSPATH)Xor.cpp \
-										$(SRCSPATH)Atbash.cpp \
-										$(SRCSPATH)Regex.cpp \
-										$(SRCSPATH)Errors.cpp \
+VIEW					=			$(SRCSPATH)View/
+
+NOGUI					=			$(VIEW)NoGui/
+
+GUI						=			$(VIEW)Gui/
+
+SRCSGUI				=			$(GUI)main.cpp \
+										$(GUI)Ncurses.cpp \
+										$(GUI)Sfml.cpp \
+
+SRCSNOGUI			=			$(NOGUI)main.cpp \
+										$(NOGUI)NoGui.cpp \
+
+SRCS					=			$(ENCAPSULATION)Thread.cpp \
+										$(ENCAPSULATION)CondVar.cpp \
+										$(ENCAPSULATION)Mutex.cpp \
+										$(ENCAPSULATION)OpaqueType.cpp \
+										$(ENCAPSULATION)Time.cpp \
+										$(ENCAPSULATION)Regex.cpp \
+										$(ERRORS)Errors.cpp \
+										$(EXECUTION)AStrategyCipher.cpp \
+										$(EXECUTION)Caesar.cpp \
+										$(EXECUTION)Xor.cpp \
+										$(EXECUTION)Atbash.cpp \
+										$(EXECUTION)StrategyEmailAddress.cpp \
+										$(EXECUTION)StrategyIpAddress.cpp \
+										$(EXECUTION)StrategyPhoneNumber.cpp \
+										$(EXECUTION)StrategyCreditCardNumber.cpp \
+										$(MODEL)AModel.cpp \
+										$(MODEL)ContextInformation.cpp \
+										$(MODEL)Information.cpp \
+										$(PROCESS)AController.cpp \
+										$(PROCESS)AProcess.cpp \
+										$(PROCESS)AProcessManager.cpp \
+										$(PROCESS)ASocket.cpp \
+										$(PROCESS)AThreadsPool.cpp \
+										$(PROCESS)Process.cpp \
+										$(PROCESS)ProcessManagerSockets.cpp \
+										$(PROCESS)Socket.cpp \
+										$(PROCESS)ThreadPool.cpp \
+										$(VIEW)AView.cpp \
 
 OBJSGUI				=			$(SRCSGUI:.cpp=.o) \
 										$(SRCS:.cpp=.o) \
