@@ -140,9 +140,7 @@ void	Plazza::Controller::ProcessManagerSockets::waitExit()
     {
       sendMessage("nbThreadsBusy", _fdProcess[i]);
       _nbThreadsBusy = atoi(receiveMessage(_fdProcess[i]).c_str());
-      if (_nbThreadsBusy <= 0 && quit == true)
-        quit = true;
-      else
+      if (_nbThreadsBusy > 0)
         quit = false;
     }
   }
@@ -152,10 +150,10 @@ void									Plazza::Controller::ProcessManagerSockets::control()
 {
   std::vector<std::string> commands = ParseCommandLine(_commandLine);
 
-  _processToFeed.first = 0;
-  _processToFeed.second = 1000;
   for (unsigned int j = 0; j < commands.size(); j++)
   {
+    _processToFeed.first = 0;
+    _processToFeed.second = 1000;
     for (unsigned int i = 0; i < _fdProcess.size(); i++)
     {
       sendMessage("nbThreadsBusy", _fdProcess[i]);
@@ -173,7 +171,6 @@ void									Plazza::Controller::ProcessManagerSockets::control()
         _processToFeed.second = _nbThreadsBusy;
       }
     }
-
     if (_processToFeed.second >= static_cast<int>(_nbThreads))
     {
       Socket				*socket;
