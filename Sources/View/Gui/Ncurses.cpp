@@ -49,11 +49,16 @@ void 								Plazza::View::Ncurses::Update(std::vector<std::string> data) {
   {
     mvwprintw(winDatas, 1 + y, 1 + x, "%s", data[i].c_str());
     wrefresh(winDatas);
-    usleep(200000);
+    usleep(100000);
     y++;
     if (i % 25 == 0 && i != 0) {
-      x += 30;
+      x += 27;
       y = 0;
+    }
+    if (x > 27 * 3){
+      x = 0;
+      wclear(winDatas);
+      box(winDatas, 0, 0);
     }
   }
 }
