@@ -45,7 +45,6 @@ void									Plazza::Controller::ThreadPool::execOrder()
   {
     std::string 							fileContent;
     Plazza::Controller::Order order = popOrder();
-
     _ordersExecuted++;
     for (unsigned int i = 0; i < ciphers.size(); i++) {
       try {
@@ -58,14 +57,15 @@ void									Plazza::Controller::ThreadPool::execOrder()
       }
       if (!fileContent.empty()) {
         informations = order._strategy->ExecuteStrategy(fileContent);
-      _mutex->lock();
-      _model->GetData(informations);
-      _mutex->unlock();
-      break;
+          _mutex->lock();
+          _model->GetData(informations);
+          _mutex->unlock();
+          break;
       }
     }
-    _time.update();
-    _ordersExecuted--;
+      _time.update();
+      _ordersExecuted--;
+
   }
 }
 
