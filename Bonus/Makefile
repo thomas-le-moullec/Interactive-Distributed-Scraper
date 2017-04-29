@@ -45,17 +45,17 @@ all:									$(NAMECC) $(NAMEAT) $(NAMECA) $(NAMEXO) $(NAMEIP) $(NAMEMA)
 $(NAMECC):						$(CCGOBJS)
 											$(CC) -o $(NAMECC) $(CCGOBJS)
 
-$(NAMEAT):						$(GATGOBJS)
-											$(CC) -o $(NAMEAT) $(GATGOBJS)
+$(NAMEAT):						$(GATOBJS)
+											$(CC) -o $(NAMEAT) $(GATOBJS)
 
-$(NAMECA):						$(CAEGOBJS)
-											$(CC) -o $(NAMECA) $(CAEGOBJS)
+$(NAMECA):						$(CAEOBJS)
+											$(CC) -o $(NAMECA) $(CAEOBJS)
 
-$(NAMEXO):						$(XORGOBJS)
-											$(CC) -o $(NAMEXO) $(XORGOBJS)
+$(NAMEXO):						$(XOROBJS)
+											$(CC) -o $(NAMEXO) $(XOROBJS)
 
 $(NAMEIP):						$(IPOBJS)
-											$(CC) -o $(NAMEIP) $(IPGOBJS)
+											$(CC) -o $(NAMEIP) $(IPOBJS)
 
 $(NAMEMA):						$(MAIOBJS)
 											$(CC) -o $(NAMEMA) $(MAIOBJS)
