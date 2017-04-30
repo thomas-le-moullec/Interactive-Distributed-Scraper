@@ -65,7 +65,6 @@ void									Plazza::Controller::ThreadPool::execOrder()
     }
       _time.update();
       _ordersExecuted--;
-
   }
 }
 

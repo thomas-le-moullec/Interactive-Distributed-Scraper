@@ -10,7 +10,7 @@ namespace Plazza {
         public:
 			virtual void Reset() = 0;
 			virtual void GetData(std::vector<std::string>) = 0;
-			virtual void SaveData(std::string) = 0;
+			virtual void SaveData(const std::string &) = 0;
 			virtual ~IModel() {};
 		};
 	}

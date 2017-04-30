@@ -11,10 +11,9 @@ void Plazza::Model::Information::GetData(std::vector<std::string> informations) 
 	NotifyObserver(informations);
 }
 
-void Plazza::Model::Information::SaveData(std::string fileName) {
+void Plazza::Model::Information::SaveData(const std::string &fileName) {
     static bool saved = false;
     std::ofstream outputFile;
-    //std::cout << "SAVE DATA IN :" << fileName << std::endl;
     if (saved == false) {
         outputFile.open(LOGS_PATH+fileName.c_str(), std::fstream::in | std::fstream::out | std::fstream::app);
         for (unsigned int i = 0; i < _informations.size(); i++) {

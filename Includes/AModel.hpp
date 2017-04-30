@@ -15,7 +15,7 @@ namespace Plazza {
 			virtual void RemoveObservers();
 			virtual void RemoveObserver(Plazza::IObserver *observer);
 			virtual void GetData(std::vector<std::string>) = 0;
-			virtual void SaveData(std::string) = 0;
+			virtual void SaveData(const std::string &) = 0;
 			virtual ~AModel() {};
 
 		protected:

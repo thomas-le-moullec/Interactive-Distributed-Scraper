@@ -11,7 +11,7 @@ namespace Plazza {
 		public:
 			virtual ~IProcess() {};
 			virtual void 											control() = 0;
-			virtual Order 										parseOrder(std::string) = 0;
+			virtual Order 										parseOrder(const std::string &) = 0;
 		};
 	}
 }

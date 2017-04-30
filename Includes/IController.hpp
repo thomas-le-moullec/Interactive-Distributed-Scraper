@@ -11,8 +11,6 @@ namespace Plazza {
             virtual ~IController(){};
 						virtual void NotifyController(std::string) = 0;
 						virtual void Reset() = 0;
-						virtual void SetCommandLine(std::string command) = 0;
-						virtual std::string GetCommandLine() = 0;
 						virtual std::vector<std::string> ParseCommandLine(std::string) = 0;
 		};
 	}

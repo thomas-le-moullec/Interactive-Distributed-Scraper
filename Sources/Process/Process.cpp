@@ -10,7 +10,7 @@ Plazza::Controller::Process::~Process()
 {
 }
 
-Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(std::string buff)
+Plazza::Controller::Order			Plazza::Controller::Process::parseOrder(const std::string &buff)
 {
   orderBySocket orderReceived;
   Order newOrder;

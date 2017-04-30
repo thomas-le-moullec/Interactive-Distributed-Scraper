@@ -22,7 +22,7 @@ namespace Plazza {
     public:
       Process(unsigned int, ISocket *, Plazza::Model::IModel *);
       ~Process();
-      Order						parseOrder(std::string);
+      Order						parseOrder(const std::string &);
       void						control();
     private:
       ISocket																	*_socket;

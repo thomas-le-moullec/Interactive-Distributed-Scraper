@@ -4,13 +4,5 @@ void Plazza::Controller::AController::Reset()
 {
 }
 
-void Plazza::Controller::AController::SetCommandLine(std::string command) {
-	this->_commandLine = command;
-}
-
-std::string Plazza::Controller::AController::GetCommandLine() {
-	return this->_commandLine;
-}
-
 Plazza::Controller::AController::AController(Plazza::Model::IModel *model) : _model(model) {
 }

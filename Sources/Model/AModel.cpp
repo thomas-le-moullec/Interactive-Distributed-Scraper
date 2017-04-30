@@ -12,7 +12,6 @@ void Plazza::Model::AModel::NotifyObserver(std::vector<std::string> data) {
 
 void Plazza::Model::AModel::RemoveObservers() {
 	delete &_listObservers;
-    //new
 }
 
 void Plazza::Model::AModel::RemoveObserver(Plazza::IObserver *observer) {

@@ -12,7 +12,7 @@ namespace Plazza {
 		public:
 			virtual ~AProcess() {};
 			virtual void 											control() = 0;
-			virtual Order 										parseOrder(std::string) = 0;
+			virtual Order 										parseOrder(const std::string &) = 0;
 
 		protected:
 			AProcess();

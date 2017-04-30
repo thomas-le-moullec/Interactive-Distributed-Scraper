@@ -9,8 +9,6 @@ namespace Plazza {
 		class AController : public IController {
 		public:
 			virtual ~AController() {};
-			virtual void 											SetCommandLine(std::string command);
-			virtual std::string 							GetCommandLine();
 			virtual void 											Reset();
 			virtual std::vector<std::string> 	ParseCommandLine(std::string order) = 0;
 			virtual void 											NotifyController(std::string) = 0;
