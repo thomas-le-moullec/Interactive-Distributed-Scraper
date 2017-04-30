@@ -31,10 +31,9 @@ namespace Plazza {
 
     private:
       std::vector<Order> 						_orders;
-      //std::vector<std::thread *>		_threads;
       std::vector<Thread *>					_threads;
 
-      IMutex												*_mutex; // A CHANGER EN MUTEX SI PROBLEME
+      IMutex												*_mutex;
       CondVar												_cond;
       unsigned int									_nbThreads;
       unsigned int									_ordersExecuted;

@@ -13,7 +13,6 @@ namespace Plazza {
 		Thread(const pthread_attr_t *attr, void *(*start)(void *), void *arg);
 		virtual ~Thread(){};
 		virtual void join(void **value);
-		//bool joinable();
 	};
 }
 

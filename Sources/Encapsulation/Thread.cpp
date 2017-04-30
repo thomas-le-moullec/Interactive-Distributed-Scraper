@@ -7,7 +7,3 @@ Plazza::Thread::Thread(const pthread_attr_t *attr, void *(*start)(void *), void 
 void Plazza::Thread::join(void **value) {
 	  pthread_join(_thread, value);
 }
-
-/*bool Plazza::Thread::joinable() {
-
-}*/

@@ -8,9 +8,7 @@
 namespace Plazza {
 	namespace Model {
 		class AModel : public IModel, public IObservable {
-		protected:
-      std::vector<Plazza::IObserver *> _listObservers;
-        public:
+    public:
 			virtual void Reset() = 0;
 			virtual void AddObserver(Plazza::IObserver *observer);
 			virtual void NotifyObserver(std::vector<std::string> data);
@@ -23,6 +21,7 @@ namespace Plazza {
 		protected:
 			AModel();
 			static const std::string                            LOGS_PATH;
+			std::vector<Plazza::IObserver *> 										_listObservers;
 		};
 	}
 }

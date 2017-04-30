@@ -7,11 +7,6 @@
 namespace Plazza {
 	namespace View {
 		class AView : public IView {
-		protected:
-			unsigned int _width;
-			unsigned int _height;
-			Plazza::Controller::IController *_processManager;
-
     public:
       virtual ~AView() {};
 			virtual void getInputs() = 0;
@@ -26,6 +21,9 @@ namespace Plazza {
 
     protected:
       AView(Plazza::Controller::IController *);
+			unsigned int 										_width;
+			unsigned int 										_height;
+			Plazza::Controller::IController *_processManager;
 		};
 	}
 }

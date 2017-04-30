@@ -7,9 +7,6 @@
 namespace Plazza {
 	namespace Controller {
 		class AController : public IController {
-        protected:
-			Plazza::Model::IModel *_model;
-
 		public:
 			virtual ~AController() {};
 			virtual void 											SetCommandLine(std::string command);
@@ -20,6 +17,7 @@ namespace Plazza {
 
 		protected:
 			AController(Plazza::Model::IModel *);
+			Plazza::Model::IModel 						*_model;
 			std::string 											_commandLine;
 		};
 	}

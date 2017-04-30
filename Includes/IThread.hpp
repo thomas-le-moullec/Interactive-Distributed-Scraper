@@ -5,7 +5,6 @@
 
 namespace Plazza {
 	class IThread {
-		//virtual bool joinable() = 0;
 	public:
 		virtual void join(void **) = 0;
 		virtual ~IThread() {};
