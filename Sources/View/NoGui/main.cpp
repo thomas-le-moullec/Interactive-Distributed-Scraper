@@ -23,5 +23,8 @@ int main(int ac, char **av)
 
   static_cast<Plazza::Model::AModel *>(model)->AddObserver(static_cast<Plazza::View::NoGui *>(viewNoGui));
   viewNoGui->LoopView();
+  delete model;
+  delete controller;
+  delete viewNoGui;
   return 0;
 };
